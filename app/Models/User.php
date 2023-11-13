@@ -17,13 +17,32 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'password',
-        'image',
-    ];
+    protected $guarded = [];
+
+    public function suspend()
+    {
+		  return ($this->suspend == true) ? true : false;
+    }
+
+    public function admin()
+    {
+		  return ($this->admin == true && ($this->account == 5) && $this->active == true) ? true : false;
+    }
+
+    public function isActive()
+    {
+		  return ($this->active == true) ? true : false;
+    }
+
+    public function superAdmin()
+    {
+		  return ($this->admin == true && ($this->account == 9) && $this->is_root == false) ? true : false;
+    }
+
+    public function rootUser()
+    {
+		  return ($this->admin == true && $this->account == 9 && $this->is_root == true) ? true : false;
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -2,15 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BannerController;
-use App\Http\Controllers\BrandsController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\FavouriteController;
-use App\Http\Controllers\FavouritesController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BannerController;
+use App\Http\Controllers\Api\BrandsController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\FavouriteController;
+use App\Http\Controllers\Api\FavouritesController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProfileController;
 use Database\Factories\FavouriteFactory;
 
 /*

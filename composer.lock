@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4ed91b5c6fb1c6b06495b700f0ed44c",
+    "content-hash": "aadf539d8b22373fa582831ce27af333",
     "packages": [
         {
             "name": "brick/math",
@@ -2314,6 +2314,82 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "obrainwave/access-tree",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Obrainwave/access-tree.git",
+                "reference": "54ad0342a8ce45684f56ca16eead6df0b3bfe68f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Obrainwave/access-tree/zipball/54ad0342a8ce45684f56ca16eead6df0b3bfe68f",
+                "reference": "54ad0342a8ce45684f56ca16eead6df0b3bfe68f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "*",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.14.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.1",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.6",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Obrainwave\\AccessTree\\AccessTreeServiceProvider"
+                    ],
+                    "aliases": {
+                        "AccessTree": "Obrainwave\\AccessTree\\Facades\\AccessTree"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Helpers/Helpers.php"
+                ],
+                "psr-4": {
+                    "Obrainwave\\AccessTree\\": "src",
+                    "Obrainwave\\AccessTree\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olaiwola Akeem Salau",
+                    "email": "olaiwolaakeem@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package allows you to manage user permissions and roles in a database for Laravel project",
+            "homepage": "https://github.com/obrainwave/access-tree",
+            "keywords": [
+                "access-tree",
+                "laravel",
+                "obrainwave"
+            ],
+            "support": {
+                "issues": "https://github.com/Obrainwave/access-tree/issues",
+                "source": "https://github.com/Obrainwave/access-tree/tree/v1.0.9"
+            },
+            "time": "2023-02-28T10:23:22+00:00"
         },
         {
             "name": "phpoption/phpoption",
