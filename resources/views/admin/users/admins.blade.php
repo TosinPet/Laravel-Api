@@ -86,7 +86,7 @@
                                             <div>
                                                 {{-- <span class="font-weight-bolder">admin Reference</span> --}}
                                                 <a class="text-muted font-weight-bold text-hover-primary" href="#">
-                                                    {{ $admin->reference }}
+                                                    {{ $admin->reference_no }}
                                                 </a>
                                             </div>
                                         </td>
@@ -159,8 +159,14 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Admin Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" value="{{ $admin->name }}" class="form-control" required="required">
+                                            <label>First Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="first_name" value="{{ $admin->first_name }}" class="form-control" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Last Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="last_name" value="{{ $admin->last_name }}" class="form-control" required="required">
                                         </div>
                                     </div>
                                 </div>
@@ -180,6 +186,18 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="d-flex flex-column mb-7 fv-row">
+                                    <!--begin::Label-->
+                                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                        <span class="required">Password</span>
+        
+                                    </label>
+                                    <!--end::Label-->
+                                    <input type="text" class="form-control form-control-solid" placeholder="This is optional" name="password">
+                                </div>
+        
+
                                 <div class="row mt-5">
                                     <div class="col-md-4">
                                         <div
@@ -253,12 +271,25 @@
                         <div class="d-flex flex-column mb-7 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Admin Name</span>
+                                <span class="required">First Name</span>
 
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="name"
-                                value="{{ old('name') }}">
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="first_name"
+                                value="{{ old('first_name') }}">
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-7 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                <span class="required">Last Name</span>
+
+                            </label>
+                            <!--end::Label-->
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="last_name"
+                                value="{{ old('last_name') }}">
                         </div>
                         <!--end::Input group-->
 
@@ -286,10 +317,18 @@
                             <input type="phone" class="form-control form-control-solid" placeholder="" name="phone"
                                 value="{{ old('phone') }}">
                         </div>
-
                         <!--end::Input group-->
 
+                        <div class="d-flex flex-column mb-7 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                <span class="required">Password</span>
 
+                            </label>
+                            <!--end::Label-->
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="password"
+                                value="{{ old('password') }}">
+                        </div>
 
                         <!--begin::Input group-->
                         <div class="row mt-5">
@@ -298,8 +337,8 @@
                                     <!--begin::Switch-->
                                     <label class="form-check form-switch form-check-custom form-check-solid">
                                         <input class="form-check-input" type="checkbox" value="1" checked
-                                            name="is_approved" />
-                                        <span class="form-check-label fw-semibold text-muted">Approved</span>
+                                            name="active" />
+                                        <span class="form-check-label fw-semibold text-muted">Active</span>
                                     </label>
                                     <!--end::Switch-->
                                 </div>

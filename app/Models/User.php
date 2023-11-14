@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     public function admin()
     {
-		  return ($this->admin == true && ($this->account == 5) && $this->active == true) ? true : false;
+		  return ($this->admin == true && ($this->account == 5)) ? true : false;
     }
 
     public function isActive()
@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function superAdmin()
     {
-		  return ($this->admin == true && ($this->account == 9) && $this->is_root == false) ? true : false;
+        return ($this->admin == true && ($this->account == 9) && $this->is_root == false) ? true : false;
     }
 
     public function rootUser()

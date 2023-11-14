@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BusinessController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Target\TargetController;
@@ -47,6 +50,40 @@ Route::group(['middleware' => 'admin_auth'], function()
             Route::delete('delete-admin/{customer_id}', 'deleteAdmin')->name('admin.customer.delete');
         });
     });
+
+    Route::controller(BannerController::class)->group(function () {
+        Route::group(["prefix" => "banners"], function ()
+        {
+            Route::get('/', 'index')->name('admin.banner.index');
+            Route::match(['GET', 'POST'], 'create-banner', 'createBanner')->name('admin.banner.create');
+            Route::match(['GET', 'PATCH'], 'edit-banner/{banner_id}', 'editBanner')->name('admin.banner.edit');
+            Route::delete('delete-banner/{banner_id}', 'deleteBanner')->name('admin.banner.delete');
+            Route::get('remove-banner-image/{banner_id}/{image_id}', 'removeImage')->name('admin.banner.remove.image');
+        });
+    });
+
+    Route::controller(BrandController::class)->group(function () {
+        Route::group(["prefix" => "brands"], function ()
+        {
+            Route::get('/', 'index')->name('admin.brand.index');
+            Route::match(['GET', 'POST'], 'create-brand', 'createBrand')->name('admin.brand.create');
+            Route::match(['GET', 'PATCH'], 'edit-brand/{brand_id}', 'editBrand')->name('admin.brand.edit');
+            Route::delete('delete-brand/{brand_id}', 'deleteBrand')->name('admin.brand.delete');
+            Route::get('remove-brand-image/{brand_id}/{image_id}', 'removeImage')->name('admin.brand.remove.image');
+        });
+    });
+
+    Route::controller(CategoryController::class)->group(function () {
+        Route::group(["prefix" => "categories"], function ()
+        {
+            Route::get('/', 'index')->name('admin.category.index');
+            Route::match(['GET', 'POST'], 'create-category', 'createCategory')->name('admin.category.create');
+            Route::match(['GET', 'PATCH'], 'edit-category/{category_id}', 'editCategory')->name('admin.category.edit');
+            Route::delete('delete-category/{category_id}', 'deleteCategory')->name('admin.category.delete');
+            Route::get('remove-category-image/{category_id}/{image_id}', 'removeImage')->name('admin.category.remove.image');
+        });
+    });
+
 
 });
 

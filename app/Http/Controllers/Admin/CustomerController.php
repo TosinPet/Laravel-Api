@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
-use App\Models\Admin;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 
-class AdminController extends Controller
+class CustomerController extends Controller
 {
     //
     public function index()
     {
-        $admins = User::where('admin', true)->get();
-        // dd($admins);
-        return view('admin.users.admins', compact('admins'));
+        $customers = User::where('admin', false)->get();
+        // $customers = Customer::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.users.customer', compact('customers'));
     }
 
-    public function createAdmin(Request $request)
+    public function createCustomer(Request $request)
     {
         try {
             $request->validate([
@@ -27,25 +27,23 @@ class AdminController extends Controller
                 'last_name' => 'bail|required|string',
                 'email' => 'bail|required|email|unique:users,email',
                 'phone' => 'bail|required',
-                'password' => 'bail|required',
                 'status' => 'nullable|integer',
                 'suspend' => 'nullable|integer',                
             ]);
 
-            // $pass = random_int(100000, 999999);
-            // $password = bcrypt($pass);
+            $pass = random_int(100000, 999999);
+            $password = bcrypt($pass);
             $user = new User();
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->email = $request->email;
             $user->phone = $request->phone;
-            $user->password = bcrypt($request->password);
+            $user->password = $password;
             $user->active = $request->active ?? 0;
             $user->suspend = $request->suspend ?? 0;
-            $user->account = 5;
-            $user->admin = 1;
-            $user->reference_no = 'ADM'.random_int(1000000000, 9999999999);
-            // dd($user);
+            $user->account = 1;
+            $user->admin = 0;
+            $user->reference_no = 'CUS'.random_int(1000000000, 9999999999);
             $user->save();
 
             // if($request->is_approved && $request->is_approved == 1 && $affiliate->is_approved == 0)
@@ -60,7 +58,7 @@ class AdminController extends Controller
                 // }
             // }
 
-            return redirect()->back()->with('success', "Admin has been created successfully.");
+            return redirect()->back()->with('success', "Customer has been created successfully.");
         } catch (ValidationException $th) {
             return back()->with('danger', $th->validator->errors()->first())->withInput();
         } catch (\Throwable $th) {
@@ -68,15 +66,14 @@ class AdminController extends Controller
         }
     }
 
-    public function updateAdmin(Request $request, $user_id)
-    {
+    public function updateCustomer(Request $request, $user_id)
+    {   
         try {
             $request->validate([
                 'first_name' => 'bail|required|string',
                 'last_name' => 'bail|required|string',
                 'email' => 'bail|required|email|unique:users,email,'.$user_id,
                 'phone' => 'bail|required|string',
-                'password' => 'bail|nullable',
                 'status' => 'nullable|integer',
                 'suspend' => 'nullable|integer',
             ]);
@@ -86,7 +83,6 @@ class AdminController extends Controller
             $user->last_name = $request->last_name;
             $user->email = $request->email;
             $user->phone = $request->phone;
-            $user->password = $request->password ? bcrypt($request->password) : $user->password;
             $user->active = $request->active ?? 0;
             $user->suspend = $request->suspend ?? 0;
             $user->save();
@@ -99,5 +95,5 @@ class AdminController extends Controller
             return back()->with('danger', $th->getMessage());
         }
     }
-
 }
+

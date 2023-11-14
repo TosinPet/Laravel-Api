@@ -62,7 +62,7 @@
                                             <div>
                                                 {{-- <span class="font-weight-bolder">Name</span> --}}
                                                 <a class="text-muted font-weight-bold text-hover-primary" href="#">
-                                                    {{ $customer->name }}
+                                                    {{ $customer->last_name." ".$customer->first_name }}
                                                 </a>
                                             </div>
                                         </td>
@@ -86,7 +86,7 @@
                                             <div>
                                                 {{-- <span class="font-weight-bolder">Customer Reference</span> --}}
                                                 <a class="text-muted font-weight-bold text-hover-primary" href="#">
-                                                    {{ $customer->reference }}
+                                                    {{ $customer->reference_no }}
                                                 </a>
                                             </div>
                                         </td>
@@ -159,8 +159,16 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Customer Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="name" value="{{ $customer->name }}" class="form-control" required="required">
+                                            <label>First Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="first_name" value="{{ $customer->first_name }}" class="form-control" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Last Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="last_name" value="{{ $customer->last_name }}" class="form-control" required="required">
                                         </div>
                                     </div>
                                 </div>
@@ -253,14 +261,25 @@
                         <div class="d-flex flex-column mb-7 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Customer Name</span>
+                                <span class="required">First Name</span>
 
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="name"
-                                value="{{ old('name') }}">
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="first_name"
+                                value="{{ old('first_name') }}">
                         </div>
                         <!--end::Input group-->
+
+                        <div class="d-flex flex-column mb-7 fv-row">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                <span class="required">Last Name</span>
+
+                            </label>
+                            <!--end::Label-->
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="last_name"
+                                value="{{ old('last_name') }}">
+                        </div>
 
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-7 fv-row">
@@ -298,7 +317,7 @@
                                     <!--begin::Switch-->
                                     <label class="form-check form-switch form-check-custom form-check-solid">
                                         <input class="form-check-input" type="checkbox" value="1" checked
-                                            name="is_approved" />
+                                            name="active" />
                                         <span class="form-check-label fw-semibold text-muted">Approved</span>
                                     </label>
                                     <!--end::Switch-->

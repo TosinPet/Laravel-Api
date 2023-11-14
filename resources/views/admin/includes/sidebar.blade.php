@@ -72,6 +72,41 @@
                     <span class="menu-text">Customers</span>
                 </a>
             </li>
+
+            <li class="menu-section">
+                <h4 class="menu-text">CMS</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
+
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.banner.index'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.banner.index') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="flaticon-folder-1"></i>
+                    </span>
+                    <span class="menu-text">Banners</span>
+                </a>
+            </li>
+
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.brand.index'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.brand.index') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="flaticon-folder-1"></i>
+                    </span>
+                    <span class="menu-text">Brands</span>
+                </a>
+            </li>
+
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.category.index'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.category.index') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="flaticon-folder-1"></i>
+                    </span>
+                    <span class="menu-text">Categories</span>
+                </a>
+            </li>
+
+            
+
             <li class="menu-section">
                 <h4 class="menu-text">Account</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
