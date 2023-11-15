@@ -105,7 +105,19 @@
                 </a>
             </li>
 
-            
+            <li class="menu-section">
+                <h4 class="menu-text">Stock Management</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
+
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.sku.index'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.sku.index') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="flaticon-folder-1"></i>
+                    </span>
+                    <span class="menu-text">SKUs</span>
+                </a>
+            </li>
 
             <li class="menu-section">
                 <h4 class="menu-text">Account</h4>

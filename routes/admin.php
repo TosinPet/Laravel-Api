@@ -7,9 +7,11 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\BusinessController;
+use App\Http\Controllers\Admin\CategoryCntroller;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SKUController;
 use App\Http\Controllers\Admin\Target\TargetController;
 
 /*
@@ -29,6 +31,8 @@ Route::group(['middleware' => 'admin_auth'], function()
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
 
     Route::controller(AdminController::class)->group(function () {
         Route::group(["prefix" => "admin"], function ()
@@ -81,6 +85,16 @@ Route::group(['middleware' => 'admin_auth'], function()
             Route::match(['GET', 'PATCH'], 'edit-category/{category_id}', 'editCategory')->name('admin.category.edit');
             Route::delete('delete-category/{category_id}', 'deleteCategory')->name('admin.category.delete');
             Route::get('remove-category-image/{category_id}/{image_id}', 'removeImage')->name('admin.category.remove.image');
+        });
+    });
+
+    Route::controller(SKUController::class)->group(function () {
+        Route::group(["prefix" => "categories"], function ()
+        {
+            Route::get('/', 'index')->name('admin.sku.index');
+            Route::match(['GET', 'POST'], 'create-sku', 'createSku')->name('admin.sku.create');
+            Route::match(['GET', 'PATCH'], 'edit-sku/{product_id}', 'editSku')->name('admin.sku.edit');
+
         });
     });
 

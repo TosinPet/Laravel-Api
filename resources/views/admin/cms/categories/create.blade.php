@@ -27,7 +27,7 @@
 
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
-                                <a href="{{ route('admin.brand.index') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                                <a href="{{ route('admin.category.index') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
                                     <i class="ki-duotone ki-add-folder"></i> Manage Category
                                 </a>
                             </div>

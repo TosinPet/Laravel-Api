@@ -101,7 +101,7 @@ class BrandController extends Controller
                     'description' => 'nullable|string',
                     'brand_image' => 'nullable',
                 ]);
-
+                
                 $slug = Str::slug($request->name);
 
                 $checkbrand = Brand::where('slug', $slug)->where('id', '!=', $brand_id)->first();;
@@ -118,13 +118,13 @@ class BrandController extends Controller
                 if($request->hasFile('brand_image'))
                 {
 
-                    $image_delete_path = public_path("uploads/banners/" . $brand->bg_image);
+                    $image_delete_path = public_path("uploads/brands/" . $brand->bg_image);
                     if (File::exists($image_delete_path)) {
                         File::delete($image_delete_path);
                     }
-                    $bg_image_path = public_path("uploads/banners/");
+                    $bg_image_path = public_path("uploads/brands/");
 
-                    $bg_image = $request->file("banner_image");
+                    $bg_image = $request->file("brand_image");
                     $bg_image_name = Str::random(16).'.'.$bg_image->extension();
 
                     if($bg_image->move($bg_image_path, $bg_image_name))
