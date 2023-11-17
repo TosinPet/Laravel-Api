@@ -1,6 +1,6 @@
 @extends("layouts.overall")
-@section("page_title", "Admins")
-@section('module', 'Users')
+@section("page_title", "Incoming Orders")
+@section('module', 'Orders')
 @section("content")
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -25,14 +25,6 @@
                                 {{-- <span class="text-muted mt-3 font-weight-bold font-size-sm"> {{ $count_target_data }} {{ $count_target_data > 1 ? 'targets' : 'target' }}</span> --}}
                             </h3>
 
-                            <div class="card-toolbar">
-                                <!--begin::Dropdown-->
-                                <a href="#" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#add-admin">
-                                    <i class="ki-duotone ki-add-folder"></i> Create Admin
-                                </a>
-
-                            </div>
-
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
@@ -43,8 +35,9 @@
                                         <th></th>
                                         <th>Name</th>
                                         <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Admin Reference</th>
+                                        <th>Order No</th>
+                                        <th>Shipping Address</th>
+                                        <th>Total Amount</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -53,61 +46,73 @@
                                     @php
                                         $cnt = 1;
                                     @endphp
-                                    @foreach($admins as $admin)
+                                    @foreach($orders as $order)
                                         <tr>
                                             <td>
                                                 {{ $cnt++ }}
                                             </td>
                                             <td>
                                                 <div>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                        {{ $admin->full_name}}
-                                                    </span>
+                                                    {{-- <span class="font-weight-bolder">Name</span> --}}
+                                                    <a class="text-muted font-weight-bold text-hover-primary" href="#">
+                                                        {{ $order->user_name }}
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                        {{ $admin->phone }}
-                                                    </span>
+                                                    {{-- <span class="font-weight-bolder">Phone</span> --}}
+                                                    <a class="text-muted font-weight-bold text-hover-primary" href="#">
+                                                        {{ $order->phone }}
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                        {{ $admin->email }}
-                                                    </span>
+                                                    {{-- <span class="font-weight-bolder">Email</span> --}}
+                                                    <a class="text-muted font-weight-bold text-hover-primary" href="#">
+                                                        {{ $order->order_number }}
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                        {{ $admin->reference_no }}
-                                                    </span>
+                                                    {{-- <span class="font-weight-bolder">admin Reference</span> --}}
+                                                    <a class="text-muted font-weight-bold text-hover-primary" href="#">
+                                                        {{ $order->shipping_address }}
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td>
-                                                @if ($admin->active == 1)
+                                                <div>
+                                                    {{-- <span class="font-weight-bolder">admin Reference</span> --}}
+                                                    <a class="text-muted font-weight-bold text-hover-primary" href="#">
+                                                        {{ $order->total_amount }}
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @if ($order->active == 1)
                                                     <span
                                                         class="badge badge-light-primary fs-7 fw-bold">Active</span>
                                                 @endif
-                                                @if ($admin->active == 0)
+                                                @if ($order->active == 0)
                                                     <span
                                                         class="badge badge-light-danger fs-7 fw-bold">Inactive</span>
                                                 @endif
 
-                                                @if ($admin->suspend == 1)
+                                                @if ($order->suspend == 1)
                                                     <span
                                                         class="badge badge-light-danger fs-7 fw-bold">Suspended</span>
                                                 @endif
-                                                @if ($admin->suspend == 0)
+                                                @if ($order->suspend == 0)
                                                     <span class="badge badge-light-success fs-7 fw-bold">Not
                                                         Suspended</span>
                                                 @endif
                                             </td>
                                             <td>
 
-                                                <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-admin{{ $admin->id }}">
+                                                <button href="#" class="btn btn-icon btn-primary" data-toggle="modal" data-target="#edit-admin{{ $order->id }}">
                                                     <i class="flaticon-edit"></i>
                                                 </button>
 
@@ -131,14 +136,13 @@
     </div>
     <!--end::Entry-->
 </div>
-<!--end::Content-->
-<!--begin::Footer-->
+
 @foreach($admins as $admin)
     <div class="modal fade" id="edit-admin{{ $admin->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Admin</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Customer's Order</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
@@ -147,7 +151,7 @@
                     <div class="card card-custom">
 
                         <!--begin::Form-->
-                        <form action="{{ route('admin.admins.edit', $admin->id) }}" method="POST">
+                        <form action="{{ route('admin.customer.edit', $customer->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
@@ -155,8 +159,14 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Full Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="full_name" value="{{ $admin->full_name }}" class="form-control" required="required">
+                                            <label>First Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="first_name" value="{{ $admin->first_name }}" class="form-control" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Last Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="last_name" value="{{ $admin->last_name }}" class="form-control" required="required">
                                         </div>
                                     </div>
                                 </div>
@@ -242,116 +252,5 @@
     </div>
 
 @endforeach
-<div class="modal fade" id="add-admin" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New Admin</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="card card-custom">
-
-                    <!--begin::Form-->
-                    <form class="form" action="{{ route('admin.admins.create') }}" method="POST">
-                        @csrf
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Full Name</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="full_name"
-                                value="{{ old('full_name') }}">
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Admin Email</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="email" class="form-control form-control-solid" placeholder="" name="email"
-                                value="{{ old('email') }}">
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Admin Phone</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="phone" class="form-control form-control-solid" placeholder="" name="phone"
-                                value="{{ old('phone') }}">
-                        </div>
-                        <!--end::Input group-->
-
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Password</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="password"
-                                value="{{ old('password') }}">
-                        </div>
-
-                        <!--begin::Input group-->
-                        <div class="row mt-5">
-                            <div class="col-md-4">
-                                <div class="d-flex flex-stack mt-5">
-                                    <!--begin::Switch-->
-                                    <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" checked
-                                            name="active" />
-                                        <span class="form-check-label fw-semibold text-muted">Active</span>
-                                    </label>
-                                    <!--end::Switch-->
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex flex-stack mt-5">
-                                    <!--begin::Switch-->
-                                    <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" name="suspend" />
-                                        <span class="form-check-label fw-semibold text-muted">Suspend</span>
-                                    </label>
-                                    <!--end::Switch-->
-                                </div>
-                            </div>
-                        </div>
-                        <!--begin::Actions-->
-                        <div class="text-center pt-15">
-                            <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
-                            <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">Save</span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end::Form-->
-                </div>
-
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
 
 @endsection

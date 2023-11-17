@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CategoryCntroller;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SKUController;
 use App\Http\Controllers\Admin\Target\TargetController;
 
@@ -48,9 +49,15 @@ Route::group(['middleware' => 'admin_auth'], function()
 
         Route::group(["prefix" => "customer"], function ()
         {
-            Route::get('/index', 'index')->name('admin.users.customer');
-            Route::post('create', 'createCustomer')->name('admin.customer.create');
+            Route::get('/index', 'index')->name('admin.customer.index');
+            Route::match(['GET', 'POST'], 'create-customer', 'createCustomer')->name('admin.customer.create');
+            Route::post('import-customer', 'importCustomer')->name('admin.customer.import');
+            Route::post('import-customer-account', 'importCustomerAccount')->name('admin.customer.account.import');
+            Route::put('import-customer-account/{account_id}', 'updateCustomerAccount')->name('admin.customer.account.edit');
+            Route::get('export-customer', 'exportCustomer')->name('admin.customer.export');
+            Route::get('export-customer-account', 'exportCustomerAccount')->name('admin.customer.account.export');
             Route::put('edit/{customer_id}', 'updateCustomer')->name('admin.customer.edit');
+            Route::get('account-statement', 'accountStatement')->name('admin.customer.acount.index');
             Route::delete('delete-admin/{customer_id}', 'deleteAdmin')->name('admin.customer.delete');
         });
     });
@@ -97,6 +104,18 @@ Route::group(['middleware' => 'admin_auth'], function()
 
         });
     });
+
+    Route::controller(OrderController::class)->group(function () {
+        Route::group(["prefix" => "orders"], function ()
+        {
+            Route::get('/', 'index')->name('admin.order.index');
+            Route::match(['GET', 'POST'], 'create-order', 'createorder')->name('admin.order.create');
+            Route::match(['GET', 'PATCH'], 'edit-order/{order_id}', 'editOrder')->name('admin.category.edit');
+            Route::delete('delete-category/{category_id}', 'deleteCategory')->name('admin.category.delete');
+            Route::get('remove-category-image/{category_id}/{image_id}', 'removeImage')->name('admin.category.remove.image');
+        });
+    });
+
 
 
 });

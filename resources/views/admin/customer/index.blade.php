@@ -27,11 +27,21 @@
 
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
+                                <a href="#" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#addCustomer">
+                                    <i class="la la-upload"></i> Import Customers
+                                </a>
+                                <a href="{{ asset('sample/customers/customers.csv') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3" download>
+                                    <i class="la la-download"></i> Sample
+                                </a>
+                                <a href="{{ route('admin.customer.export') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                                    <i class="la la-download"></i> Download Customers List
+                                </a>
                                 <a href="{{ route('admin.customer.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
                                     <i class="ki-duotone ki-add-folder"></i> Create Customer
                                 </a>
-
                             </div>
+
+                            
 
                         </div>
                         <!--end::Header-->
@@ -45,6 +55,8 @@
                                         <th>Address</th>
                                         <th>Phone</th>
                                         <th>Customer Reference</th>
+                                        {{-- <th>Guarantor Name</th>
+                                        <th>Guarantor Phone No</th> --}}
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -60,34 +72,30 @@
                                         </td>
                                         <td>
                                             <div>
-                                                {{-- <span class="font-weight-bolder">Name</span> --}}
-                                                <a class="text-muted font-weight-bold text-hover-primary" href="#">
-                                                    {{ $customer->last_name." ".$customer->first_name }}
-                                                </a>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                    {{ $customer->full_name }}
+                                                </span>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                {{-- <span class="font-weight-bolder">Phone</span> --}}
-                                                <a class="text-muted font-weight-bold text-hover-primary" href="#">
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                    {{ $customer->address }}
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                     {{ $customer->phone }}
-                                                </a>
+                                                </span>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                {{-- <span class="font-weight-bolder">Email</span> --}}
-                                                <a class="text-muted font-weight-bold text-hover-primary" href="#">
-                                                    {{ $customer->email }}
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                {{-- <span class="font-weight-bolder">Customer Reference</span> --}}
-                                                <a class="text-muted font-weight-bold text-hover-primary" href="#">
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                     {{ $customer->reference_no }}
-                                                </a>
+                                                </span>
                                             </div>
                                         </td>
                                         <td>
@@ -111,7 +119,7 @@
                                         </td>
                                         <td>
 
-                                            <button href="#" class="btn btn-icon btn-primary" data-toggle="modal" data-target="#edit-customer{{ $customer->id }}">
+                                            <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $customer->id }}">
                                                 <i class="flaticon-edit"></i>
                                             </button>
 
@@ -137,6 +145,41 @@
 </div>
 <!--end::Content-->
 <!--begin::Footer-->
+<div class="modal fade" id="addCustomer" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Import Customers</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-custom">
+
+                    <!--begin::Form-->
+                    <form action="{{ route('admin.customer.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf 
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <label>Select CSV File <span class="text-danger">*</span></label>
+                                <input type="file" name="csv_file" class="form-control" required="required">
+                            </div>
+                            <div class="form-group mb-1">
+                                <button type="submit" class="btn btn-warning mr-2">Import</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!--end::Form-->
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
 @foreach($customers as $customer)
     <div class="modal fade" id="edit-customer{{ $customer->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -159,35 +202,101 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>First Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="first_name" value="{{ $customer->first_name }}" class="form-control" required="required">
+                                            <label>Full Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="full_name" value="{{ $customer->full_name }}" class="form-control" required="required">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Address<span class="text-danger">*</span></label>
+                                            <input type="text" name="address" value="{{ $customer->address }}" class="form-control" required="required">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Last Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="last_name" value="{{ $customer->last_name }}" class="form-control" required="required">
+                                            <label>Business Type<span class="text-danger">*</span></label>
+                                            <select id="projectinput3" name="business_type" class="form-control">
+                                                <option value="none" selected="" disabled="">Choose Business Type</option>
+                                                <option value="Proprietorship" {{ $customer->business_type == "Proprietorship" ? 'selected' : '' }}>Proprietorship</option>
+                                                <option value="Partnership" {{ $customer->business_type == "Partnership" ? 'selected' : '' }}>Partnership</option>
+                                                <option value="LTD Company" {{ $customer->business_type == "LTD Company" ? 'selected' : '' }}>LTD Company</option>
+                                                <option value="PLC" {{ $customer->business_type == "PLC" ? 'selected' : '' }}>PLC</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Customer Email<span class="text-danger">*</span></label>
-                                            <input type="email" name="email" value="{{ $customer->email }}" class="form-control" required="required">
+                                            <label>Customer Type <span class="text-danger">*</span></label>
+                                            <select id="projectinput3" name="customer_type" class="form-control">
+                                                <option value="none" selected="" disabled="">Choose Customer Type</option>
+                                                <option value="Kirana" {{ $customer->customer_type == "Kirana" ? 'selected' : '' }}>Kirana</option>
+                                                <option value="Uwargida" {{ $customer->customer_type == "Uwargida" ? 'selected' : '' }}>Uwargida</option>
+                                                <option value="Others" {{ $customer->customer_type == "Others" ? 'selected' : '' }}>Others</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Customer Phone <span class="text-danger">*</span></label>
-                                            <input type="text" name="phone" value="{{ $customer->phone }}" class="form-control" required="required">
+                                            <label>State</label>
+                                            <select onchange="toggleLGA(this);" name="state" id="state" class="form-control" required>
+                                                <option value="" selected="selected">- Select -</option>
+                                                <option value="Abia">Abia</option>
+                                                <option value="Adamawa">Adamawa</option>
+                                                <option value="AkwaIbom">AkwaIbom</option>
+                                                <option value="Anambra">Anambra</option>
+                                                <option value="Bauchi">Bauchi</option>
+                                                <option value="Bayelsa">Bayelsa</option>
+                                                <option value="Benue">Benue</option>
+                                                <option value="Borno">Borno</option>
+                                                <option value="Cross River">Cross River</option>
+                                                <option value="Delta">Delta</option>
+                                                <option value="Ebonyi">Ebonyi</option>
+                                                <option value="Edo">Edo</option>
+                                                <option value="Ekiti">Ekiti</option>
+                                                <option value="Enugu">Enugu</option>
+                                                <option value="FCT">FCT</option>
+                                                <option value="Gombe">Gombe</option>
+                                                <option value="Imo">Imo</option>
+                                                <option value="Jigawa">Jigawa</option>
+                                                <option value="Kaduna">Kaduna</option>
+                                                <option value="Kano">Kano</option>
+                                                <option value="Katsina">Katsina</option>
+                                                <option value="Kebbi">Kebbi</option>
+                                                <option value="Kogi">Kogi</option>
+                                                <option value="Kwara">Kwara</option>
+                                                <option value="Lagos">Lagos</option>
+                                                <option value="Nasarawa">Nasarawa</option>
+                                                <option value="Niger">Niger</option>
+                                                <option value="Ogun">Ogun</option>
+                                                <option value="Ondo">Ondo</option>
+                                                <option value="Osun">Osun</option>
+                                                <option value="Oyo">Oyo</option>
+                                                <option value="Plateau">Plateau</option>
+                                                <option value="Rivers">Rivers</option>
+                                                <option value="Sokoto">Sokoto</option>
+                                                <option value="Taraba">Taraba</option>
+                                                <option value="Yobe">Yobe</option>
+                                                <option value="Zamfara">Zamafara</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>LGA</label>
+                                            <select name="lga" id="lga" class="form-control select-lga" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row mt-5">
                                     <div class="col-md-4">
                                         <div
@@ -242,115 +351,5 @@
     </div>
 
 @endforeach
-<div class="modal fade" id="add-customer" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New Customer</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="card card-custom">
-
-                    <!--begin::Form-->
-                    <form class="form" action="{{ route('admin.customer.create') }}" method="POST">
-                        @csrf
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">First Name</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="first_name"
-                                value="{{ old('first_name') }}">
-                        </div>
-                        <!--end::Input group-->
-
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Last Name</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="last_name"
-                                value="{{ old('last_name') }}">
-                        </div>
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Customer Email</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="email" class="form-control form-control-solid" placeholder="" name="email"
-                                value="{{ old('email') }}">
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Customer Phone</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="phone" class="form-control form-control-solid" placeholder="" name="phone"
-                                value="{{ old('phone') }}">
-                        </div>
-
-                        <!--end::Input group-->
-
-
-
-                        <!--begin::Input group-->
-                        <div class="row mt-5">
-                            <div class="col-md-4">
-                                <div class="d-flex flex-stack mt-5">
-                                    <!--begin::Switch-->
-                                    <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" checked
-                                            name="active" />
-                                        <span class="form-check-label fw-semibold text-muted">Approved</span>
-                                    </label>
-                                    <!--end::Switch-->
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex flex-stack mt-5">
-                                    <!--begin::Switch-->
-                                    <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" name="suspend" />
-                                        <span class="form-check-label fw-semibold text-muted">Suspend</span>
-                                    </label>
-                                    <!--end::Switch-->
-                                </div>
-                            </div>
-                        </div>
-                        <!--begin::Actions-->
-                        <div class="text-center pt-15">
-                            <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
-                            <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">Save</span>
-                            </button>
-                        </div>
-                        <!--end::Actions-->
-                    </form>
-                    <!--end::Form-->
-                </div>
-
-
-            </div>
-
-        </div>
-    </div>
-</div>
 
 @endsection

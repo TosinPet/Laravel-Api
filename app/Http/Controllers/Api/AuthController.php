@@ -22,9 +22,10 @@ class AuthController extends Controller
         try{
 
             $validated = $request->validate([
-                'email' => 'required|email',
+                'phone' => 'required',
                 'password' => 'required|min:6'
             ]);
+            // dd($validated);
     
             if (! Auth::attempt($validated)){
                 return response()->json([
@@ -32,7 +33,7 @@ class AuthController extends Controller
                 ], 401);
             }
     
-            $user = User::where('email', $validated['email'])->first();
+            $user = User::where('phone', $validated['phone'])->first();
             $user = Auth::user();
 
             return response()->json([

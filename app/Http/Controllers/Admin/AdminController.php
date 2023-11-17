@@ -23,8 +23,7 @@ class AdminController extends Controller
     {
         try {
             $request->validate([
-                'first_name' => 'bail|required|string',
-                'last_name' => 'bail|required|string',
+                'full_name' => 'bail|required|string',
                 'email' => 'bail|required|email|unique:users,email',
                 'phone' => 'bail|required',
                 'password' => 'bail|required',
@@ -35,8 +34,7 @@ class AdminController extends Controller
             // $pass = random_int(100000, 999999);
             // $password = bcrypt($pass);
             $user = new User();
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
+            $user->full_name = $request->full_name;
             $user->email = $request->email;
             $user->phone = $request->phone;
             $user->password = bcrypt($request->password);
@@ -72,8 +70,7 @@ class AdminController extends Controller
     {
         try {
             $request->validate([
-                'first_name' => 'bail|required|string',
-                'last_name' => 'bail|required|string',
+                'full_name' => 'bail|required|string',
                 'email' => 'bail|required|email|unique:users,email,'.$user_id,
                 'phone' => 'bail|required|string',
                 'password' => 'bail|nullable',
@@ -82,8 +79,7 @@ class AdminController extends Controller
             ]);
 
             $user = User::find($user_id);
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
+            $user->full_name = $request->full_name;
             $user->email = $request->email;
             $user->phone = $request->phone;
             $user->password = $request->password ? bcrypt($request->password) : $user->password;

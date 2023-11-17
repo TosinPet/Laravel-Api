@@ -64,12 +64,44 @@
                 </a>
             </li>
 
-            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.business'])) menu-item-active @endif" aria-haspopup="true">
-                <a href="{{ route('admin.users.customer') }}" class="menu-link">
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.customer.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
                         <i class="flaticon-folder-1"></i>
                     </span>
                     <span class="menu-text">Customers</span>
+                </a>
+            </li>
+
+            <li class="menu-section">
+                <h4 class="menu-text">Customers</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
+
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.customer.acount.index') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="flaticon-folder-1"></i>
+                    </span>
+                    <span class="menu-text">Customer Account Statement</span>
+                </a>
+            </li>
+
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.customer.acount.index') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="flaticon-folder-1"></i>
+                    </span>
+                    <span class="menu-text">Customer Stock Balance</span>
+                </a>
+            </li>
+
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.users.admins') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="flaticon-folder-1"></i>
+                    </span>
+                    <span class="menu-text">Customer Depoit Form</span>
                 </a>
             </li>
 
@@ -116,6 +148,20 @@
                         <i class="flaticon-folder-1"></i>
                     </span>
                     <span class="menu-text">SKUs</span>
+                </a>
+            </li>
+
+            <li class="menu-section">
+                <h4 class="menu-text">Orders</h4>
+                <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+            </li>
+
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.order.index'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.order.index') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="flaticon-folder-1"></i>
+                    </span>
+                    <span class="menu-text">View Orders</span>
                 </a>
             </li>
 
