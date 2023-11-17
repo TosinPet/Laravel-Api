@@ -9,6 +9,6 @@ class PasswordResetToken extends Model
 {
     use HasFactory;
     const UPDATED_AT = null;
-    protected $primaryKey = 'email';
+    protected $primaryKey = 'phone';
     protected $guarded = [];
 }

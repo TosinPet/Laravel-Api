@@ -119,7 +119,7 @@ class AuthController extends Controller
                     Log::info($e->getMessage());
                 }
                 return response()->json([
-                    'message' => 'A message has been sent to your email address. Please check your email to reset your password.',
+                    'message' => 'A message has been sent to your phone number. Please check your sms to reset your password.',
                 ], 200);
             }else{
                 return response()->json([
