@@ -89,23 +89,23 @@ class AuthController extends Controller
     {
         try{
             $this->validate($request, [
-                'email' => 'bail|required|email',
+                'phone' => 'bail|required',
             ]);
 
-            $checkuser = User::where('email', $request->email)->where('suspend', 0)->first();
+            $checkuser = User::where('phone', $request->phone)->where('suspend', 0)->first();
             if($checkuser)
             {
                 $token = random_int(1000000, 9999999);
                 $user = $checkuser;
-                $checktoken = PasswordResetToken::where('email', $user->email)->first();
+                $checktoken = PasswordResetToken::where('phone', $user->phone)->first();
                 if($checktoken)
                 {
-                    $checktoken->email = $user->email;
+                    $checktoken->phone = $user->phone;
                     $checktoken->token = $token;
                     $checktoken->save();
                 }else{
                     $checktoken = PasswordResetToken::create([
-                        'email' => $user->email,
+                        'phone' => $user->phone,
                         'token' => $token,
                     ]);
                 }
@@ -146,7 +146,7 @@ class AuthController extends Controller
         try
         {
             $this->validate($request, [
-                'email' => 'bail|required|email',
+                'phone' => 'bail|required',
                 'new_password' => 'bail|required|min:6',
                 'confirm_password' => 'bail|required',
             ]);
@@ -158,7 +158,7 @@ class AuthController extends Controller
                 ], 422);
             }
 
-            $checktoken = PasswordResetToken::where('email', $request->email)
+            $checktoken = PasswordResetToken::where('phone', $request->phone)
             ->where('token', $token)->first();
 
             if($checktoken)
@@ -168,7 +168,7 @@ class AuthController extends Controller
                 $addonehour = $date->addHour(1);
                 if($addonehour > Carbon::now())
                 {
-                    $user = User::where('email', $request->email)->first();
+                    $user = User::where('phone', $request->phone)->first();
                     $user->password = bcrypt($request->new_password);
                     $user->save();
 
