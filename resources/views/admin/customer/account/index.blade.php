@@ -1,4 +1,4 @@
-@extends("layouts.overall")
+@extends("layouts.overall2")
 @section("page_title", "Customers Account Statement")
 @section('module', 'Customers')
 @section("content")
@@ -43,7 +43,7 @@
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body">
-                            <table class="table table-separate table-head-custom table-checkable" id="">
+                            <table class="table table-separate table-head-custom table-checkable" id="example" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th></th>

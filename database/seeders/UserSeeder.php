@@ -18,15 +18,15 @@ class UserSeeder extends Seeder
         $password = Hash::make('123456');
         DB::table('users')->insert([
             [
-                "full_name" => 'admin dashboard',
-                "email" => 'dashboard@dash.com',
-                'phone' => "08108220999",
+                "full_name" => 'admin test',
+                "email" => 'admin@test.com',
+                'phone' => "08108220998",
                 "admin" => "1",
                 "account" => "5",
                 "suspend" => "0",
                 "active" => "1",
                 "password" => $password,
-                "reference_no" => "ref0001"
+                "reference_no" => "ref0003"
             ], 
         ]);
     }

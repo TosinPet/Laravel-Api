@@ -38,17 +38,17 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-lg-6">
-                                        <label>Name</label>
+                                        <label>Name <span class="text-danger"><b>*</b></span></label>
                                         <input type="text" class="form-control" name="name" placeholder="Banner Name" value="{{ old('name') }}" />
                                     </div>
                                     <div class="col-lg-6">
-                                        <label>Description</label>
+                                        <label>Description </label>
                                         <textarea rows="2" class="form-control" name="description" placeholder="Banner Description">{!! old('description') !!}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-12">
-                                        <label>Banner Image</label>
+                                        <label>Banner Image <span class="text-danger"><b>*</b></span></label>
                                         <div class="input-group">
                                             <input type="file" class="form-control form-control-solid" placeholder="" name="banner_image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('banner_image') }}">
                                             <div class="input-group-append">

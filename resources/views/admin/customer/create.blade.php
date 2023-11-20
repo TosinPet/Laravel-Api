@@ -39,21 +39,21 @@
                                 <div class="form-group row">
                                     <div class="col-lg-6">
                                         <label>Full Name <span class="text-danger"><b>*</b></span> </label>
-                                        <input type="text" class="form-control" name="full_name" placeholder="Full Name" value="{{ old('full_name') }}" />
+                                        <input type="text" class="form-control" name="full_name" placeholder="Full Name" value="{{ old('full_name') }}" required/>
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Address <span class="text-danger"><b>*</b></span> </label>
-                                        <input type="text" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}" />
+                                        <input type="text" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-6">
                                         <label>Year of Business <span class="text-danger"><b>*</b></span> </label>
-                                        <input type="date" class="form-control" name="year_of_business" placeholder="Year of Business" value="{{ old('year_of_business') }}" />
+                                        <input type="date" class="form-control" name="year_of_business" placeholder="Year of Business" value="{{ old('year_of_business') }}" required/>
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Business Type <span class="text-danger"><b>*</b></span> </label>
-                                        <select id="projectinput3" name="business_type" class="form-control">
+                                        <select id="projectinput3" name="business_type" class="form-control" required>
                                             <option value="none" selected="" disabled="">Choose Business Type</option>
                                             <option value="Proprietorship">Proprietorship</option>
                                             <option value="Partnership">Partnership</option>
@@ -65,11 +65,11 @@
                                 <div class="form-group row">
                                     <div class="col-lg-6">
                                         <label>Business Name <span class="text-danger"><b>*</b></span> </label>
-                                        <input type="text" class="form-control" name="business_name" placeholder="Business Name" value="{{ old('business_name') }}" />
+                                        <input type="text" class="form-control" name="business_name" placeholder="Business Name" value="{{ old('business_name') }}" required/>
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Customer Type <span class="text-danger"><b>*</b></span> </label>
-                                        <select id="projectinput3" name="customer_type" class="form-control">
+                                        <select id="projectinput3" name="customer_type" class="form-control" required>
                                             <option value="none" selected="" disabled="">Choose Business Type</option>
                                             <option value="Kirana">Kirana</option>
                                             <option value="Uwargida">Uwargida</option>
@@ -80,11 +80,11 @@
                                 <div class="form-group row">
                                     <div class="col-lg-4">
                                         <label>Phone Number <span class="text-danger"><b>*</b></span> </label>
-                                        <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ old('phone') }}" />
+                                        <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ old('phone') }}" required/>
                                     </div>
                                     <div class="col-lg-4">
                                         <label>State <span class="text-danger"><b>*</b></span> </label>
-                                        <select onchange="toggleLGA(this);" name="state" id="state" class="form-control">
+                                        <select onchange="toggleLGA(this);" name="state" id="state" class="form-control" required>
                                             <option value="" selected="selected">- Select -</option>
                                             <option value="Abia">Abia</option>
                                             <option value="Adamawa">Adamawa</option>

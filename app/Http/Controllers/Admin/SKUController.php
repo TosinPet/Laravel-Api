@@ -30,7 +30,7 @@ class SKUController extends Controller
                  $this->validate($request, [
                     'name' => 'bail|required|string',
                     'status' => 'nullable|integer',
-                    'description' => 'bail|required|string',
+                    'description' => 'bail|nullable|string',
                     'category' => 'bail|required|integer',
                     'brand' => 'bail|required|integer',
                     'cases' => 'bail|required|string',
@@ -38,6 +38,7 @@ class SKUController extends Controller
                     'quantity' => 'bail|required|string',
                     'price' => 'bail|required|string',
                     'image' => 'bail|required',
+                    'status' => 'nullable|integer',
                 ]);
 
                 $slug = Str::slug($request->name);
@@ -77,8 +78,6 @@ class SKUController extends Controller
                     'reference_number' => $request->reference_number,
                     'quantity' => $request->quantity,
                     'price' => $request->price,
-                    // 'last_edited_by' => auth()->user()->id,
-                    'status' => $request->status ?? 0,
                     'image' => $bg_image_name,
                 ]);
 

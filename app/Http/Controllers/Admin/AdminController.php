@@ -14,7 +14,7 @@ class AdminController extends Controller
     //
     public function index()
     {
-        $admins = User::where('admin', true)->get();
+        $admins = User::where('admin', true)->orderBy('created_at', 'DESC')->get();
         // dd($admins);
         return view('admin.users.admins', compact('admins'));
     }

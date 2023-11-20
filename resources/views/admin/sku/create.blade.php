@@ -38,7 +38,7 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-lg-6">
-                                        <label>Name</label>
+                                        <label>Name <span class="text-danger"><b>*</b></span></label>
                                         <input type="text" class="form-control" name="name" placeholder="SKUs Name" value="{{ old('name') }}" />
                                     </div>
                                     <div class="col-lg-6">
@@ -49,7 +49,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-lg-6">
-                                        <label>Category</label>
+                                        <label>Category <span class="text-danger"><b>*</b></span></label>
                                         <select id="category" name="category" class="form-control">
                                             <option value="none" selected="" disabled="">Choose a Category</option>
                                             @foreach($categories as $category)
@@ -58,7 +58,7 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label>Brands</label>
+                                        <label>Brands <span class="text-danger"><b>*</b></span></label>
                                         <select id="brand" name="brand" class="form-control">
                                             <option value="none" selected="" disabled="">Choose a Brand</option>
                                             @foreach($brands as $brand)
@@ -70,7 +70,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-lg-12">
-                                        <label>Product Image</label>
+                                        <label>Product Image <span class="text-danger"><b>*</b></span></label>
                                         <div class="input-group">
                                             <input type="file" class="form-control form-control-solid" placeholder="" name="image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('brand_image') }}">
                                             <div class="input-group-append">
@@ -81,22 +81,22 @@
 
                                 <div class="form-group row">
                                     <div class="col-lg-6">
-                                        <label>Cases</label>
+                                        <label>Cases <span class="text-danger"><b>*</b></span></label>
                                         <input type="text" class="form-control" name="cases" placeholder="Cases" value="{{ old('cases') }}" />
                                     </div>
                                     <div class="col-lg-6">
-                                        <label>Reference Number</label>
+                                        <label>Reference Number <span class="text-danger"><b>*</b></span></label>
                                         <input type="text" class="form-control" name="reference_number" placeholder="Reference Number" value="{{ old('reference_number') }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-lg-6">
-                                        <label>Quantity</label>
+                                        <label>Quantity <span class="text-danger"><b>*</b></span></label>
                                         <input type="text" class="form-control" name="quantity" placeholder="Quantity" value="{{ old('quantity') }}" />
                                     </div>
                                     <div class="col-lg-6">
-                                        <label>Price</label>
+                                        <label>Price <span class="text-danger"><b>*</b></span></label>
                                         <input type="text" class="form-control" name="price" placeholder="Price" value="{{ old('pice') }}" />
                                     </div>
                                 </div>

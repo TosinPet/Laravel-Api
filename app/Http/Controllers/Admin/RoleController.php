@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 
-class PermissionController extends Controller
+class RoleController extends Controller
 {
+    //
     public function index()
     {
-        if(!checkPermission('view_permission'))
+        if(!checkPermission('view_role'))
         {
             return redirect()->back()->with('danger', 'Access Forbidden');
         }
-        return view('admin.system.permissions');
+        return view('admin.system.roles');
     }
 
 
-    public function createPermission(Request $request)
+    public function createRole(Request $request)
     {
-        if(!checkPermission('add_permission'))
+        if(!checkPermission('add_role'))
         {
             return redirect()->back()->with('danger', 'Access Forbidden');
         }
@@ -29,45 +29,51 @@ class PermissionController extends Controller
             $request->validate([
                 'name' => 'bail|string|required',
                 'status' => 'nullable|integer',
-            ]);
-
-            createAccess(['name' => $request->name, 'status' => $request->status ?? 0], 'permission');
-
-            return redirect()->route('admin.permissions.index')->with('success', "{$request->name} has been created successfully.");
-
-        } catch (ValidationException $th) {
-            return back()->with('danger', $th->validator->errors()->first())->withInput();
-        } catch (\Throwable $th) {
-            return back()->with('danger', $th->getMessage())->withInput();
-        }
-    }
-
-
-    public function updatePermission(Request $request, $permission_id)
-    {
-        if(!checkPermission('edit_permission'))
-        {
-            return redirect()->back()->with('danger', 'Access Forbidden');
-        }
-        try {
-            $request->validate([
-                'name' => 'bail|string|required',
-                'status' => 'nullable|integer',
+                'permissions' => 'required|array',
             ]);
 
             $data = [
-                'data_id' => $permission_id,
-                'name' => $request->name,
-                'status' => $request->status ?? 0,
+                'name' => $request->name, 
+                'status' => $request->status ?? 0
             ];
-            updateAccess($data, 'permission');
+            createAccess($data, 'role', $request->permissions);
 
-            return redirect()->route('admin.permissions.index')->with('success', "{$request->name} has been updated successfully.");
+            return redirect()->route('admin.roles.index')->with('success', "{$request->name} has been created successfully.");
 
         } catch (ValidationException $th) {
             return back()->with('danger', $th->validator->errors()->first())->withInput();
         } catch (\Throwable $th) {
             return back()->with('danger', $th->getMessage())->withInput();
+        }
+    }
+
+
+    public function updateRole(Request $request, $role_id)
+    {
+        if(!checkPermission('edit_role'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
+        try {
+            $request->validate([
+                'name' => 'bail|string|required',
+                'status' => 'nullable|integer',
+                'permissions' => 'required|array'
+            ]);
+
+            $data = [
+                'data_id' => $role_id,
+                'name' => $request->name,
+                'status' => $request->status ?? 0,
+            ];
+            updateAccess($data, 'role', $request->permissions);
+
+            return redirect()->route('admin.roles.index')->with('success', "{$request->name} has been updated successfully.");
+
+        } catch (ValidationException $th) {
+            return back()->with('danger', $th->validator->errors()->first());
+        } catch (\Throwable $th) {
+            return back()->with('danger', $th->getMessage());
         }
     }
 }

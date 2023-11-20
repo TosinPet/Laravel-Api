@@ -47,7 +47,7 @@
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body">
-                            <table class="table table-separate table-head-custom table-checkable" id="">
+                            <table id="example" class="table table-separate table-head-custom table-checkable" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -55,8 +55,6 @@
                                         <th>Address</th>
                                         <th>Phone</th>
                                         <th>Customer Reference</th>
-                                        {{-- <th>Guarantor Name</th>
-                                        <th>Guarantor Phone No</th> --}}
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -68,7 +66,7 @@
                                     @foreach($customers as $customer)
                                     <tr>
                                         <td>
-                                            {{ $cnt++ }}
+                                            {{ $customer->id }}
                                         </td>
                                         <td>
                                             <div>
@@ -100,21 +98,17 @@
                                         </td>
                                         <td>
                                             @if ($customer->active == 1)
-                                                <span
-                                                    class="badge badge-light-primary fs-7 fw-bold">Active</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
                                             @endif
                                             @if ($customer->active == 0)
-                                                <span
-                                                    class="badge badge-light-danger fs-7 fw-bold">Inactive</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
                                             @endif
 
                                             @if ($customer->suspend == 1)
-                                                <span
-                                                    class="badge badge-light-danger fs-7 fw-bold">Suspended</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Suspended</span>
                                             @endif
                                             @if ($customer->suspend == 0)
-                                                <span class="badge badge-light-success fs-7 fw-bold">Not
-                                                    Suspended</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Suspended</span>
                                             @endif
                                         </td>
                                         <td>

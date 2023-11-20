@@ -288,6 +288,52 @@ class CustomerController extends Controller
             return back()->with('danger', $th->getMessage());
         }
     }
+
+    public function createCustomerDeposit(Request $request)
+    {
+        if($request->isMethod('post'))
+        {
+            try {
+                // dd($request);
+                $request->validate([
+                    'customer' => 'required',
+                    'deposit_date' => 'bail|required|string',
+                    'description' => 'bail|required|string',
+                    'amount' => 'bail|required|string',
+                    'mode_of_payment' => 'bail|required|string',
+                ]);
+                // dd($request);
+                $receipt = random_int(10000000000, 99999999999);
+                $customer = Customer::create([
+                    'receipt_no' => $receipt,
+                    'deposit_date' => $request->deposit_date,
+                    'description' => $request->description,
+                    'amount' => $request->amount,
+                    'mode_of_payment' => $request->mode_of_payment,
+                    'created_by' => auth()->user()->id,
+                ]);
+
+                return redirect()->back()->with('success', "Customer Deposit has been created successfully.");
+            } catch (ValidationException $th) {
+                return back()->with('danger', $th->validator->errors()->first())->withInput();
+            } catch (\Throwable $th) {
+                return back()->with('danger', $th->getMessage())->withInput();
+            }
+        }else{
+            try
+            {
+                $customers = Customer::all();
+                // dd($customers);
+                $customers_account = CustomerAccount::all();
+                return view('admin.customer.deposit.create', compact('customers', 'customers_account'));
+            } catch(\Exception $e)
+            {
+                // dd($e->getMessage());
+                return redirect()->back()->with('danger', $e->getMessage());
+            }
+        }
+    }
+    
     
     
     

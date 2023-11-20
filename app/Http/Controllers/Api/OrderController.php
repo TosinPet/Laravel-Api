@@ -62,7 +62,7 @@ class OrderController extends Controller
                 'subtotal' => $validated['subtotal'],
                 'total_amount' => $validated['total_amount'],
                 'order_date' => Carbon::now()->toDateTimeString(),
-                'order_number' => 'ODR'.random_int(1000000000, 9999999999),
+                'order_number' => 'KIR'.random_int(1000000000, 9999999999),
                 'user_id' => $user->id,
             ]);
     

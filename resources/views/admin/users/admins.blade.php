@@ -14,7 +14,10 @@
             <!--begin::Dashboard-->
             <!--begin::Row-->
             <div class="row">
-
+                @php
+                    $status = 1;
+                    $roles = fetchRoles($status);
+                @endphp
                 <div class="col-xxl-12 col-md-12 order-2 order-xxl-1">
                     <!--begin::Advance Table Widget 2-->
                     <div class="card card-custom card-stretch gutter-b">
@@ -24,7 +27,9 @@
                                 <span class="card-label font-weight-bolder text-dark">List of @yield('page_title')</span>
                                 {{-- <span class="text-muted mt-3 font-weight-bold font-size-sm"> {{ $count_target_data }} {{ $count_target_data > 1 ? 'targets' : 'target' }}</span> --}}
                             </h3>
-
+                            @php
+                                $roles = fetchRoles();
+                            @endphp
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
                                 <a href="#" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#add-admin">
@@ -37,7 +42,7 @@
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body">
-                            <table class="table table-separate table-head-custom table-checkable" id="">
+                            <table class="table table-separate table-head-custom table-checkable" id="example" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -88,21 +93,17 @@
                                             </td>
                                             <td>
                                                 @if ($admin->active == 1)
-                                                    <span
-                                                        class="badge badge-light-primary fs-7 fw-bold">Active</span>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
                                                 @endif
                                                 @if ($admin->active == 0)
-                                                    <span
-                                                        class="badge badge-light-danger fs-7 fw-bold">Inactive</span>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
                                                 @endif
-
+    
                                                 @if ($admin->suspend == 1)
-                                                    <span
-                                                        class="badge badge-light-danger fs-7 fw-bold">Suspended</span>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Suspended</span>
                                                 @endif
                                                 @if ($admin->suspend == 0)
-                                                    <span class="badge badge-light-success fs-7 fw-bold">Not
-                                                        Suspended</span>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Suspended</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -309,7 +310,31 @@
                             <input type="text" class="form-control form-control-solid" placeholder="" name="password"
                                 value="{{ old('password') }}">
                         </div>
+                        {{-- <hr> --}}
+                        {{-- <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                            <span class="required"><b>Roles</b></span>
 
+                        </label>
+                        <div class="row">
+                            @foreach ($roles as $role)
+                                <div class="col-md-4 mb-2">
+                                    <div class="d-flex flex-stack">
+
+                                        <!--begin::Switch-->
+
+                                        <label class="form-check form-switch form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox" value="{{ $role->id }}"
+                                                name="roles[]">
+                                            <span
+                                                class="form-check-label fw-semibold text-muted">{{ $role->name }}</span>
+                                        </label>
+                                        <!--end::Switch-->
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div> --}}
+
+                        <hr>
                         <!--begin::Input group-->
                         <div class="row mt-5">
                             <div class="col-md-4">

@@ -38,8 +38,7 @@
                                         <th>Order No</th>
                                         <th>Shipping Address</th>
                                         <th>Total Amount</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Order Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,7 +54,7 @@
                                                 <div>
                                                     {{-- <span class="font-weight-bolder">Name</span> --}}
                                                     <a class="text-muted font-weight-bold text-hover-primary" href="#">
-                                                        {{ $order->user_name }}
+                                                        {{ $order->full_name }}
                                                     </a>
                                                 </div>
                                             </td>
@@ -91,32 +90,8 @@
                                                     </a>
                                                 </div>
                                             </td>
-                                            <td>
-                                                @if ($order->active == 1)
-                                                    <span
-                                                        class="badge badge-light-primary fs-7 fw-bold">Active</span>
-                                                @endif
-                                                @if ($order->active == 0)
-                                                    <span
-                                                        class="badge badge-light-danger fs-7 fw-bold">Inactive</span>
-                                                @endif
+                                            <td><a href="" class="btn btn-primary btn-sm">View</a></td>
 
-                                                @if ($order->suspend == 1)
-                                                    <span
-                                                        class="badge badge-light-danger fs-7 fw-bold">Suspended</span>
-                                                @endif
-                                                @if ($order->suspend == 0)
-                                                    <span class="badge badge-light-success fs-7 fw-bold">Not
-                                                        Suspended</span>
-                                                @endif
-                                            </td>
-                                            <td>
-
-                                                <button href="#" class="btn btn-icon btn-primary" data-toggle="modal" data-target="#edit-admin{{ $order->id }}">
-                                                    <i class="flaticon-edit"></i>
-                                                </button>
-
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -137,7 +112,7 @@
     <!--end::Entry-->
 </div>
 
-@foreach($admins as $admin)
+{{-- @foreach($admins as $admin)
     <div class="modal fade" id="edit-admin{{ $admin->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -251,6 +226,6 @@
         </div>
     </div>
 
-@endforeach
+@endforeach --}}
 
 @endsection

@@ -38,7 +38,7 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-lg-6">
-                                        <label>Name</label>
+                                        <label>Name <span class="text-danger"><b>*</b></span></label>
                                         <input type="text" class="form-control" name="name" placeholder="Brand Name" value="{{ old('name') }}" />
                                     </div>
                                     <div class="col-lg-6">
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-12">
-                                        <label>Brand Image</label>
+                                        <label>Brand Image <span class="text-danger"><b>*</b></span></label>
                                         <div class="input-group">
                                             <input type="file" class="form-control form-control-solid" placeholder="" name="brand_image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('brand_image') }}">
                                             <div class="input-group-append">

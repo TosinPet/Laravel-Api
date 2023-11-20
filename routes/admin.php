@@ -1,19 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SKUController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\AccountController;
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\BusinessController;
 use App\Http\Controllers\Admin\CategoryCntroller;
+use App\Http\Controllers\Admin\BusinessController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\SKUController;
 use App\Http\Controllers\Admin\Target\TargetController;
+use App\Http\Controllers\Admin\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,7 @@ Route::group(['middleware' => 'admin_auth'], function()
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('admin.category.index');
 
     Route::controller(AdminController::class)->group(function () {
         Route::group(["prefix" => "admin"], function ()
@@ -56,6 +58,7 @@ Route::group(['middleware' => 'admin_auth'], function()
             Route::put('import-customer-account/{account_id}', 'updateCustomerAccount')->name('admin.customer.account.edit');
             Route::get('export-customer', 'exportCustomer')->name('admin.customer.export');
             Route::get('export-customer-account', 'exportCustomerAccount')->name('admin.customer.account.export');
+            Route::match(['GET', 'POST'], 'create-customer-deposit', 'createCustomerDeposit')->name('admin.customer.deposit.create');
             Route::put('edit/{customer_id}', 'updateCustomer')->name('admin.customer.edit');
             Route::get('account-statement', 'accountStatement')->name('admin.customer.acount.index');
             Route::delete('delete-admin/{customer_id}', 'deleteAdmin')->name('admin.customer.delete');
@@ -96,7 +99,7 @@ Route::group(['middleware' => 'admin_auth'], function()
     });
 
     Route::controller(SKUController::class)->group(function () {
-        Route::group(["prefix" => "categories"], function ()
+        Route::group(["prefix" => "skus"], function ()
         {
             Route::get('/', 'index')->name('admin.sku.index');
             Route::match(['GET', 'POST'], 'create-sku', 'createSku')->name('admin.sku.create');
@@ -110,9 +113,29 @@ Route::group(['middleware' => 'admin_auth'], function()
         {
             Route::get('/', 'index')->name('admin.order.index');
             Route::match(['GET', 'POST'], 'create-order', 'createorder')->name('admin.order.create');
-            Route::match(['GET', 'PATCH'], 'edit-order/{order_id}', 'editOrder')->name('admin.category.edit');
+            // Route::match(['GET', 'PATCH'], 'edit-order/{order_id}', 'editOrder')->name('admin.category.edit');
             Route::delete('delete-category/{category_id}', 'deleteCategory')->name('admin.category.delete');
             Route::get('remove-category-image/{category_id}/{image_id}', 'removeImage')->name('admin.category.remove.image');
+        });
+    });
+
+    Route::controller(PermissionController::class)->group(function () {
+        Route::group(["prefix" => "permissions"], function ()
+        {
+            Route::get('/', 'index')->name('admin.permissions.index');
+            Route::post('create', 'createPermission')->name('admin.permissions.create');
+            Route::put('edit/{permission_id}', 'updatePermission')->name('admin.permissions.edit');
+            // Route::put('delete-permission', 'deletePermission')->name('admin.permissions.delete');
+        });
+    });
+    
+    Route::controller(RoleController::class)->group(function () {
+        Route::group(["prefix" => "roles"], function ()
+        {
+            Route::get('/', 'index')->name('admin.roles.index');
+            Route::post('create', 'createRole')->name('admin.roles.create');
+            Route::put('edit/{role_id}', 'updateRole')->name('admin.roles.edit');
+            // Route::put('delete-role', 'deleteRole')->name('admin.roles.delete');
         });
     });
 
