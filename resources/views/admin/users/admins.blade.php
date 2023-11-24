@@ -148,7 +148,7 @@
                     <div class="card card-custom">
 
                         <!--begin::Form-->
-                        <form action="{{ route('admin.admins.edit', $admin->id) }}" method="POST">
+                        <form action="{{ route('admin.admins.edit', $admin->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
@@ -186,6 +186,40 @@
                                     </label>
                                     <!--end::Label-->
                                     <input type="text" class="form-control form-control-solid" placeholder="This is optional" name="password">
+                                </div>
+
+                                <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                <span class="required">Roles</span>
+
+                                </label>
+                                <div class="row">
+                                    @php
+                                        $user_roles = fetchUserRoles($admin->id)
+                                            ->pluck('role_id')
+                                            ->toArray();
+                                    @endphp
+                                    @foreach ($roles as $role)
+                                        <div class="col-md-4 mb-2">
+                                            <div
+                                                class="d-flex flex-stack">
+
+                                                <!--begin::Switch-->
+
+                                                <label
+                                                    class="form-check form-switch form-check-custom form-check-solid">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value="{{ $role->id }}"
+                                                        name="roles[]"
+                                                        @if (in_array($role->id, $user_roles)) checked @endif>
+                                                    <span
+                                                        class="form-check-label fw-semibold text-muted">{{ $role->name }}</span>
+                                                </label>
+                                                <!--end::Switch-->
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
         
 
@@ -267,14 +301,9 @@
                             </label>
                             <!--end::Label-->
                             <input type="text" class="form-control form-control-solid" placeholder="" name="full_name"
-                                value="{{ old('full_name') }}">
+                                value="{{ old('full_name') }}" required>
                         </div>
-                        <!--end::Input group-->
 
-                        <!--begin::Input group-->
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
                         <div class="d-flex flex-column mb-7 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
@@ -283,7 +312,7 @@
                             </label>
                             <!--end::Label-->
                             <input type="email" class="form-control form-control-solid" placeholder="" name="email"
-                                value="{{ old('email') }}">
+                                value="{{ old('email') }}" required>
                         </div>
                         <!--end::Input group-->
 
@@ -296,7 +325,7 @@
                             </label>
                             <!--end::Label-->
                             <input type="phone" class="form-control form-control-solid" placeholder="" name="phone"
-                                value="{{ old('phone') }}">
+                                value="{{ old('phone') }}" required>
                         </div>
                         <!--end::Input group-->
 
@@ -307,11 +336,11 @@
 
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="password"
-                                value="{{ old('password') }}">
+                            <input type="password" class="form-control form-control-solid" placeholder="" name="password"
+                                value="{{ old('password') }}" required>
                         </div>
-                        {{-- <hr> --}}
-                        {{-- <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                        <hr>
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                             <span class="required"><b>Roles</b></span>
 
                         </label>
@@ -324,7 +353,7 @@
 
                                         <label class="form-check form-switch form-check-custom form-check-solid">
                                             <input class="form-check-input" type="checkbox" value="{{ $role->id }}"
-                                                name="roles[]">
+                                                name="roles[]" required>
                                             <span
                                                 class="form-check-label fw-semibold text-muted">{{ $role->name }}</span>
                                         </label>
@@ -332,7 +361,7 @@
                                     </div>
                                 </div>
                             @endforeach
-                        </div> --}}
+                        </div>
 
                         <hr>
                         <!--begin::Input group-->

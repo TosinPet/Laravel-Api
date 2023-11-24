@@ -21,7 +21,7 @@ class PermissionController extends Controller
 
     public function createPermission(Request $request)
     {
-        if(!checkPermission('add_permission'))
+        if(!checkPermission('create_permission'))
         {
             return redirect()->back()->with('danger', 'Access Forbidden');
         }

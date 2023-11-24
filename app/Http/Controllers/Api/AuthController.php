@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\PasswordResetToken;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\CustomerAccount;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -35,12 +37,21 @@ class AuthController extends Controller
     
             $user = User::where('phone', $validated['phone'])->first();
             $user = Auth::user();
+            $customer = Customer::where('user_id', '=', $user->id)->first();
+            // dd($customer);
+            $customer_account = CustomerAccount::where("customer_id", '=', $customer->id)->first();
+            // dd($customer_account);
+            // dd($customer_account);
+
+            
+
 
             return response()->json([
                 'access_token' => $user->createToken('api_token')->plainTextToken,
                 'token_type' => 'Bearer',
                 'message' => 'You have been logged in',
-                'user' => $user,
+                'customer' => $customer,    
+                'customer_account' => $customer_account,
             ], 200);
 
 

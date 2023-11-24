@@ -15,6 +15,10 @@ class BannerController extends Controller
     //
     public function index()
     {
+        if(!checkPermission('view_banner'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         $banners = Banner::orderBy('created_at', 'DESC')->get();
         // dd($banners);   
         return view('admin.cms.banners.index', compact('banners'));
@@ -22,6 +26,10 @@ class BannerController extends Controller
 
     public function createBanner(Request $request)
     {
+        if(!checkPermission('create_banner'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         if($request->isMethod('post'))
         {
             try
@@ -92,6 +100,10 @@ class BannerController extends Controller
 
     public function editBanner(Request $request, $banner_id)
     {
+        if(!checkPermission('edit_banner'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         if($request->isMethod('patch'))
         {
             try

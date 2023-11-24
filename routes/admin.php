@@ -41,8 +41,8 @@ Route::group(['middleware' => 'admin_auth'], function()
         Route::group(["prefix" => "admin"], function ()
         {
             Route::get('/index', 'index')->name('admin.users.admins');
-            Route::post('create', 'createAdmin')->name('admin.admins.create');
-            Route::put('edit/{user_id}', 'updateAdmin')->name('admin.admins.edit');
+            Route::post('create-admin', 'createAdmin')->name('admin.admins.create');
+            Route::put('edit-admin/{user_id}', 'updateAdmin')->name('admin.admins.edit');
             Route::delete('delete-admin/{user_id}', 'deleteAdmin')->name('admin.admins.delete');
         });
     });
@@ -103,7 +103,8 @@ Route::group(['middleware' => 'admin_auth'], function()
         {
             Route::get('/', 'index')->name('admin.sku.index');
             Route::match(['GET', 'POST'], 'create-sku', 'createSku')->name('admin.sku.create');
-            Route::match(['GET', 'PATCH'], 'edit-sku/{product_id}', 'editSku')->name('admin.sku.edit');
+            Route::get('export-sku', 'exportSku')->name('admin.sku.export');
+            Route::put('edit-sku/{product_id}', 'editSku')->name('admin.sku.edit');
 
         });
     });
@@ -113,9 +114,8 @@ Route::group(['middleware' => 'admin_auth'], function()
         {
             Route::get('/', 'index')->name('admin.order.index');
             Route::match(['GET', 'POST'], 'create-order', 'createorder')->name('admin.order.create');
-            // Route::match(['GET', 'PATCH'], 'edit-order/{order_id}', 'editOrder')->name('admin.category.edit');
-            Route::delete('delete-category/{category_id}', 'deleteCategory')->name('admin.category.delete');
-            Route::get('remove-category-image/{category_id}/{image_id}', 'removeImage')->name('admin.category.remove.image');
+            Route::get('show-order/{order_id}', 'showOrder')->name('admin.order.show');
+            Route::post('approve-order/{id}', 'approveOrder')->name('admin.order.approve');
         });
     });
 

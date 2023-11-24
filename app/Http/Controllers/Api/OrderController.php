@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Customer;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -53,9 +54,9 @@ class OrderController extends Controller
              ]);
     
             $user = Auth::user();
+            // $customer = Customer::where('user_id', '=', $user->id);
     
             $order = Order::create([
-                'email' => $user->email,
                 'phone' => $user->phone,
                 'shipping_address' => $validated['shipping_address'],
                 'phone' => $validated['phone'],
@@ -64,6 +65,7 @@ class OrderController extends Controller
                 'order_date' => Carbon::now()->toDateTimeString(),
                 'order_number' => 'KIR'.random_int(1000000000, 9999999999),
                 'user_id' => $user->id,
+                // 'customer_id' => $customer->id
             ]);
     
             $products = $request['products'];

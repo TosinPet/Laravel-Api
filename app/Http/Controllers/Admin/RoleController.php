@@ -21,7 +21,7 @@ class RoleController extends Controller
 
     public function createRole(Request $request)
     {
-        if(!checkPermission('add_role'))
+        if(!checkPermission('create_role'))
         {
             return redirect()->back()->with('danger', 'Access Forbidden');
         }

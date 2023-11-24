@@ -29,20 +29,19 @@
                         <form class="form" action="{{ route('admin.customer.deposit.create') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
-                                {{-- <input type="hidden" name="customer_account_id" id="" value="{{ $customer_account->id }}"> --}}
                                 <div class="form-group row">
                                     <div class="col-lg-6">
                                         <label>Select Customer Account <span class="text-danger"><b>*</b></span> </label>
-                                        <select id="customer" name="customer" class="form-control">
+                                        <select id="customer" name="customer_id" class="form-control">
                                             <option value="none" selected="" disabled="">Choose a Customer Account</option>
-                                            @foreach($customers as $customer)
-                                                <option value="{{ $customer->id }}">{{ $customer->full_name }}</option>
+                                            @foreach($customers_account as $customer_account)
+                                                <option value="{{ $customer_account->customer_id }}" onclick="customer_deposit({{ $customer_account->utilized_credit }}, {{ $customer_account->credit_limit }}, {{ $customer_account->credit_allowance }})">{{ $customer_account->full_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Deposit Date <span class="text-danger"><b>*</b></span> </label>
-                                        <input type="date" class="form-control" name="date" placeholder="Deposit Date" value="{{ old('date') }}" required/>
+                                        <input type="date" class="form-control" name="deposit_date" placeholder="Deposit Date" value="{{ old('date') }}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -60,21 +59,30 @@
                                         <label>Mode of Payment <span class="text-danger"><b>*</b></span> </label>
                                         <select id="projectinput3" name="mode_of_payment" class="form-control" required>
                                             <option value="none" selected="" disabled="">Choose mode of payment</option>
-                                            <option value="Kirana">Cash</option>
-                                            <option value="Uwargida">POS</option>
-                                            <option value="Others">Bank Transfer</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="POS">POS</option>
+                                            <option value="Bank Transfer">Bank Transfer</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-4">
                                         <label>Credit Utilized : </label>
+                                        <div id="utilized_credit" name="utilized_credit">
+
+                                        </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <label>Credit Limit :</label>
+                                        <div id="credit_limit" name="credit_limit">
+
+                                        </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <label>Credit Allowance :</label>
+                                        <div id="credit_allowance" name="credit_allowance">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -87,6 +95,8 @@
                                 </div>
                             </div>
                         </form>
+                        <script>
+                        </script>
 
                          <!--end::Body-->
                     </div>
