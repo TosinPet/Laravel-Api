@@ -27,13 +27,7 @@
 
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
-                                <a href="#" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#addCustomer">
-                                    <i class="la la-upload"></i> Import SKUs
-                                </a>
-                                <a href="{{ asset('sample/customers/customers.csv') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3" download>
-                                    <i class="la la-download"></i> Sample
-                                </a>
-                                <a href="{{ route('admin.customer.export') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                                <a href="{{ route('admin.sku.export') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
                                     <i class="la la-download"></i> Download SKU List
                                 </a>
                                 <a href="{{ route('admin.sku.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
@@ -51,6 +45,7 @@
                                 <thead>
                                     <tr>
                                         <th></th>
+                                        <th class="ps-4 min-w-125px rounded-start">SKU Image</th>
                                         <th>Name</th>
                                         <th>Internal Reference</th>
                                         <th>Price</th>
@@ -68,6 +63,9 @@
                                     <tr>
                                         <td>
                                             {{ $cnt++ }}
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset('uploads/skus') }}/{{ $sku->image }}" style="width: 50px; height: 50px" alt="Icon">
                                         </td>
                                         <td>
                                             <div>
@@ -105,18 +103,11 @@
                                             </div>
                                         </td>
                                         <td>
-                                            @if ($sku->active == 1)
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
+                                            @if ($sku->status == 1)
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Available</span>
                                             @endif
-                                            @if ($sku->active == 0)
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
-                                            @endif
-
-                                            @if ($sku->suspend == 1)
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Suspended</span>
-                                            @endif
-                                            @if ($sku->suspend == 0)
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Suspended</span>
+                                            @if ($sku->status == 0)
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Unavilable</span>
                                             @endif
                                         </td>
                                         <td>
@@ -145,5 +136,148 @@
     </div>
     <!--end::Entry-->
 </div>
+
+@foreach($skus as $sku)
+    <div class="modal fade" id="edit-customer{{ $sku->id }}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit SKUs</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card card-custom">
+
+                        <!--begin::Form-->
+                        <form action="{{ route('admin.sku.edit', $sku->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-body">
+                                <input name="target" value="{{ $sku->id }}" type="hidden" readonly>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Name <span class="text-danger">*</span></label>
+                                            <input type="text" name="full_name" value="{{ $sku->name }}" class="form-control" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Description </label>
+                                            <input type="email" name="email" value="{{ $sku->description }}" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Category <span class="text-danger">*</span></label>
+                                            <select id="category" name="category" class="form-control">
+                                                <option value="none" selected="" disabled="">Choose a Category</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}" {{$category->id == $sku->category_id ? 'selected' : ''}}>{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- <input type="text" name="phone" value="{{ $sku->category }}" class="form-control" required="required"> --}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Brand <span class="text-danger">*</span></label>
+                                            <select id="category" name="category" class="form-control">
+                                                <option value="none" selected="" disabled="">Choose a Brand</option>
+                                                @foreach($brands as $brand)
+                                                    <option value="{{ $brand->id }}" {{$brand->id == $sku->brand_id ? 'selected' : ''}}>{{ $brand->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- <input type="text" name="phone" value="{{ $sku->category }}" class="form-control" required="required"> --}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Product Image <span class="text-danger"><b>*</b></span></label>
+                                            <div class="input-group">
+                                                <input type="file" class="form-control form-control-solid" placeholder="" name="image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('brand_image') }}">
+                                                <div class="input-group-append">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Cases </label>
+                                            <input type="text" class="form-control" name="cases" placeholder="Cases" value="{{ $sku->cases }}" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Reference Number </label>
+                                            <input type="text" class="form-control" name="reference_number" placeholder="Cases" value="{{ $sku->reference_number }}" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Quantity </label>
+                                            <input type="text" class="form-control" name="quantity" placeholder="Quantity" value="{{ $sku->quantity }}" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Price </label>
+                                            <input type="text" class="form-control" name="price" placeholder="Price" value="{{ $sku->price }}" />
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="col-md-6 mt-5">
+                                    <div class="d-flex flex-stack">
+       
+                                        <!--begin::Switch-->
+                                        <label class="form-check form-switch form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox" value="1" @if ($sku->status == 1) checked @endif name="status" />
+                                            <span class="form-check-label fw-semibold text-muted">Active</span>
+                                        </label>
+                                        <!--end::Switch-->
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-1">
+                                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!--end::Form-->
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+@endforeach
 
 @endsection

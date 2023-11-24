@@ -85,7 +85,7 @@
                                         <td>
                                             <div>
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                    {{ $customer->phone }}
+                                                    {{ "("."+".$customer->country_code.")"."".$customer->phone }}
                                                 </span>
                                             </div>
                                         </td>

@@ -145,6 +145,8 @@
 		<!--end::Global Config-->
 		<script src="{{ asset('assets/js/lga.js') }}"></script>
 		<script src="{{ asset('assets/js/lga.min.js') }}"></script>
+		<script src="{{ asset('assets/js/scripts.js') }}"></script>
+
 		<!--begin::Global Theme Bundle(used by all pages)-->
 		<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
 		<script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>

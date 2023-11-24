@@ -62,7 +62,7 @@
            
                                             <!--begin::Switch-->
                                             <label class="form-check form-switch form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="1" checked="checked" name="status" />
+                                                <input class="form-check-input" type="checkbox" value="1" @if ($category->status == 1) checked @endif name="status" />
                                                 <span class="form-check-label fw-semibold text-muted">Active</span>
                                             </label>
                                             <!--end::Switch-->

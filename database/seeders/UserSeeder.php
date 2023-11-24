@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      * Run the database seeds.
      */
     public function run()
-    {
+{
         //
         $password = Hash::make('123456');
         DB::table('users')->insert([

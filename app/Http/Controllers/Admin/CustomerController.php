@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\CustomersAccountImport;
 use App\Imports\CustomersImport;
 use App\Models\CustomerAccount;
+use App\Models\CustomerDeposit;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
 
@@ -20,6 +21,10 @@ class CustomerController extends Controller
     //
     public function index()
     {
+        if(!checkPermission('view_customer'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         $customers = Customer::where('account', true)->get();
         // dd($customers);
         return view('admin.customer.index', compact('customers'));
@@ -27,6 +32,10 @@ class CustomerController extends Controller
 
     public function createCustomer(Request $request)
     {
+        if(!checkPermission('create_customer'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         if($request->isMethod('post'))
         {
             try {
@@ -38,6 +47,7 @@ class CustomerController extends Controller
                     'year_of_business' => 'bail|required|string',
                     'business_type' => 'bail|required|string',
                     'business_name' => 'bail|required|string',
+                    'country_code' => 'bail|required|string',
                     'phone' => 'bail|required|string',
                     'state' => 'bail|required|string',
                     'lga' => 'bail|required|string',
@@ -54,14 +64,28 @@ class CustomerController extends Controller
                 $pass = random_int(100000, 999999);
                 $password = bcrypt($pass);
                 $ref = 'CUS'.random_int(1000000000, 9999999999);
+                $phone_number = $request->country_code . $request->phone;
+
+                $user = User::create([
+                    'full_name' => $request->full_name,
+                    'phone' => $request->phone,
+                    'country_code' => $request->country_code,
+                    'phone_number' => $phone_number,
+                    'reference_no' => $ref,
+                    'password' => $password,
+                ]);
+                // dd($user);
+
                 $customer = Customer::create([
-                    'user_id' => auth()->user()->id,
+                    'user_id' => $user->id,
                     'full_name' => $request->full_name,
                     'address' => $request->address,
                     'year_of_business' => $request->year_of_business,
                     'business_type' => $request->business_type,
                     'business_name' => $request->business_name,
+                    'country_code' => $request->country_code,
                     'phone' => $request->phone,
+                    'phone_number' => $phone_number,
                     'state' => $request->state,
                     'lga' => $request->lga,
                     'customer_type' => $request->customer_type,
@@ -76,26 +100,31 @@ class CustomerController extends Controller
                     'password' => $password,
                     'created_by' => auth()->user()->id,
                 ]);
+                $userName = $request->full_name;
+                $userPhoneNumber = $phone_number;
+                $userPassword = $pass;
+                $message = "Hello, $userName! Your Kirana account has been created successfully. Your login username is your phone number, and your password is $userPassword.";
 
-                $user = User::create([
-                    'full_name' => $request->full_name,
-                    'phone' => $request->phone,
-                    'reference_no' => $ref,
-                    'password' => $password,
-                ]);
-                // dd($pass);
                 
+                // dd($pass);
+                // 407585 
+                
+                // $basic = new \Vonage\Client\Credentials\Basic("983788a9", "rjWzcps9q6uw5gkj");
+                // $client = new \Vonage\Client($basic);
 
-                // if($request->is_approved && $request->is_approved == 1 && $affiliate->is_approved == 0)
-                // {
-                    // Log::info('affiliate');
-                    // try{
-                    //     Mail::to($user)->queue(new AffiliateWelcomeEmail($affiliate, $pass));
-                    // } catch (\Exception $e)
-                    // {
-                    //     Log::info($e->getMessage());
-            
-                    // }
+                // $response = $client->sms()->send(
+                //     new \Vonage\SMS\Message\SMS(
+                //         $userPhoneNumber, 
+                //         'Kirana Team', 
+                //         $message)
+                // );
+                
+                // $message = $response->current();
+                
+                // if ($message->getStatus() == 0) {
+                //     echo "The message was sent successfully\n";
+                // } else {
+                //     echo "The message failed with status: " . $message->getStatus() . "\n";
                 // }
 
                 return redirect()->back()->with('success', "Customer has been created successfully.");
@@ -118,6 +147,10 @@ class CustomerController extends Controller
 
     public function updateCustomer(Request $request, $customer_id)
     {   
+        if(!checkPermission('edit_customer'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         try {
             $request->validate([
                 'full_name' => 'bail|nullable|string',
@@ -156,6 +189,10 @@ class CustomerController extends Controller
 
     public function importCustomer(Request $request)
     {
+        if(!checkPermission('import_customer'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         try{
             if(!$request->hasFile('csv_file'))
             {
@@ -186,6 +223,10 @@ class CustomerController extends Controller
 
     public function exportCustomer(Request $request)
     {
+        if(!checkPermission('export_customer'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         try{
             return Excel::download(new ExportCustomer, 'customers.xlsx');
 
@@ -202,6 +243,10 @@ class CustomerController extends Controller
 
     public function accountStatement()
     {
+        if(!checkPermission('view_customer_account_statement'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         $customers_account = CustomerAccount::get();
         // dd($customers_account);
         foreach($customers_account as $account)
@@ -219,6 +264,10 @@ class CustomerController extends Controller
 
     public function importCustomerAccount(Request $request)
     {
+        if(!checkPermission('import_customer_account_statement'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         try{
             if(!$request->hasFile('csv_file'))
             {
@@ -249,6 +298,10 @@ class CustomerController extends Controller
 
     public function exportCustomerAccount(Request $request)
     {
+        if(!checkPermission('export_customer_account_statement'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         try{
             return Excel::download(new ExportCustomerAccount, 'customers_account.xlsx');
 
@@ -265,6 +318,10 @@ class CustomerController extends Controller
 
     public function updateCustomerAccount(Request $request, $account_id)
     {   
+        if(!checkPermission('update_customer_account_statement'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         try {
             $request->validate([
                 'utilized_credit' => 'bail|nullable|integer',
@@ -277,7 +334,7 @@ class CustomerController extends Controller
             $customers_account->update([
                 'utilized_credit' => $request->utilized_credit,
                 'credit_limit' => $request->credit_limit,
-                'credit_allowance' => $request->credit_allowance,
+                'credit_allowance' => $request->credit_limit - $request->utilized_credit,
             ]);
 
 
@@ -291,20 +348,26 @@ class CustomerController extends Controller
 
     public function createCustomerDeposit(Request $request)
     {
+        if(!checkPermission('create_customer_deposit'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         if($request->isMethod('post'))
         {
+            // dd($request);
             try {
                 // dd($request);
                 $request->validate([
-                    'customer' => 'required',
+                    'customer_id' => 'required',
                     'deposit_date' => 'bail|required|string',
                     'description' => 'bail|required|string',
                     'amount' => 'bail|required|string',
                     'mode_of_payment' => 'bail|required|string',
                 ]);
-                // dd($request);
+            // dd($request);
                 $receipt = random_int(10000000000, 99999999999);
-                $customer = Customer::create([
+                $customer_deposit = CustomerDeposit::create([
+                    'customer_id' => $request->customer_id,
                     'receipt_no' => $receipt,
                     'deposit_date' => $request->deposit_date,
                     'description' => $request->description,
@@ -323,8 +386,15 @@ class CustomerController extends Controller
             try
             {
                 $customers = Customer::all();
-                // dd($customers);
+                
                 $customers_account = CustomerAccount::all();
+                foreach($customers_account as $customer_account)
+                {
+                    $customer_id = $customer_account->customer_id;
+                    $customer = Customer::find($customer_id);
+                    $customer_account["full_name"] = $customer->full_name;
+                }
+                // dd($customers_account);
                 return view('admin.customer.deposit.create', compact('customers', 'customers_account'));
             } catch(\Exception $e)
             {

@@ -14,6 +14,10 @@ class BrandController extends Controller
     //
     public function index()
     {
+        if(!checkPermission('view_brand'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         $brands = Brand::orderBy('created_at', 'DESC')->get();
         // dd($banners);   
         return view('admin.cms.brands.index', compact('brands'));
@@ -21,6 +25,10 @@ class BrandController extends Controller
 
     public function createBrand(Request $request)
     {
+        if(!checkPermission('create_brand'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         if($request->isMethod('post'))
         {
             try
@@ -91,6 +99,10 @@ class BrandController extends Controller
 
     public function editBrand(Request $request, $brand_id)
     {
+        if(!checkPermission('edit_brand'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         if($request->isMethod('patch'))
         {
             try

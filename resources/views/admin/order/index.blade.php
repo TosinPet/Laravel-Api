@@ -90,7 +90,15 @@
                                                     </a>
                                                 </div>
                                             </td>
-                                            <td><a href="" class="btn btn-primary btn-sm">View</a></td>
+                                            <td>
+                                                <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-primary btn-sm">View</a>
+                                                @if ($order->is_approved == true)
+                                                    <a href="#" class="btn btn-primary btn-sm">Aproved</a>
+                                                @else
+                                                    <a href="#" class="btn btn-danger btn-sm">Pending Approval</a>
+                                                @endif
+                                            </td>
+
 
                                         </tr>
                                     @endforeach

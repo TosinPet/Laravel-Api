@@ -14,6 +14,10 @@ class CategoryController extends Controller
     //
     public function index()
     {
+        if(!checkPermission('view_category'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         $categories = Category::orderBy('created_at', 'DESC')->get();
         // dd($banners);   
         return view('admin.cms.categories.index', compact('categories'));
@@ -21,6 +25,10 @@ class CategoryController extends Controller
 
     public function createCategory(Request $request)
     {
+        if(!checkPermission('create_category'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         if($request->isMethod('post'))
         {
             try
@@ -89,6 +97,10 @@ class CategoryController extends Controller
 
     public function editCategory(Request $request, $category_id)
     {
+        if(!checkPermission('edit_category'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         if($request->isMethod('patch'))
         {
             try
