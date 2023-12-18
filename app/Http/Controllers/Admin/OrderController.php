@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ExportOrder;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
@@ -10,6 +11,7 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Models\CustomerAccount;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
@@ -93,5 +95,25 @@ class OrderController extends Controller
         {
             return back()->with('danger', $th->getMessage())->withInput();
         }
+    }
+
+    public function exportOrder(Request $request)
+    {
+        if(!checkPermission('export_order'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
+        try{
+            return Excel::download(new ExportOrder, 'orders.xlsx');
+
+        } catch (ValidationException $e)
+        {
+            return redirect()->back()->with('danger', $e->validator->errors()->first());
+        } catch (\Exception $e)
+        {
+            return redirect()->back()->with('danger', $e->getMessage());
+
+        }
+        
     }
 }

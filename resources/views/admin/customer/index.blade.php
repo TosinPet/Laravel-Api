@@ -34,7 +34,7 @@
                                     <i class="la la-download"></i> Sample
                                 </a>
                                 <a href="{{ route('admin.customer.export') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                                    <i class="la la-download"></i> Download Customers List
+                                    <i class="la la-download"></i> Export Customers List
                                 </a>
                                 <a href="{{ route('admin.customer.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
                                     <i class="ki-duotone ki-add-folder"></i> Create Customer

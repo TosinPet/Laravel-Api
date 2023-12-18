@@ -7,8 +7,8 @@
     <div class="brand flex-column-auto" id="kt_brand">
         <!--begin::Logo-->
         <a href="{{ route('admin.dashboard') }}" class="brand-logo">
-            <h1>{{ config('app.name') }}</h1>
-            {{-- <img alt="Logo" src="{{ asset('assets/media/logos/whitelogo.png') }}" class="max-h-30px"/> --}}
+            {{-- <h1>{{ config('app.name') }}</h1> --}}
+            <img alt="Logo" src="{{ asset('assets/media/logos/sanda.png') }}" class="max-h-30px"/>
         </a>
         <!--end::Logo-->
         <!--begin::Toggle-->
@@ -58,7 +58,7 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.users.admins') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-user"></i>
                     </span>
                     <span class="menu-text">Admins</span>
                 </a>
@@ -67,7 +67,7 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.customer.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-users"></i>
                     </span>
                     <span class="menu-text">Customers</span>
                 </a>
@@ -81,7 +81,7 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.permissions.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-key"></i>
                     </span>
                     <span class="menu-text">Permissions</span>
                 </a>
@@ -90,7 +90,7 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.roles.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-layer-group"></i>
                     </span>
                     <span class="menu-text">Roles</span>
                 </a>
@@ -104,25 +104,25 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.customer.acount.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-receipt"></i>
                     </span>
                     <span class="menu-text">Customer Account Statement</span>
                 </a>
             </li>
 
-            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
+            {{-- <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.customer.acount.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
                         <i class="flaticon-folder-1"></i>
                     </span>
                     <span class="menu-text">Customer Stock Balance</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.users.admins'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.customer.deposit.create') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-money-bill-transfer"></i>
                     </span>
                     <span class="menu-text">Customer Deposit Form</span>
                 </a>
@@ -136,7 +136,7 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.banner.index'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.banner.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-flag"></i>
                     </span>
                     <span class="menu-text">Banners</span>
                 </a>
@@ -145,7 +145,7 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.brand.index'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.brand.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-folder-open"></i>
                     </span>
                     <span class="menu-text">Brands</span>
                 </a>
@@ -154,7 +154,7 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.category.index'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.category.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-layer-group"></i>
                     </span>
                     <span class="menu-text">Categories</span>
                 </a>
@@ -168,7 +168,7 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.sku.index'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.sku.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-tags"></i>
                     </span>
                     <span class="menu-text">SKUs</span>
                 </a>
@@ -182,7 +182,7 @@
             <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.order.index'])) menu-item-active @endif" aria-haspopup="true">
                 <a href="{{ route('admin.order.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
-                        <i class="flaticon-folder-1"></i>
+                        <i class="fa-solid fa-cart-shopping"></i>
                     </span>
                     <span class="menu-text">View Orders</span>
                 </a>
