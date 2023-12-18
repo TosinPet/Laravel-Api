@@ -47,8 +47,8 @@ class OrderController extends Controller
         try{
 
             $validated = $request->validate([
-                'shipping_address' => 'bail|required|string',
-                'phone' => 'bail|required|string',
+                'shipping_address' => 'bail|string',
+                'phone' => 'bail|string',
                 'subtotal' => 'bail|required|string',
                 'total_amount' => 'bail|required|string',
              ]);
@@ -58,8 +58,7 @@ class OrderController extends Controller
     
             $order = Order::create([
                 'phone' => $user->phone,
-                'shipping_address' => $validated['shipping_address'],
-                'phone' => $validated['phone'],
+                'shipping_address' => $user->address,
                 'subtotal' => $validated['subtotal'],
                 'total_amount' => $validated['total_amount'],
                 'order_date' => Carbon::now()->toDateTimeString(),
