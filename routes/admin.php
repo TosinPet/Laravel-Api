@@ -116,6 +116,7 @@ Route::group(['middleware' => 'admin_auth'], function()
             Route::match(['GET', 'POST'], 'create-order', 'createorder')->name('admin.order.create');
             Route::get('show-order/{order_id}', 'showOrder')->name('admin.order.show');
             Route::post('approve-order/{id}', 'approveOrder')->name('admin.order.approve');
+            Route::get('export-order', 'exportOrder')->name('admin.order.export');
         });
     });
 

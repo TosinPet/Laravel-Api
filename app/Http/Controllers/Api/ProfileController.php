@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Models\CustomerAccount;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -67,10 +69,14 @@ class ProfileController extends Controller
 
             $user_id = auth('sanctum')->user()->id;
             $user = $this->userService->getUserProfile($user_id);
+            $user = Auth::user();
+            $customer = Customer::where('user_id', '=', $user->id)->first();
+            $customer_account = CustomerAccount::where("customer_id", '=', $customer->id)->first();
         
             return response()->json([
                 'data' => [
                     'user' => $user,
+                    'customer_account' => $customer_account,
                 ]
             ], 200);
 

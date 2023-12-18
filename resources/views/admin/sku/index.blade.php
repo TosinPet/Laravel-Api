@@ -168,7 +168,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description </label>
-                                            <input type="email" name="email" value="{{ $sku->description }}" class="form-control">
+                                            <input type="text" name="description" value="{{ $sku->description }}" class="form-control">
                                         </div>
                                     </div>
                                 </div>

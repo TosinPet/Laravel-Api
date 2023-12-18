@@ -25,6 +25,13 @@
                                 {{-- <span class="text-muted mt-3 font-weight-bold font-size-sm"> {{ $count_target_data }} {{ $count_target_data > 1 ? 'targets' : 'target' }}</span> --}}
                             </h3>
 
+                            <div class="card-toolbar">
+                                <!--begin::Dropdown-->
+                                <a href="{{ route('admin.order.export') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                                    <i class="la la-download"></i> Export Orders List
+                                </a>
+                            </div>
+
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
@@ -33,12 +40,13 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Name</th>
-                                        <th>Phone</th>
+                                        <th>Customer's Name</th>
+                                        <th>Phone No</th>
                                         <th>Order No</th>
                                         <th>Shipping Address</th>
                                         <th>Total Amount</th>
                                         <th>Order Details</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -92,6 +100,8 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-primary btn-sm">View</a>
+                                            </td>
+                                            <td>
                                                 @if ($order->is_approved == true)
                                                     <a href="#" class="btn btn-primary btn-sm">Aproved</a>
                                                 @else

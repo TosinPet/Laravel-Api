@@ -39,7 +39,7 @@
 					<!--begin::Wrapper-->
 					<div class="login-content d-flex flex-column pt-lg-0 pt-12">
 						<!--begin::Logo-->
-						<a href="#" class="login-logo pb-xl-20 pb-15">
+						<a href="#" class="login-logo pb-xl-20 pb-15 text-warning">
 							{{-- <img src="{{ asset('assets/media/logos/logo-4.png') }}" class="max-h-70px" alt="" /> --}}
                             {{ config('app.name') }}
 						</a>
@@ -73,7 +73,7 @@
 								<!--end::Form group-->
 								<!--begin::Action-->
 								<div class="pb-lg-0 pb-5">
-									<button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Login</button>
+									<button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-warning font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Login</button>
 									{{-- <button type="button" class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg">
 									<span class="svg-icon svg-icon-md">
 										<!--begin::Svg Icon | path:assets/media/svg/social-icons/google.svg-->
@@ -97,7 +97,7 @@
 				<!--begin::Content-->
 				<!--begin::Aside-->
 				<div class="login-aside order-1 order-lg-2 bgi-no-repeat bgi-position-x-right">
-					<div class="login-conteiner bgi-no-repeat bgi-position-x-right bgi-position-y-bottom" style="background-image: url({{ asset('assets/media/svg/illustrations/login-visual-4.svg') }});">
+					<div class="login-conteiner bgi-no-repeat bgi-position-x-center bgi-position-y-bottom" style="background-image: url({{ asset('assets/media/svg/illustrations/sanda.png') }});">
 						<!--begin::Aside title-->
 						<h3 class="pt-lg-40 pl-lg-20 pb-lg-0 pl-10 py-20 m-0 d-flex justify-content-lg-start font-weight-boldest display5 display1-lg text-white">Kirana
 						<br />Web

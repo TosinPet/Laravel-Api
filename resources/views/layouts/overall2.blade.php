@@ -19,7 +19,7 @@
 		<link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+        {{-- <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" /> --}}
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
 		<link href="{{ asset('assets/css/themes/layout/header/base/light.css') }}" rel="stylesheet" type="text/css" />
@@ -162,10 +162,10 @@
         <script src="{{ asset('assets/js/pages/crud/datatables/advanced/column-rendering.js') }}"></script>
         <script src="{{ asset('assets/js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
         <script src="{{ asset('assets/js/pages/custom/profile/profile.js') }}"></script>
-		<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+		{{-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 		<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-		<script src="{{ asset('assets/js/script.js') }}"></script>
+		<script src="{{ asset('assets/js/script.js') }}"></script> --}}
         {{-- <script src="{{ asset('assets/js/pages/crud/file-upload/dropzonejs.js') }}"></script> --}}
 
         <!--end::Page Scripts-->

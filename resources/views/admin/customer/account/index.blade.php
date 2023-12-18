@@ -1,4 +1,4 @@
-@extends("layouts.overall2")
+@extends("layouts.overall")
 @section("page_title", "Customers Account Statement")
 @section('module', 'Customers')
 @section("content")
