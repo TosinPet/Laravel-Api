@@ -20,4 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/privacy', [LoginController::class, 'privacy'])->name('privacy');
 Route::post('admin-login', [AuthController::class, 'login'])->name('admin.login');

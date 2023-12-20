@@ -17,4 +17,15 @@ class LoginController extends Controller
             return redirect()->back()->with('danger', $e->getMessage());
         }
     }
+
+    public function privacy()
+    {
+        try
+        {
+            return view('privacy');
+        } catch(\Exception $e)
+        {
+            return redirect()->back()->with('danger', $e->getMessage());
+        }
+    }
 }
