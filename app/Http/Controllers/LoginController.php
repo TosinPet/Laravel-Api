@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     //
+    public function welcome()
+    {
+        try
+        {
+            return view('welcome');
+        } catch(\Exception $e)
+        {
+            return redirect()->back()->with('danger', $e->getMessage());
+        }
+    }
     public function login()
     {
         try

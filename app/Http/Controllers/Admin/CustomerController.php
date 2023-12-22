@@ -62,6 +62,7 @@ class CustomerController extends Controller
                 ]);
                 // dd($request);
                 $pass = random_int(100000, 999999);
+                // dd($pass);
                 $password = bcrypt($pass);
                 $ref = 'CUS'.random_int(1000000000, 9999999999);
                 $phone_number = $request->country_code . $request->phone;
@@ -72,6 +73,7 @@ class CustomerController extends Controller
                     'country_code' => $request->country_code,
                     'phone_number' => $phone_number,
                     'reference_no' => $ref,
+                    'address' => $request->address,
                     'password' => $password,
                 ]);
                 // dd($user);
@@ -104,10 +106,10 @@ class CustomerController extends Controller
                 $userPhoneNumber = $phone_number;
                 $userPassword = $pass;
                 $message = "Hello, $userName! Your Kirana account has been created successfully. Your login username is your phone number, and your password is $userPassword.";
-
                 
-                // dd($pass);
+                dd($pass);
                 // 407585 
+                // 928185 
                 
                 // $basic = new \Vonage\Client\Credentials\Basic("983788a9", "rjWzcps9q6uw5gkj");
                 // $client = new \Vonage\Client($basic);

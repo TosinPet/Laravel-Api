@@ -15,9 +15,7 @@ use App\Http\Controllers\Admin\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LoginController::class, 'welcome'])->name('welcome');
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/privacy', [LoginController::class, 'privacy'])->name('privacy');
