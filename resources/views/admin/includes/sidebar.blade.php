@@ -106,7 +106,7 @@
                     <span class="svg-icon menu-icon">
                         <i class="fa-solid fa-receipt"></i>
                     </span>
-                    <span class="menu-text">Customer Account Statement</span>
+                    <span class="menu-text">Customer Statement</span>
                 </a>
             </li>
 

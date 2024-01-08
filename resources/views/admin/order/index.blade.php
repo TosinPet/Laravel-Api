@@ -45,8 +45,11 @@
                                         <th>Order No</th>
                                         <th>Shipping Address</th>
                                         <th>Total Amount</th>
-                                        <th>Order Details</th>
+                                        <th>Approval Status</th>
+                                        <th>Payment Status</th>
                                         <th>Status</th>
+                                        <th>Details</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -99,15 +102,85 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-primary btn-sm">View</a>
-                                            </td>
-                                            <td>
                                                 @if ($order->is_approved == true)
-                                                    <a href="#" class="btn btn-primary btn-sm">Aproved</a>
+                                                    <a href="#" class="badge badge-primary">Aproved</a>
                                                 @else
-                                                    <a href="#" class="btn btn-danger btn-sm">Pending Approval</a>
+                                                    <a href="#" class="badge badge-danger">Pending Approval</a>
                                                 @endif
                                             </td>
+                                            <td>
+                                                @if ($order->payment_status == "Paid")
+                                                    <a href="#" class="badge badge-success">{{ $order->status }}</a>
+                                                @else
+                                                    <a href="#" class="badge badge-danger">{{ $order->status }}</a>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($order->status == "Pending" )
+                                                    <a href="{{ route('admin.order.show', $order->id) }}" class="badge badge-danger">{{ $order->status }}</a>
+                                                    @elseif($order->status == "Paid" )
+                                                    <a href="{{ route('admin.order.show', $order->id) }}" class="badge badge-primary">{{ $order->status }}</a>
+                                                    @elseif($order->status == "Delivered" )
+                                                    <a href="{{ route('admin.order.show', $order->id) }}" class="badge badge-success">{{ $order->status }}</a>
+                                                    @elseif($order->status == "Cancelled" )
+                                                    <a href="{{ route('admin.order.show', $order->id) }}" class="badge badge-secondary">{{ $order->status }}</a>
+                                                    @elseif($order->status == "Closed" )
+                                                    <a href="{{ route('admin.order.show', $order->id) }}" class="badge badge-dark">{{ $order->status }}</a>
+                                                @endif
+
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-primary btn-sm">View</a>
+                                            </td>
+                                            <td><a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal{{ $order->id }}">Edit</a>
+                                                <div class="modal fade" id="exampleModal{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Order</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-select" method="POST" enctype="multipart/form-data" action="{{ route('admin.order.update', $order->id) }}">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="mb-5">
+                                                                    <label for="status">Status</label>
+
+                                                                    <select id="status" name="status"  class="form-control">
+                                                                    <option value="Pending">Pending</option>
+                                                                    <option value="Paid">Paid</option>
+                                                                    <option value="Delivered">Delivered</option>
+                                                                    <option value="Cancelled">Cancelled</option>
+                                                                    <option value="Closed">Closed</option>                                                          
+                                                                    </select> 
+                                                                </div>
+                                                                
+                                                                <div class="">
+                                                                    <label for="payment-status">Payment Status</label>
+
+                                                                    <select id="payment-status" name="payment_status" class="form-control">
+                                                                    <option value="Unpaid">Unpaid</option>
+                                                                    <option value="Unpaid">Partly Paid</option>
+                                                                    <option value="Paid">Paid</option>
+                                                                    </select> 
+                                                                </div>
+                                                                
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                                </div>
+                                                            </form>
+                                                            
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </td>  
 
 
                                         </tr>

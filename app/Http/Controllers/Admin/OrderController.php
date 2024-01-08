@@ -116,4 +116,23 @@ class OrderController extends Controller
         }
         
     }
+
+    public function updateOrder(Request $request, string $id)
+    {
+        // dd($request);
+        $this->validate($request, [
+                'status' => 'required',
+                'payment_status' => 'required',
+            ]);
+            // dd($request);
+
+            $order = Order::find($id);
+
+            $order->status = $request->status;
+            $order->payment_status = $request->payment_status;
+            // dd($order);
+            $order->save();
+
+            return redirect()->route('admin.order.index')->with('status',"Order has been edited successfully");
+    }
 }
