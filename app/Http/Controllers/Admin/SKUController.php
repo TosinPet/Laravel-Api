@@ -125,6 +125,7 @@ class SKUController extends Controller
         }
         try
         {
+            // dd($request);
             $this->validate($request, [
                 'name' => 'bail|required|string',
                 'status' => 'nullable|integer',

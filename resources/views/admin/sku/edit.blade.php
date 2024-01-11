@@ -37,7 +37,7 @@
                             @csrf
                             @method('PATCH')
                             <div class="card-body">
-                                <input name="target" value="{{ $sku->id }}" type="hidden" readonly>
+                                <input name="product" value="{{ $sku->id }}" type="hidden" readonly>
                                 <div class="form-group row">
                                     <div class="col-lg-6">
                                         <label>Name</label>

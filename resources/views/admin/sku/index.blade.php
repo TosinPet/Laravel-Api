@@ -155,12 +155,12 @@
                             @csrf
                             @method('PUT')
                             <div class="card-body">
-                                <input name="target" value="{{ $sku->id }}" type="hidden" readonly>
+                                <input name="product" value="{{ $sku->id }}" type="hidden" readonly>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Name <span class="text-danger">*</span></label>
-                                            <input type="text" name="full_name" value="{{ $sku->name }}" class="form-control" required="required">
+                                            <input type="text" name="name" value="{{ $sku->name }}" class="form-control" required="required">
                                         </div>
                                     </div>
                                 </div>
@@ -191,7 +191,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Brand <span class="text-danger">*</span></label>
-                                            <select id="category" name="category" class="form-control">
+                                            <select id="brand" name="brand" class="form-control">
                                                 <option value="none" selected="" disabled="">Choose a Brand</option>
                                                 @foreach($brands as $brand)
                                                     <option value="{{ $brand->id }}" {{$brand->id == $sku->brand_id ? 'selected' : ''}}>{{ $brand->name }}</option>

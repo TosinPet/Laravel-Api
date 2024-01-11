@@ -113,7 +113,8 @@ class CustomerController extends Controller
                 $userPassword = $pass;
                 $message = "Hello, $userName! Your Kirana account has been created successfully. Your login username is your phone number, and your password is $userPassword.";
                 
-                dd($pass);
+                // dd($pass);
+                // 894062 
                 // 686444
                 // 407585 
                 // 928185 
