@@ -24,8 +24,6 @@ class DashboardController extends Controller
             $total_sales = Order::where('status', 'Completed')->sum('total_amount');
             $orders_by_category_food = Order::whereHas('orderItems.product', function ($query) { $query->where('category_id', 1);})->count();
             $orders_by_category_nonFood = Order::whereHas('orderItems.product', function ($query) { $query->where('category_id', 2);})->count();
-            $percentage_orders_by_category_food = ($orders_by_category_food / $no_of_orders) * 100;
-            $percentage_orders_by_category_nonFood = ($orders_by_category_nonFood / $no_of_orders) * 100;
             $recentOrders = Order::latest()->take(5)->get();
             // dd($orders_by_category_nonFood);
             foreach($recentOrders as $recentOrder)
