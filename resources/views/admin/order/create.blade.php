@@ -214,7 +214,13 @@
                                     </div>
                                 </div>
                     
-                                <button type="submit" class="btn btn-primary">Create Order</button>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <button type="submit" class="btn btn-primary">Create Order</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                          <!--end::Body-->
                         </div>
