@@ -182,7 +182,7 @@
                                                     <select name="skus[0][sku_id]" class="form-control">
                                                         <option value="" selected disabled>Select a SKU</option>
                                                         @foreach($skus as $sku)
-                                                            <option value="{{ $sku->id }}">{{ $sku->name }}</option>
+                                                            <option value="{{ $sku->id }}">{{ ($sku->name) }}</option>
                                                         @endforeach
                                                     </select>
                                                 </td>

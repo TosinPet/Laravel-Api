@@ -74,7 +74,7 @@ class AuthController extends Controller
         try{
             $request->session()->flush();
             Auth::logout();
-            return redirect()->route('login');
+            return redirect()->route('login')->with('danger', 'You have been logged out');
         } catch(\Exception $e)
         {
             // dd($e->getMessage());
