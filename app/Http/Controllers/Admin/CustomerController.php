@@ -54,9 +54,9 @@ class CustomerController extends Controller
                     'customer_type' => 'bail|required|string',
                     'status' => 'nullable|integer',
                     'suspend' => 'nullable|integer',        
-                    'utilized_credit' => 'bail|nullable|string',
-                    'credit_limit' => 'bail|nullablel|string',
-                    'credit_allowance' => 'bail|nullable|string',
+                    'utilized_credit' => 'bail|string',
+                    'credit_limit' => 'bail|string',
+                    'credit_allowance' => 'bail|string',
                     'guarantor_name' => 'bail|nullable|string',
                     'guarantor_address' => 'bail|nullable|string',
                     'guarantor_phone' => 'bail|nullable|string',
@@ -113,7 +113,7 @@ class CustomerController extends Controller
                 $userPassword = $pass;
                 $message = "Hello, $userName! Your Kirana account has been created successfully. Your login username is your phone number, and your password is $userPassword.";
                 
-                // dd($pass);
+                dd($pass);
                 // 686444
                 // 407585 
                 // 928185 
