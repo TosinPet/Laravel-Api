@@ -1,4 +1,4 @@
-@extends("layouts.overall2")
+@extends("layouts.overall")
 @section("page_title", "SKUS")
 @section('module', 'CMS')
 @section("content")

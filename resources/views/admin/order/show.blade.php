@@ -29,17 +29,36 @@
 
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
-                                @if ($order->is_approved == false)
+                                {{-- @if ($order->status == "Pending")
                                     <form method="post" action="{{ route('admin.order.approve', ['id' => $order->id]) }}">
                                         @csrf
                                         @method('post')
                                         <button type="submit" class="btn btn-warning font-weight-bolder font-size-sm mr-3">Approve Order</button>
                                     </form>
-                                @else
-                                    <a href="#" class="btn btn-primary font-weight-bolder font-size-sm mr-3">
-                                        <i class="ki-duotone ki-add-folder"></i> Approved
-                                    </a>    
-                                @endif
+                                @elseif ($order->status == "Approved")
+                                    <form method="post" action="{{ route('admin.order.paid', ['id' => $order->id]) }}">
+                                        @csrf
+                                        @method('post')
+                                        <button type="submit" class="btn btn-warning font-weight-bolder font-size-sm mr-3">Approve Order</button>
+                                    </form>   
+                                @endif --}}
+                                <form method="post" action="{{ route('admin.order.update', $order->id) }}">
+                                    @csrf
+                                    @method('put')
+                                
+                                    @if($order->status === 'Pending')
+                                        <button type="submit" name="Approve" class="btn btn-primary font-weight-bolder font-size-sm mr-3">Approve</button>
+                                        <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel</button>
+                                    @elseif($order->status === 'Approved')
+                                        <button type="submit" name="Paid" class="btn btn-success font-weight-bolder font-size-sm mr-3">Paid</button>
+                                        <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel</button>
+                                    @elseif($order->status === 'Paid')
+                                        <button type="submit" name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button>
+                                        <button type="submit" name="Cancel" class="btn btn-darkk font-weight-bolder font-size-sm mr-3">Cancel</button>
+                                    @else($order->status === 'Delievered')
+                                        <button name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button>
+                                    @endif
+                                </form>
                                 
                             </div>
                         </div>
@@ -59,10 +78,10 @@
                                     <h6 class="pb-2">Phone Number: {{ $order->phone }}</h6>
                                     <h6 class="pb-2">Total Amount:  &#x20A6;{{ $order->total_amount }}</h6>
                                     <h6 class="pb-2">Status: {{ $order->status }}</h6>
-                                    <h6 class="pb-2">Payment Status: {{ $order->payment_status }}</h6>
-                                    <h6 class="pb-2">Utilized Credit: {{ $customer_account->utilized_credit }}</h6>
+                                    {{-- <h6 class="pb-2">Payment Status: {{ $order->payment_status }}</h6> --}}
+                                    {{-- <h6 class="pb-2">Utilized Credit: {{ $customer_account->utilized_credit }}</h6>
                                     <h6 class="pb-2">Credit Limit: {{ $customer_account->credit_limit }}</h6>
-                                    <h6 class="pb-2">Credit Allowance: {{ $customer_account->credit_allowance }}</h6>
+                                    <h6 class="pb-2">Credit Allowance: {{ $customer_account->credit_allowance }}</h6> --}}
                                    
                                 </div>
 

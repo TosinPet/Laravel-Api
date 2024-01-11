@@ -112,11 +112,9 @@
                                             @endif
                                         </td>
                                         <td>
-
                                             <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $customer->id }}">
                                                 <i class="flaticon-edit"></i>
                                             </button>
-
                                         </td>
                                     </tr>
                                     @endforeach

@@ -354,6 +354,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <div class="col-lg-4">
+                                        <label>Utilized Credit</label>
+                                        <input type="text" class="form-control" name="utilized_credit" placeholder="Utilized Credit" value="{{ old('utilized_credit') }}" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label>Credit Limit</label>
+                                        <input type="text" class="form-control" name="credit_limit" placeholder="Credit Limit" value="{{ old('credit_limit') }}" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label>Credit Allowance</label>
+                                        <input type="text" class="form-control" name="credit_allowance" placeholder="Credit Allowance" value="{{ old('credit_allowance') }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <div class="col-lg-6">
                                         <label>Guarantor Name</label>
                                         <input type="text" class="form-control" name="guarantor_name" placeholder="Guarantor Name" value="{{ old('guarantor_name') }}" />

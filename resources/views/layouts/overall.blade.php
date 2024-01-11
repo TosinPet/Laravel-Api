@@ -127,21 +127,17 @@
 		<script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
 		<!--end::Page Vendors-->
 		<!--begin::Page Scripts(used by this page)-->
+		<script src="{{ asset('assets/js/pages/widgets.js') }}"></script>
         {{-- <script src="{{ asset('assets/js/pages/widgets.js') }}"></script> --}}
         <script src="{{ asset('assets/js/pages/crud/forms/widgets/select2.js?v=').time() }}"></script>
         <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
         <script src="{{ asset('assets/js/pages/crud/datatables/advanced/column-rendering.js') }}"></script>
         <script src="{{ asset('assets/js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
         <script src="{{ asset('assets/js/pages/custom/profile/profile.js') }}"></script>
-		{{-- <script src="{{ asset('assets/js/pages/features/charts/apexcharts.js') }}"></script> --}}
-		<script src="{{ asset('assets/js/pages/crud/ktdatatable/base/html-table.js') }}"></script>
-		<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js"></script>
+		{{-- <script src="{{ asset('assets/js/pages/crud/ktdatatable/base/html-table.js') }}"></script> --}}
+		<!-- Add these lines in your HTML file -->
 		
-        {{-- <script src="{{ asset('assets/js/pages/crud/file-upload/dropzonejs.js') }}"></script> --}}
 
-        <!--end::Page Scripts-->
-        {{-- <script src="{{ asset('assets/js/pages/features/miscellaneous/bootstrap-notify.js') }}"></script> --}}
         @include('admin.includes.errors_js')
         @stack('js')
 	</body>

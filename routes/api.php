@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PurchaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
@@ -63,4 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('fetch-profile', [ProfileController::class, 'fetchProfile']);
     Route::post('edit-profile', [ProfileController::class, 'updateProfile']);
     Route::post('change-password', [ProfileController::class, 'changePassword']);
+
+    Route::get('purchases', [PurchaseController::class, 'index']);
+
 }); 

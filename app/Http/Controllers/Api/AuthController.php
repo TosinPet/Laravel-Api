@@ -24,7 +24,7 @@ class AuthController extends Controller
         try{
 
             $validated = $request->validate([
-                'phone' => 'required',
+                'phone_number' => 'required',
                 'password' => 'required|min:6'
             ]);
             // dd($validated);
@@ -35,7 +35,7 @@ class AuthController extends Controller
                 ], 401);
             }
     
-            $user = User::where('phone', $validated['phone'])->first();
+            $user = User::where('phone_number', $validated['phone_number'])->first();
             $user = Auth::user();
             $customer = Customer::where('user_id', '=', $user->id)->first();
             $customer_account = CustomerAccount::where("customer_id", '=', $customer->id)->first();
@@ -94,23 +94,23 @@ class AuthController extends Controller
     {
         try{
             $this->validate($request, [
-                'phone' => 'bail|required',
+                'phone_number' => 'bail|required',
             ]);
 
-            $checkuser = User::where('phone', $request->phone)->where('suspend', 0)->first();
+            $checkuser = User::where('phone_number', $request->phone_number)->where('suspend', 0)->first();
             if($checkuser)
             {
                 $token = random_int(1000000, 9999999);
                 $user = $checkuser;
-                $checktoken = PasswordResetToken::where('phone', $user->phone)->first();
+                $checktoken = PasswordResetToken::where('phone_number', $user->phone_number)->first();
                 if($checktoken)
                 {
-                    $checktoken->phone = $user->phone;
+                    $checktoken->phone_number = $user->phone_number;
                     $checktoken->token = $token;
                     $checktoken->save();
                 }else{
                     $checktoken = PasswordResetToken::create([
-                        'phone' => $user->phone,
+                        'phone_number' => $user->phone_number,
                         'token' => $token,
                     ]);
                 }
@@ -118,13 +118,14 @@ class AuthController extends Controller
                     return response()->json([
                         'token' => $token,
                     ], 200);
+                    //Uncomment the mail line and comment the return response
                     // Mail::to($user->email)->queue(new PasswordReset($user, $token));
                 } catch (\Exception $e)
                 {
                     Log::info($e->getMessage());
                 }
                 return response()->json([
-                    'message' => 'A message has been sent to your phone number. Please check your sms to reset your password.',
+                    'message' => 'A message has been sent to your email address. Please check your email to reset your password.',
                 ], 200);
             }else{
                 return response()->json([
@@ -151,7 +152,7 @@ class AuthController extends Controller
         try
         {
             $this->validate($request, [
-                'phone' => 'bail|required',
+                'phone_number' => 'bail|required',
                 'new_password' => 'bail|required|min:6',
                 'confirm_password' => 'bail|required',
             ]);
@@ -163,7 +164,7 @@ class AuthController extends Controller
                 ], 422);
             }
 
-            $checktoken = PasswordResetToken::where('phone', $request->phone)
+            $checktoken = PasswordResetToken::where('phone_number', $request->phone_number)
             ->where('token', $token)->first();
 
             if($checktoken)
@@ -173,7 +174,7 @@ class AuthController extends Controller
                 $addonehour = $date->addHour(1);
                 if($addonehour > Carbon::now())
                 {
-                    $user = User::where('phone', $request->phone)->first();
+                    $user = User::where('phone_number', $request->phone_number)->first();
                     $user->password = bcrypt($request->new_password);
                     $user->save();
 

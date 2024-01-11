@@ -13,7 +13,7 @@ class ExportOrder implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Order::select('user_id', 'phone', 'order_number', 'order_date', 'shipping_address', 'subtotal', 'total_amount', 'status', 'payment_status', 'delivered',)->get();
+        return Order::select('user_id', 'phone', 'order_number', 'order_date', 'shipping_address', 'subtotal', 'total_amount', 'status', 'payment_status',)->get();
     }
 
     public function headings(): array
@@ -28,7 +28,6 @@ class ExportOrder implements FromCollection, WithHeadings
             'Total_amount', 
             'Status', 
             'Payment_status', 
-            'Delivered'
         ];
     }
 }

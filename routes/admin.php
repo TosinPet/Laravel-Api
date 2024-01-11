@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Target\TargetController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PurchaseController as AdminPurchaseController;
+use App\Http\Controllers\PurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,11 +115,19 @@ Route::group(['middleware' => 'admin_auth'], function()
         Route::group(["prefix" => "orders"], function ()
         {
             Route::get('/', 'index')->name('admin.order.index');
-            Route::match(['GET', 'POST'], 'create-order', 'createorder')->name('admin.order.create');
+            Route::match(['GET', 'POST'], 'create-order', 'createOrder')->name('admin.order.create');
             Route::get('show-order/{order_id}', 'showOrder')->name('admin.order.show');
-            Route::post('approve-order/{id}', 'approveOrder')->name('admin.order.approve');
             Route::get('export-order', 'exportOrder')->name('admin.order.export');
-            Route::put('/{order_id}', 'updateOrder')->name('admin.order.update');
+            Route::match(['GET', 'PATCH'], 'edit/{order_id}', 'editOrder')->name('admin.order.edit');
+            Route::put('/update-status/{order_id}', 'updateStatus')->name('admin.order.update');
+        });
+    });
+
+    Route::controller(AdminPurchaseController::class)->group(function () {
+        Route::group(["prefix" => "purchases"], function ()
+        {
+            Route::get('/', 'index')->name('admin.purchase.index');
+            Route::match(['GET', 'POST'], 'create-purchase', 'createPurchase')->name('admin.purchase.create');
         });
     });
 

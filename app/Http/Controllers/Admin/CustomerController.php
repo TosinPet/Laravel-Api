@@ -53,7 +53,10 @@ class CustomerController extends Controller
                     'lga' => 'bail|required|string',
                     'customer_type' => 'bail|required|string',
                     'status' => 'nullable|integer',
-                    'suspend' => 'nullable|integer',                
+                    'suspend' => 'nullable|integer',        
+                    'utilized_credit' => 'bail|required|string',
+                    'credit_limit' => 'bail|required|string',
+                    'credit_allowance' => 'bail|required|string',
                     'guarantor_name' => 'bail|nullable|string',
                     'guarantor_address' => 'bail|nullable|string',
                     'guarantor_phone' => 'bail|nullable|string',
@@ -94,6 +97,9 @@ class CustomerController extends Controller
                     'reference_no' => $ref,
                     'active' => $request->active ?? 0,
                     'suspend' => $request->suspend ?? 0,
+                    'utilized_credit' => $request->utilized_credit,
+                    'credit_limit' => $request->credit_limit,
+                    'credit_allowance' => $request->credit_allowance,
                     'guarantor_name' => $request->guarantor_name,
                     'guarantor_address' => $request->guarantor_address,
                     'guarantor_phone' => $request->guarantor_phone,
@@ -107,27 +113,28 @@ class CustomerController extends Controller
                 $userPassword = $pass;
                 $message = "Hello, $userName! Your Kirana account has been created successfully. Your login username is your phone number, and your password is $userPassword.";
                 
-                dd($pass);
+                // dd($pass);
+                // 686444
                 // 407585 
                 // 928185 
                 
-                // $basic = new \Vonage\Client\Credentials\Basic("983788a9", "rjWzcps9q6uw5gkj");
-                // $client = new \Vonage\Client($basic);
+                    // $basic = new \Vonage\Client\Credentials\Basic("983788a9", "rjWzcps9q6uw5gkj");
+                    // $client = new \Vonage\Client($basic);
 
-                // $response = $client->sms()->send(
-                //     new \Vonage\SMS\Message\SMS(
-                //         $userPhoneNumber, 
-                //         'Kirana Team', 
-                //         $message)
-                // );
-                
-                // $message = $response->current();
-                
-                // if ($message->getStatus() == 0) {
-                //     echo "The message was sent successfully\n";
-                // } else {
-                //     echo "The message failed with status: " . $message->getStatus() . "\n";
-                // }
+                    // $response = $client->sms()->send(
+                    //     new \Vonage\SMS\Message\SMS(
+                    //         $userPhoneNumber, 
+                    //         'Kirana Team', 
+                    //         $message)
+                    // );
+                    
+                    // $message = $response->current();
+                    
+                    // if ($message->getStatus() == 0) {
+                    //     echo "The message was sent successfully\n";
+                    // } else {
+                    //     echo "The message failed with status: " . $message->getStatus() . "\n";
+                    // }
 
                 return redirect()->back()->with('success', "Customer has been created successfully.");
             } catch (ValidationException $th) {

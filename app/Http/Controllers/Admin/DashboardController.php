@@ -27,15 +27,18 @@ class DashboardController extends Controller
             $percentage_orders_by_category_food = ($orders_by_category_food / $no_of_orders) * 100;
             $percentage_orders_by_category_nonFood = ($orders_by_category_nonFood / $no_of_orders) * 100;
             $recentOrders = Order::latest()->take(5)->get();
-            // dd($recentOrders);
+            // dd($orders_by_category_nonFood);
             foreach($recentOrders as $recentOrder)
             {
                 $user_id = $recentOrder->user_id;
                 $user = User::find($user_id);
                 $recentOrder["full_name"] = $user->full_name;
             }
-            // dd($orders);
-            return view('admin.dashboard', compact('total_sales', 'no_of_orders', 'no_of_pending_orders', 'no_of_completed_orders', 'no_of_cancelled_orders', 'recentOrders'));
+            $orders = Order::orderBy('created_at', 'DESC')->get();
+            return view('admin.dashboard', compact('total_sales', 
+            'no_of_orders', 'no_of_pending_orders', 
+            'no_of_completed_orders', 'no_of_cancelled_orders', 
+            'recentOrders', 'orders_by_category_food', 'orders_by_category_nonFood', 'orders'));
         } catch(\Exception $e)
         {
             return redirect()->back()->with('danger', $e->getMessage());

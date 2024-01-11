@@ -107,6 +107,7 @@ class SKUController extends Controller
             {
                 $categories = Category::all();
                 $brands = Brand::all();
+                // dd($categories);
                 return view('admin.sku.create', compact('categories', 'brands'));
             } catch(\Exception $e)
             {
