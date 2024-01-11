@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
             //
-            $table->integer('utilized_credit')->after('reference_no')->nullable();
-            $table->integer('credit_limit')->after('utilized_credit')->nullable();
-            $table->integer('credit_allowance')->after('credit_limit')->nullable();
+            $table->integer('utilized_credit')->after('reference_no')->nullable()->default(null);
+            $table->integer('credit_limit')->after('utilized_credit')->nullable()->default(null);
+            $table->integer('credit_allowance')->after('credit_limit')->nullable()->default(null);
         });
     }
 
