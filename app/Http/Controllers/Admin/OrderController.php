@@ -157,6 +157,10 @@ class OrderController extends Controller
 
     public function editOrder(Request $request, $order_id)
     {
+        if(!checkPermission('edit_order'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         if($request->isMethod('patch'))
         {
             try
