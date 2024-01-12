@@ -41,7 +41,6 @@ class PurchaseController extends Controller
                     // dd($request);
                     $this->validate($request, [
                         'customer_name' => 'bail|required',
-                        'phone' => 'bail|required|string',
                         'order_date' => 'bail|required|string',
                         'order_number' => 'bail|required|string',
                         'total_amount' => 'bail|required|integer',
@@ -56,7 +55,7 @@ class PurchaseController extends Controller
 
                     $purchase = Purchase::create([
                         'user_id' => $request->customer_name,
-                        'phone' => $request->phone,
+                        'phone' => $user->phone_number,
                         'order_number' => $request->order_number,
                         'order_date' => $request->order_date,
                         'total_amount' => $request->total_amount,

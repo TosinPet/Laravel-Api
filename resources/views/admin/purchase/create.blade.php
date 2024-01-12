@@ -35,7 +35,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <label>Customer Name <span class="text-danger"><b>*</b></span></label>
                                                 <select id="customer_name" name="customer_name" class="form-control">
                                                     <option value="none" selected="" disabled="">Choose a Customer</option>
@@ -43,10 +43,6 @@
                                                         <option value="{{ $customer->user_id }}" @if($customer->id == old('customer_name')) selected @endif>{{ $customer->full_name }}</option>
                                                     @endforeach
                                                 </select>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label>Phone Number <span class="text-danger"><b>*</b></span></label>
-                                            <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ old('phone') }}">
                                         </div>
                                     </div>
 

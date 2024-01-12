@@ -50,7 +50,6 @@ class OrderController extends Controller
                         'skus' => 'bail|required|array|min:1',
                         'skus.*.sku_id' => 'bail|required',
                         'skus.*.quantity' => 'bail|required|integer|min:1',
-                        'phone' => 'bail|required|string',
                         'order_date' => 'bail|required|string',
                         'shipping_address' => 'bail|string'
                     ]);
@@ -66,7 +65,7 @@ class OrderController extends Controller
             
                     $order = Order::create([
                         'user_id' => $request->customer_id,
-                        'phone' => $request->phone,
+                        'phone' => $user->phone_number,
                         'order_number' => $order_number,
                         'order_date' => $request->order_date,
                         'shipping_address' => $request->shipping_address,

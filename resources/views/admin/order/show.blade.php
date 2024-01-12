@@ -49,13 +49,19 @@
                                     @if($order->status === 'Pending')
                                         <button type="submit" name="Approve" class="btn btn-primary font-weight-bolder font-size-sm mr-3">Approve</button>
                                         <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel</button>
+                                    @elseif($order->status === 'Cancelled')   
+                                        <button name="Cancelled" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancelled</button>
                                     @elseif($order->status === 'Approved')
                                         <button type="submit" name="Paid" class="btn btn-success font-weight-bolder font-size-sm mr-3">Paid</button>
                                         <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel</button>
+                                    @elseif($order->status === 'Cancelled')   
+                                        <button name="Cancelled" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancelled</button>
                                     @elseif($order->status === 'Paid')
                                         <button type="submit" name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button>
-                                        <button type="submit" name="Cancel" class="btn btn-darkk font-weight-bolder font-size-sm mr-3">Cancel</button>
-                                    @else($order->status === 'Delievered')
+                                        <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel</button>
+                                    @elseif($order->status === 'Cancelled')   
+                                        <button name="Cancelled" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancelled</button>
+                                    @else
                                         <button name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button>
                                     @endif
                                 </form>

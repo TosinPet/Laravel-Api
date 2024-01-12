@@ -74,7 +74,7 @@
                                                 <div>
                                                     {{-- <span class="font-weight-bolder">Phone</span> --}}
                                                     <a class="text-dark font-weight-bold" href="#">
-                                                        {{ $order->phone }}
+                                                        {{ "+" .$order->phone }}
                                                     </a>
                                                 </div>
                                             </td>

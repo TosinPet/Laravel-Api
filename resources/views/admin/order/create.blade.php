@@ -198,17 +198,12 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-lg-3">
-                                        <label>Phone Number <span class="text-danger"><b>*</b></span></label>
-                                        <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ old('phone') }}">
-                                    </div>
-
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-5">
                                         <label>Order Date <span class="text-danger"><b>*</b></span></label>
                                         <input type="date" class="form-control" name="order_date" placeholder="Order Date" value="{{ old('order_date') }}">
                                     </div>
                                     
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-7">
                                         <label>Shipping Address <span class="text-danger"><b>*</b></span></label>
                                         <input type="text" class="form-control" name="shipping_address" placeholder="Shipping Address" value="{{ old('shipping_address') }}">
                                     </div>

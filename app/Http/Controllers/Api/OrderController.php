@@ -57,7 +57,7 @@ class OrderController extends Controller
             // $customer = Customer::where('user_id', '=', $user->id);
     
             $order = Order::create([
-                'phone' => $user->phone,
+                'phone' => $user->phone_number,
                 'shipping_address' => $user->address,
                 'subtotal' => $validated['subtotal'],
                 'total_amount' => $validated['total_amount'],
