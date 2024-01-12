@@ -81,7 +81,7 @@
                                     <h4 class="card-title">Order Details</h4>
                                     <h6 class="pb-2">Name: {{ $order->full_name }}</h6>
                                     <h6 class="pb-2">Name: {{ $order->order_number }}</h6>
-                                    <h6 class="pb-2">Phone Number: {{ $order->phone }}</h6>
+                                    <h6 class="pb-2">Phone Number: {{ "+" .$order->phone_number }}</h6>
                                     <h6 class="pb-2">Total Amount:  &#x20A6;{{ $order->total_amount }}</h6>
                                     <h6 class="pb-2">Status: {{ $order->status }}</h6>
                                     {{-- <h6 class="pb-2">Payment Status: {{ $order->payment_status }}</h6> --}}
