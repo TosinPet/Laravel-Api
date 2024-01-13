@@ -33,6 +33,14 @@
                                 <a href="{{ route('admin.purchase.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
                                     <i class="ki-duotone ki-add-folder"></i>Create Purchase
                                 </a>
+                                
+                                <div class="input-icon">
+                                    <input type="text" data-kt-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search... " />
+                                    {{-- <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" /> --}}
+                                    <span>
+                                        <i class="flaticon2-search-1 text-muted"></i>
+                                    </span>
+                                </div>
                             </div>
 
                         </div>

@@ -65,6 +65,9 @@
                                         <button name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button>
                                     @endif
                                 </form>
+                                <a href="{{ route('admin.order.index') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                                    View all Orders
+                                </a>
                                 
                             </div>
                         </div>

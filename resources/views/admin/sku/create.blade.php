@@ -69,13 +69,17 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-6">
                                         <label>Product Image <span class="text-danger"><b>*</b></span></label>
                                         <div class="input-group">
                                             <input type="file" class="form-control form-control-solid" placeholder="" name="image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('brand_image') }}">
                                             <div class="input-group-append">
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Size</label>
+                                        <input type="text" class="form-control" name="short_description" placeholder="Size" value="{{ old('short_description') }}" />
                                     </div>
                                 </div>
 
