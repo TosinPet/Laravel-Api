@@ -47,7 +47,7 @@
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body">
-                            <table class="table table-separate table-head-custom table-checkable" id="">
+                            <table id="example" class="table table-separate table-head-custom table-checkable" id="">
                                 <thead>
                                     <tr>
                                         <th></th>

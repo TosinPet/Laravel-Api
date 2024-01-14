@@ -29,6 +29,9 @@
 		<link href="{{ asset('assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/css/mystyles.css') }}" rel="stylesheet" type="text/css" />
 
+		{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> --}}
+		{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> --}}
+
 		<link href="https://cdn.jsdelivr.net/npm/select2@4.0.14/dist/css/select2.min.css" rel="stylesheet" />
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.0.14/dist/js/select2.min.js"></script>
@@ -115,6 +118,7 @@
 		<script src="{{ asset('assets/js/lga.js') }}"></script>
 		<script src="{{ asset('assets/js/lga.min.js') }}"></script>
 		<script src="{{ asset('assets/js/scripts.js') }}"></script>
+		{{-- <script src="{{ asset('assets/js/script.js') }}"></script> --}}
 
 		<!--begin::Global Theme Bundle(used by all pages)-->
 		<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
@@ -133,47 +137,11 @@
         <script src="{{ asset('assets/js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
         <script src="{{ asset('assets/js/pages/custom/profile/profile.js') }}"></script>
 
-		<script src="{{ asset('assets/plugins/custom/datatables/datatable.js') }}"></script>
-		<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}"></script>
-		<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+		{{-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> --}}
+		{{-- <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> --}}
+		{{-- <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script> --}}
 		{{-- <script src="{{ asset('assets/js/pages/crud/ktdatatable/base/html-table.js') }}"></script> --}}
 		<!-- Add these lines in your HTML file -->
-		<script>
-			$("#kt_datatable_zero_configuration").DataTable();
-	
-			$("#kt_datatable_vertical_scroll").DataTable({
-				"scrollY": "500px",
-				"scrollCollapse": true,
-				"paging": false,
-				"dom": "<'table-responsive'tr>"
-			});
-	
-			$("#kt_datatable_horizontal_scroll").DataTable({
-				"scrollX": true
-			});
-	
-			$("#kt_datatable_dom_positioning").DataTable({
-				"language": {
-					"lengthMenu": "Show _MENU_",
-				} 
-			});
-			// $(document).ready(function () {
-			//     $('#kt_datatable_dom_positioning').DataTable({
-			//         columnDefs: [
-			//             {
-			//                 // The `data` parameter refers to the data for the cell (defined by the
-			//                 // `data` option, which defaults to the column being worked with, in
-			//                 // this case `data: 0`.
-			//                 render: function (data, type, row) {
-			//                     return data + ' (' + row[3] + ')';
-			//                 },
-			//                 targets: 0,
-			//             },
-			//             { visible: false, targets: [3] },
-			//         ],
-			//     });
-			// });
-		</script>
 		
 
         @include('admin.includes.errors_js')
