@@ -142,10 +142,10 @@
                                                                     
                                                                         <!--begin::Switch-->
                                                                         
-                                                                        {{-- <label class="form-check form-switch form-check-custom form-check-solid">
+                                                                        <label class="form-check form-switch form-check-custom form-check-solid">
                                                                             <input class="form-check-input" type="checkbox" value="{{ $permission->id }}" name="permissions[]" @if(in_array($permission->id, $role_permissions)) checked @endif>
                                                                             <span class="form-check-label fw-semibold text-muted">{{ $permission->name }}</span>
-                                                                        </label> --}}
+                                                                        </label>
 
                                                                         {{-- <span class="switch">
                                                                                 <label>
