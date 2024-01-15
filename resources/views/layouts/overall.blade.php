@@ -133,7 +133,7 @@
         {{-- <script src="{{ asset('assets/js/pages/widgets.js') }}"></script> --}}
         <script src="{{ asset('assets/js/pages/crud/forms/widgets/select2.js?v=').time() }}"></script>
         <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-        <script src="{{ asset('assets/js/pages/crud/datatables/advanced/column-rendering.js') }}"></script>
+	<script src="{{ asset('assets/js/pages/crud/datatables/advanced/column-rendering.js') }}"></script>
         <script src="{{ asset('assets/js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
         <script src="{{ asset('assets/js/pages/custom/profile/profile.js') }}"></script>
 

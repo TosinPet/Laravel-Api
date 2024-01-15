@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Size</label>
-                                        <input type="text" class="form-control" name="short_description" placeholder="Size" value="{{ old('short_description') }}" />
+                                        <input type="text" class="form-control" name="size" placeholder="Size" value="{{ old('size') }}" />
                                     </div>
                                 </div>
 
