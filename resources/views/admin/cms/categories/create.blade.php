@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-12">
-                                        <label>Category Image</label>
+                                        <label>Category Image </span> <span class="font-weight-bolder">(59px x 59px)</span></label>
                                         <div class="input-group">
                                             <input type="file" class="form-control form-control-solid" placeholder="" name="category_image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('category_image') }}">
                                             <div class="input-group-append">

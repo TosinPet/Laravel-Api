@@ -70,7 +70,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-lg-6">
-                                        <label>Product Image <span class="text-danger"><b>*</b></span></label>
+                                        <label>Product Image <span class="text-danger"><b>*</b></span></span> <span class="font-weight-bolder">(95px x 120px)</span></label>
                                         <div class="input-group">
                                             <input type="file" class="form-control form-control-solid" placeholder="" name="image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('brand_image') }}">
                                             <div class="input-group-append">
@@ -96,12 +96,12 @@
 
                                 <div class="form-group row">
                                     <div class="col-lg-6">
-                                        <label>Quantity <span class="text-danger"><b>*</b></span></label>
-                                        <input type="text" class="form-control" name="quantity" placeholder="Quantity" value="{{ old('quantity') }}" />
+                                        <label>Units per Case <span class="text-danger"><b>*</b></span></label>
+                                        <input type="text" class="form-control" name="units_per_case" placeholder="Units per Case" value="{{ old('units_per_case') }}" />
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Price <span class="text-danger"><b>*</b></span></label>
-                                        <input type="text" class="form-control" name="price" placeholder="Price" value="{{ old('pice') }}" />
+                                        <input type="text" class="form-control" name="price" placeholder="Price" value="{{ old('price') }}" />
                                     </div>
                                 </div>
 

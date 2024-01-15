@@ -48,7 +48,7 @@ class SKUController extends Controller
                     'brand' => 'bail|required|integer',
                     'cases' => 'bail|required|string',
                     'reference_number' => 'bail|required|string',
-                    'quantity' => 'bail|required|string',
+                    'units_per_case' => 'bail|required|string',
                     'price' => 'bail|required|string',
                     'image' => 'bail|required',
                     'status' => 'nullable|integer',
@@ -90,7 +90,7 @@ class SKUController extends Controller
                     'brand_id' => $request->brand,
                     'cases' => $request->cases,
                     'reference_number' => $request->reference_number,
-                    'quantity' => $request->quantity,
+                    'units_per_case' => $request->units_per_case,
                     'price' => $request->price,
                     'image' => $bg_image_name,
                 ]);

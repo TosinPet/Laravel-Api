@@ -28,47 +28,40 @@
                             </h3>
 
                             <div class="card-toolbar">
-                                <!--begin::Dropdown-->
-                                {{-- @if ($order->status == "Pending")
-                                    <form method="post" action="{{ route('admin.order.approve', ['id' => $order->id]) }}">
-                                        @csrf
-                                        @method('post')
-                                        <button type="submit" class="btn btn-warning font-weight-bolder font-size-sm mr-3">Approve Order</button>
-                                    </form>
-                                @elseif ($order->status == "Approved")
-                                    <form method="post" action="{{ route('admin.order.paid', ['id' => $order->id]) }}">
-                                        @csrf
-                                        @method('post')
-                                        <button type="submit" class="btn btn-warning font-weight-bolder font-size-sm mr-3">Approve Order</button>
-                                    </form>   
-                                @endif --}}
+
+                                @if($order->status == "Pending" )
+                                    <a href="#" class="badge badge-danger font-weight-bolder font-size-sm mr-3">{{ $order->status }}</a>
+                                    @elseif($order->status == "Approved" )
+                                    <a href="#" class="badge badge-primary font-weight-bolder font-size-sm mr-3">{{ $order->status }}</a>
+                                    @elseif($order->status == "Paid" )
+                                    <a href="#" class="badge badge-success font-weight-bolder font-size-sm mr-3">{{ $order->status }}</a>
+                                    @elseif($order->status == "Delivered" )
+                                    <a href="#" class="badge badge-secondary font-weight-bolder font-size-sm mr-3">{{ $order->status }}</a>
+                                    @elseif($order->status == "Cancelled" )
+                                    <a href="#" class="badge badge-dark font-weight-bolder font-size-sm mr-3">{{ $order->status }}</a>
+                                @endif
+
                                 <form method="post" action="{{ route('admin.order.update', $order->id) }}">
                                     @csrf
                                     @method('put')
                                 
                                     @if($order->status === 'Pending')
-                                        <button type="submit" name="Approve" class="btn btn-primary font-weight-bolder font-size-sm mr-3">Approve</button>
-                                        <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel</button>
-                                    @elseif($order->status === 'Cancelled')   
-                                        <button name="Cancelled" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancelled</button>
+                                        <button type="submit" name="Approve" class="btn btn-primary font-weight-bolder font-size-sm mr-3">Approve Order</button>
+                                        <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel Order</button>
                                     @elseif($order->status === 'Approved')
-                                        <button type="submit" name="Paid" class="btn btn-success font-weight-bolder font-size-sm mr-3">Paid</button>
-                                        <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel</button>
-                                    @elseif($order->status === 'Cancelled')   
-                                        <button name="Cancelled" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancelled</button>
+                                        <button type="submit" name="Paid" class="btn btn-success font-weight-bolder font-size-sm mr-3">Confirm Payment</button>
+                                        <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel Order</button>
                                     @elseif($order->status === 'Paid')
-                                        <button type="submit" name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button>
+                                        <button type="submit" name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Deliver Order</button>
                                         <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancel</button>
-                                    @elseif($order->status === 'Cancelled')   
-                                        <button name="Cancelled" class="btn btn-dark font-weight-bolder font-size-sm mr-3">Cancelled</button>
-                                    @else
-                                        <button name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button>
+                                    {{-- @else
+                                        <button name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button> --}}
                                     @endif
                                 </form>
                                 
-                                <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-success font-weight-bolder font-size-sm mr-3">Update Order Status</a>
+                                <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-success font-weight-bolder font-size-sm mr-3">Edit Order</a>
                                 @if(checkPermission('edit_order_status'))
-                                <a href="#" class="btn btn-primary font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#exampleModal{{ $order->id }}">Edit</a>
+                                <a href="#" class="btn btn-primary font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#exampleModal{{ $order->id }}">Update Order Status</a>
                                 @endif
                                     <div class="modal fade" id="exampleModal{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
