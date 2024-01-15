@@ -78,7 +78,7 @@
 						</ul>
 					</li> --}}
 				</ul>
-                <button type="button" class="btn btn-warning" href="{{ route('login') }}">Login</button>
+                <a class="btn btn-warning" href="{{ route('login') }}">Login</a>
                 <button type="button" class="btn btn-warning ms-2 ms-lg-3" href="{{ route('privacy') }}">Privacy Policy</button>
 			</div>
 		</div>
