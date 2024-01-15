@@ -99,12 +99,12 @@
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
                                                 @endif
     
-                                                @if ($admin->suspend == 1)
+                                                {{-- @if ($admin->suspend == 1)
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Suspended</span>
                                                 @endif
                                                 @if ($admin->suspend == 0)
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Suspended</span>
-                                                @endif
+                                                @endif --}}
                                             </td>
                                             <td>
 
@@ -353,7 +353,7 @@
 
                                         <label class="form-check form-switch form-check-custom form-check-solid">
                                             <input class="form-check-input" type="checkbox" value="{{ $role->id }}"
-                                                name="roles[]" required>
+                                                name="roles[]">
                                             <span
                                                 class="form-check-label fw-semibold text-muted">{{ $role->name }}</span>
                                         </label>

@@ -119,6 +119,7 @@ Route::group(['middleware' => 'admin_auth'], function()
             Route::get('show-order/{order_id}', 'showOrder')->name('admin.order.show');
             Route::get('export-order', 'exportOrder')->name('admin.order.export');
             Route::match(['GET', 'PATCH'], 'edit/{order_id}', 'editOrder')->name('admin.order.edit');
+            Route::put('/edit-status/{order_id}', 'editStatus')->name('admin.order.editStatus');
             Route::put('/update-status/{order_id}', 'updateStatus')->name('admin.order.update');
         });
     });

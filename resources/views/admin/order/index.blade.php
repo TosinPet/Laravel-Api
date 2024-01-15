@@ -106,7 +106,7 @@
                                             <td>
                                                 @if($order->status == "Pending" )
                                                     <a href="#" class="badge badge-danger">{{ $order->status }}</a>
-                                                    @elseif($order->status == "Aproved" )
+                                                    @elseif($order->status == "Approved" )
                                                     <a href="#" class="badge badge-primary">{{ $order->status }}</a>
                                                     @elseif($order->status == "Paid" )
                                                     <a href="#" class="badge badge-success">{{ $order->status }}</a>
@@ -120,59 +120,16 @@
                                             <td>
                                                 <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-primary btn-sm">View</a>
                                             </td>
+                                            @if(!checkPermission('edit_order_status'))
+                                            {
+
+                                            }
+                                            @else
                                             <td>
-                                                <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-primary btn-sm">Edit Order</a>
+                                            </td>  
+                                            @endif
+                                            <td>
                                             </td>
-                                            
-                                            {{-- <td><a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal{{ $order->id }}">Edit</a>
-                                                <div class="modal fade" id="exampleModal{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Order</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form class="form-select" method="POST" enctype="multipart/form-data" action="{{ route('admin.order.update', $order->id) }}">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <div class="mb-5">
-                                                                    <label for="status">Status</label>
-
-                                                                    <select id="status" name="status"  class="form-control">
-                                                                    <option value="Pending">Pending</option>
-                                                                    <option value="Approved">Approved</option>
-                                                                    <option value="Paid">Paid</option>
-                                                                    <option value="Delivered">Delivered</option>
-                                                                    <option value="Cancelled">Cancelled</option>                                                          
-                                                                    </select> 
-                                                                </div>
-                                                                
-                                                                <div class="">
-                                                                    <label for="payment-status">Payment Status</label>
-
-                                                                    <select id="payment-status" name="payment_status" class="form-control">
-                                                                    <option value="Unpaid">Unpaid</option>
-                                                                    <option value="Partly Paid">Partly Paid</option>
-                                                                    <option value="Paid">Paid</option>
-                                                                    </select> 
-                                                                </div>
-                                                                
-
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                                                </div>
-                                                            </form>
-                                                            
-                                                        </div>
-                                                    
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </td>   --}}
 
                                         </tr>
                                     @endforeach

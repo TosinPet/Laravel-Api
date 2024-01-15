@@ -87,7 +87,8 @@
                                             
                                             <div class="modal fade" id="edit-customer{{ $role->id }}" tabindex="-1" aria-hidden="true">
                                                 <!--begin::Modal dialog-->
-                                                <div class="modal-dialog mw-900px">
+                                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                                {{-- <div class="modal-dialog mw-1200px"> --}}
                                                     <!--begin::Modal content-->
                                                     <div class="modal-content">
                                                         <!--begin::Modal header-->
@@ -141,10 +142,20 @@
                                                                     
                                                                         <!--begin::Switch-->
                                                                         
-                                                                        <label class="form-check form-switch form-check-custom form-check-solid">
+                                                                        {{-- <label class="form-check form-switch form-check-custom form-check-solid">
                                                                             <input class="form-check-input" type="checkbox" value="{{ $permission->id }}" name="permissions[]" @if(in_array($permission->id, $role_permissions)) checked @endif>
                                                                             <span class="form-check-label fw-semibold text-muted">{{ $permission->name }}</span>
-                                                                        </label>
+                                                                        </label> --}}
+
+                                                                        {{-- <span class="switch">
+                                                                                <label>
+                                                                                 <input type="checkbox" checked="checked" name="select"/>
+                                                                                 <span></span>
+                                                                                </label>
+                                                                               </span> --}}
+
+                                                                        
+
                                                                         <!--end::Switch-->
                                                                     </div>
                                                                 </div>

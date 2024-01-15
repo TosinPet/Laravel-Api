@@ -23,7 +23,7 @@
                         <!--begin::Header-->
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label font-weight-bolder text-dark">@yield('page_title')</span>
+                                <span class="card-label font-weight-bolder text-dark">@yield('page_title') - {{ $order->order_number }}</span>
                                 {{-- <span class="text-muted mt-3 font-weight-bold font-size-sm"> {{ $count_target_data }} {{ $count_target_data > 1 ? 'targets' : 'target' }}</span> --}}
                             </h3>
 
@@ -65,9 +65,62 @@
                                         <button name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button>
                                     @endif
                                 </form>
-                                <a href="{{ route('admin.order.index') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                                    View all Orders
-                                </a>
+                                
+                                <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-success font-weight-bolder font-size-sm mr-3">Update Order Status</a>
+                                @if(checkPermission('edit_order_status'))
+                                <a href="#" class="btn btn-primary font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#exampleModal{{ $order->id }}">Edit</a>
+                                @endif
+                                    <div class="modal fade" id="exampleModal{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Order</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-select" method="POST" enctype="multipart/form-data" action="{{ route('admin.order.editStatus', $order->id) }}">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="mb-5">
+                                                        <label for="status">Status</label>
+
+                                                        <select id="status" name="status"  class="form-control">
+                                                        <option value="Pending">Pending</option>
+                                                        <option value="Approved">Approved</option>
+                                                        <option value="Paid">Paid</option>
+                                                        <option value="Delivered">Delivered</option>
+                                                        <option value="Cancelled">Cancelled</option>                                                          
+                                                        </select> 
+                                                    </div>
+                                                    
+                                                    <div class="">
+                                                        <label for="payment-status">Payment Status</label>
+
+                                                        <select id="payment-status" name="payment_status" class="form-control">
+                                                        <option value="Unpaid">Unpaid</option>
+                                                        <option value="Partly Paid">Partly Paid</option>
+                                                        <option value="Paid">Paid</option>
+                                                        </select> 
+                                                    </div>
+                                                    
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </form>
+                                                
+                                            </div>
+                                        
+                                        </div>
+                                        </div>
+                                    </div>                                                
+                                    <a href="{{ route('admin.order.index') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                                        View all Orders
+                                    </a>
+
                                 
                             </div>
                         </div>
@@ -81,9 +134,9 @@
                                 <div class="col g-10">
                                     <!--begin::Col-->
                                     
-                                    <h4 class="card-title">Order Details</h4>
+                                    <h4 class="card-title">Order Details  </h4>
                                     <h6 class="pb-2">Name: {{ $order->full_name }}</h6>
-                                    <h6 class="pb-2">Name: {{ $order->order_number }}</h6>
+                                    {{-- <h6 class="pb-2">Name: {{ $order->order_number }}</h6> --}}
                                     <h6 class="pb-2">Phone Number: {{ "+" .$order->phone_number }}</h6>
                                     <h6 class="pb-2">Total Amount:  &#x20A6;{{ $order->total_amount }}</h6>
                                     <h6 class="pb-2">Status: {{ $order->status }}</h6>

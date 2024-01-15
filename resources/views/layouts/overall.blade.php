@@ -118,6 +118,9 @@
 		<script src="{{ asset('assets/js/lga.js') }}"></script>
 		<script src="{{ asset('assets/js/lga.min.js') }}"></script>
 		<script src="{{ asset('assets/js/scripts.js') }}"></script>
+		<script src="{{ asset('assets/js/create-app.js') }}"></script>
+		<script src="{{ asset('assets/js/upgrade-plan.js') }}"></script>
+		<script src="{{ asset('assets/js/users-search.js') }}"></script>
 		{{-- <script src="{{ asset('assets/js/script.js') }}"></script> --}}
 
 		<!--begin::Global Theme Bundle(used by all pages)-->

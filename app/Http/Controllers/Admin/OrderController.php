@@ -261,6 +261,34 @@ class OrderController extends Controller
         }
     }
 
+    public function editStatus(Request $request, $id)
+    {
+        if(!checkPermission('edit_order_status'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
+        try {
+            $this->validate($request, [
+                'status' => 'required',
+                'payment_status' => 'required',
+            ]);
+
+            $order = Order::find($id);
+
+            $order->status = $request->status;
+            $order->payment_status = $request->payment_status;
+            // dd($order);
+            $order->save();
+            return redirect()->route('admin.order.index')->with('status',"Order has been edited successfully");
+        } catch (ValidationException $th) 
+        {
+            return back()->with('danger', $th->validator->errors()->first())->withInput();
+        } catch (\Throwable $th) 
+        {
+            return back()->with('danger', $th->getMessage())->withInput();
+        }
+    }
+
     public function exportOrder(Request $request)
     {
         if(!checkPermission('export_order'))
@@ -325,10 +353,6 @@ class OrderController extends Controller
             case 'Paid':
                 $this->handlePaidStatus($request, $order);
                 break;
-            // case 'Delivered':
-            //     $this->handleDeliveredStatus($request, $order);
-            //     break;
-            // Add more cases as needed
         }
 
         return redirect()->route('admin.order.show', $order)->with('status', 'Order status updated successfully.');
@@ -336,8 +360,6 @@ class OrderController extends Controller
 
     private function handlePendingStatus(Request $request, Order $order)
     {
-        // Logic for pending status
-        // Allow admin to approve or cancel the order
         if ($request->has('Approve')) {
             $order->update(['status' => 'Approved']);
         } elseif ($request->has('Cancel')) {
@@ -347,8 +369,6 @@ class OrderController extends Controller
 
     private function handleApprovedStatus(Request $request, Order $order)
     {
-        // Logic for approved status
-        // Allow admin to mark as paid or cancel the order
         if ($request->has('Paid')) {
             $order->update(['status' => 'Paid']);
         } elseif ($request->has('Cancel')) {
@@ -358,8 +378,6 @@ class OrderController extends Controller
 
     private function handlePaidStatus(Request $request, Order $order)
     {
-        // Logic for paid status
-        // Allow admin to mark as delivered or cancel the order
         if ($request->has('Delivered')) {
             $order->update(['status' => 'Delivered']);
         } elseif ($request->has('Cancel')) {

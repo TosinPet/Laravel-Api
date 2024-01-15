@@ -104,12 +104,12 @@
                                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
                                             @endif
 
-                                            @if ($customer->suspend == 1)
+                                            {{-- @if ($customer->suspend == 1)
                                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Suspended</span>
                                             @endif
                                             @if ($customer->suspend == 0)
                                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Suspended</span>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                         <td>
                                             <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $customer->id }}">
