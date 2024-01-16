@@ -94,7 +94,7 @@
 																	<!--end::Svg Icon-->
 																</span>
 																<span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{ $no_of_completed_orders }}</span>
-																<span class="font-weight-bold text-muted font-size-sm">No of completed orders</span>
+																<span class="font-weight-bold text-muted font-size-sm">No of delivered orders</span>
 															</div>
 															<!--end::Body-->
 														</div>

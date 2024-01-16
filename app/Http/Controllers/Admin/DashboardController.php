@@ -19,7 +19,7 @@ class DashboardController extends Controller
         {
             $no_of_orders = Order::get()->count();
             $no_of_pending_orders = Order::where('status', 'Pending')->get()->count();
-            $no_of_completed_orders = Order::where('status', 'Completed')->get()->count();
+            $no_of_completed_orders = Order::where('status', 'Delivered')->get()->count();
             $no_of_cancelled_orders = Order::where('status', 'Cancelled')->get()->count();
             $total_sales = Order::where('status', 'Completed')->sum('total_amount');
             $orders_by_category_food = Order::whereHas('orderItems.product', function ($query) { $query->where('category_id', 1);})->count();
