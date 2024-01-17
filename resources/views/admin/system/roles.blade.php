@@ -138,23 +138,14 @@
                                                                     @endphp
                                                                 @foreach ($permissions as $permission)
                                                                 <div class="col-md-4 mb-2">
-                                                                    <div class="d-flex flex-stack">
+                                                                    <div class="d-flex flex-stack custom_switch">
                                                                     
                                                                         <!--begin::Switch-->
                                                                         
-                                                                        <label class="form-check form-switch form-check-custom form-check-solid">
+                                                                        <label class="form-check switch form-check-custom">
                                                                             <input class="form-check-input" type="checkbox" value="{{ $permission->id }}" name="permissions[]" @if(in_array($permission->id, $role_permissions)) checked @endif>
                                                                             <span class="form-check-label fw-semibold text-muted">{{ $permission->name }}</span>
                                                                         </label>
-
-                                                                        {{-- <span class="switch">
-                                                                                <label>
-                                                                                 <input type="checkbox" checked="checked" name="select"/>
-                                                                                 <span></span>
-                                                                                </label>
-                                                                               </span> --}}
-
-                                                                        
 
                                                                         <!--end::Switch-->
                                                                     </div>
@@ -165,10 +156,10 @@
                                                                 <!--begin::Input group-->
                                                                 <div class="row">
                                                                     <div class="col-md-12 mb-2">
-                                                                        <div class="d-flex flex-stack">
+                                                                        <div class="d-flex flex-stack custom_switch">
                                                                         
                                                                             <!--begin::Switch-->
-                                                                            <label class="form-check form-switch form-check-custom form-check-solid">
+                                                                            <label class="form-check switch form-check-custom">
                                                                                 <input class="form-check-input" type="checkbox" value="1" @if($role->status == 1) checked @endif name="status" />
                                                                                 <span class="form-check-label fw-semibold text-muted">Active</span>
                                                                             </label>
@@ -179,7 +170,7 @@
                                                                 <!--begin::Actions-->
                                                                     <div class="col-md-12 mb-2">
                                                                         <div class="text-center pt-15">
-                                                                            <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
+                                                                            <button data-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
                                                                             <button type="submit" class="btn btn-primary">
                                                                                 <span class="indicator-label">Save</span>
                                                                             </button>
@@ -276,25 +267,28 @@
                             <!--end::Input group-->
                            
                             <!--begin::Input group-->
-                            <div class="d-flex flex-stack">
-                               
-                                <!--begin::Switch-->
-                                <span>
-                                    <label class="form-check switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" checked="checked" name="status" />
-                                        <span class="form-check-label fw-semibold text-muted">Active</span>
-                                    </label>
-                                </span>
-                                
-                                <!--end::Switch-->
-                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-2">
+                                    <div class="d-flex flex-stack custom_switch">
+                                    
+                                        <!--begin::Switch-->
+                                        <label class="form-check switch form-check-custom">
+                                            <input class="form-check-input" type="checkbox" value="1" @if($role->status == 1) checked @endif name="status" />
+                                            <span class="form-check-label fw-semibold text-muted">Active</span>
+                                        </label>
+                                        <!--end::Switch-->
+                                    </div>
+                                </div>
                             <!--end::Input group-->
                             <!--begin::Actions-->
-                            <div class="text-center pt-15">
-                                {{-- <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button> --}}
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="indicator-label">Save</span>
-                                </button>
+                                <div class="col-md-12 mb-2">
+                                    <div class="text-center pt-15">
+                                        <button data-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="indicator-label">Save</span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                             
                         </div>

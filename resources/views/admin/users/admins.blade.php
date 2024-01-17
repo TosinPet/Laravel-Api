@@ -225,37 +225,33 @@
 
                                 <div class="row mt-5">
                                     <div class="col-md-4">
-                                        <div
-                                            class="d-flex flex-stack mt-5">
+                                        <div class="d-flex flex-stack mt-5 custom_switch">
                                             <!--begin::Switch-->
-                                            <label
-                                                class="form-check form-switch form-check-custom form-check-solid">
+                                            <label class="form-check switch form-check-custom">
                                                 <input
                                                     class="form-check-input"
                                                     type="checkbox"
                                                     value="1"
                                                     @if ($admin->active == 1) checked @endif
                                                     name="active" />
-                                                <span
-                                                    class="form-check-label fw-semibold text-muted">Active</span>
+                                                <span class="form-check-label fw-semibold text-muted">Active</span>
                                             </label>
                                             <!--end::Switch-->
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div
-                                            class="d-flex flex-stack mt-5">
+                                            class="d-flex flex-stack mt-5 custom-switch">
                                             <!--begin::Switch-->
                                             <label
-                                                class="form-check form-switch form-check-custom form-check-solid">
+                                                class="form-check switch form-check-custom">
                                                 <input
                                                     class="form-check-input"
                                                     type="checkbox"
                                                     value="1"
                                                     @if ($admin->suspend == 1) checked @endif
                                                     name="suspend" />
-                                                <span
-                                                    class="form-check-label fw-semibold text-muted">Suspend</span>
+                                                <span class="form-check-label fw-semibold text-muted">Suspend</span>
                                             </label>
                                             <!--end::Switch-->
                                         </div>
