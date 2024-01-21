@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-6">
                                         <label>Brand Image <span class="text-danger"><b>*</b></span></span> <span class="font-weight-bolder">(94px x 53px)</span></label>
                                         <div class="input-group">
                                             <input type="file" class="form-control form-control-solid" placeholder="" name="brand_image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('brand_image') }}">

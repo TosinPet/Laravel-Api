@@ -39,7 +39,7 @@
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body">
-                            <table class="table table-separate table-head-custom table-checkable" id="">
+                            <table id="example" class="table table-separate table-head-custom table-checkable" id="">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -50,7 +50,7 @@
                                         <th>Total Amount</th>
                                         <th>Status</th>
                                         <th>Details</th>
-                                        <th></th>
+                                        {{-- <th></th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,71 +65,67 @@
                                             <td>
                                                 <div>
                                                     {{-- <span class="font-weight-bolder">Name</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg" href="#">
                                                         {{ $order->full_name }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
-                                                    {{-- <span class="font-weight-bolder">Phone</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    {{-- <span class="font-weight-bolder d-block font-size-lger">Phone</span> --}}
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg" href="#">
                                                         {{ "+" .$order->phone }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
-                                                    {{-- <span class="font-weight-bolder">Email</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    {{-- <span class="font-weight-bolder d-block font-size-lger">Email</span> --}}
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg" href="#">
                                                         {{ $order->order_number }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
-                                                    {{-- <span class="font-weight-bolder">admin Reference</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    {{-- <span class="font-weight-bolder d-block font-size-lger">admin Reference</span> --}}
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg" href="#">
                                                         {{ $order->order_date }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
-                                                    {{-- <span class="font-weight-bolder">admin Reference</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    {{-- <span class="font-weight-bolder d-block font-size-lger">admin Reference</span> --}}
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg" href="#">
                                                         {{ $order->total_amount }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             
                                             <td>
                                                 @if($order->status == "Pending" )
-                                                    <a href="#" class="badge badge-danger">{{ $order->status }}</a>
+                                                    <span href="#" style="font-size: 12px" class="badge badge-danger">{{ $order->status }}</span>
                                                     @elseif($order->status == "Approved" )
-                                                    <a href="#" class="badge badge-primary">{{ $order->status }}</a>
+                                                    <span href="#" style="font-size: 12px" class="badge badge-primary">{{ $order->status }}</span>
                                                     @elseif($order->status == "Paid" )
-                                                    <a href="#" class="badge badge-success">{{ $order->status }}</a>
+                                                    <span href="#" style="font-size: 12px" class="badge badge-success">{{ $order->status }}</span>
                                                     @elseif($order->status == "Delivered" )
-                                                    <a href="#" class="badge badge-secondary">{{ $order->status }}</a>
+                                                    <span href="#" style="font-size: 12px" class="badge badge-secondary">{{ $order->status }}</span>
                                                     @elseif($order->status == "Cancelled" )
-                                                    <a href="#" class="badge badge-dark">{{ $order->status }}</a>
+                                                    <span href="#" style="font-size: 12px" class="badge badge-dark">{{ $order->status }}</span>
                                                 @endif
 
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-primary btn-sm">View</a>
+                                                <a href="{{ route('admin.order.show', $order->id) }}" style="font-size: 12px" class="btn btn-primary btn-sm">View</a>
                                             </td>
                                             @if(!checkPermission('edit_order_status'))
                                             {
 
                                             }
                                             @else
-                                            <td>
-                                            </td>  
                                             @endif
-                                            <td>
-                                            </td>
 
                                         </tr>
                                     @endforeach

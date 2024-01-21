@@ -158,7 +158,7 @@
                     
                                 <div class="form-group">
                                     <label for="customer_id">Select Customer:</label>
-                                    <select name="customer_id" id="customer_id" class="form-control">
+                                    <select name="customer_id" id="customer_id" class="form-control" required>
                                         <option value="" selected disabled>Select a Customer</option>
                                         @foreach($customers as $customer)
                                             <option value="{{ $customer->user_id }}">{{ $customer->full_name }}</option>
@@ -179,7 +179,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <select name="skus[0][sku_id]" class="form-control">
+                                                    <select name="skus[0][sku_id]" class="form-control" required>
                                                         <option value="" selected disabled>Select a SKU</option>
                                                         @foreach($skus as $sku)
                                                             <option value="{{ $sku->id }}">{{ ($sku->name) }}</option>
@@ -187,7 +187,7 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="number" name="skus[0][quantity]" class="form-control" min="1" value="1">
+                                                    <input type="number" name="skus[0][quantity]" class="form-control" min="1" value="1" required>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-success" onclick="addRow()">Add Row</button>
@@ -200,12 +200,12 @@
                                 <div class="form-group row">
                                     <div class="col-lg-5">
                                         <label>Order Date <span class="text-danger"><b>*</b></span></label>
-                                        <input type="date" class="form-control" name="order_date" placeholder="Order Date" value="{{ old('order_date') }}">
+                                        <input type="date" class="form-control" name="order_date" placeholder="Order Date" value="{{ old('order_date') }}" required>
                                     </div>
                                     
                                     <div class="col-lg-7">
                                         <label>Shipping Address <span class="text-danger"><b>*</b></span></label>
-                                        <input type="text" class="form-control" name="shipping_address" placeholder="Shipping Address" value="{{ old('shipping_address') }}">
+                                        <input type="text" class="form-control" name="shipping_address" placeholder="Shipping Address" value="{{ old('shipping_address') }}" required>
                                     </div>
                                 </div>
                     

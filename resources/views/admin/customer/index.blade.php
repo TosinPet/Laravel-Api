@@ -85,7 +85,7 @@
                                         <td>
                                             <div>
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                    {{ "("."+".$customer->country_code.")"."".$customer->phone }}
+                                                    {{ ""."+".$customer->country_code.""."".$customer->phone }}
                                                 </span>
                                             </div>
                                         </td>
@@ -289,7 +289,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row mt-5">
+                                <div class="row">
                                     <div class="col-md-4">
                                         <div
                                             class="d-flex flex-stack mt-5">
@@ -308,27 +308,13 @@
                                             <!--end::Switch-->
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div
-                                            class="d-flex flex-stack mt-5">
-                                            <!--begin::Switch-->
-                                            <label
-                                                class="form-check form-switch form-check-custom form-check-solid">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="1"
-                                                    @if ($customer->suspend == 1) checked @endif
-                                                    name="suspend" />
-                                                <span
-                                                    class="form-check-label fw-semibold text-muted">Suspend</span>
-                                            </label>
-                                            <!--end::Switch-->
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="form-group mb-1">
-                                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+
+                                <div class="text-center pt-15">
+                                    <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">Save</span>
+                                    </button>
                                 </div>
                             </div>
                         </form>

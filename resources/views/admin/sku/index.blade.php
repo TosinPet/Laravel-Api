@@ -33,13 +33,6 @@
                                 <a href="{{ route('admin.sku.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
                                     <i class="ki-duotone ki-add-folder"></i> Create SKU
                                 </a>
-                                <div class="input-icon">
-                                    <input type="text" data-kt-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search... " />
-                                    {{-- <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" /> --}}
-                                    <span>
-                                        <i class="flaticon2-search-1 text-muted"></i>
-                                    </span>
-                                </div>
                             </div>
 
                             
@@ -56,8 +49,8 @@
                                         <th>Name</th>
                                         <th>Internal Reference</th>
                                         <th>Price</th>
-                                        <th>Quantity on Hand</th>
-                                        <th>Unit of Measure</th>
+                                        <th>Cases</th>
+                                        <th>Units per Case</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -98,14 +91,14 @@
                                         <td>
                                             <div>
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                    {{ $sku->quantity }}
+                                                    {{ $sku->cases }}
                                                 </span>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                    {{ $sku->cases }}
+                                                    {{ $sku->units_per_case }}
                                                 </span>
                                             </div>
                                         </td>
@@ -243,8 +236,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Quantity </label>
-                                            <input type="text" class="form-control" name="quantity" placeholder="Quantity" value="{{ $sku->quantity }}" />
+                                            <label>Units per Case </label>
+                                            <input type="text" class="form-control" name="units_per_case" placeholder="Units per Case" value="{{ $sku->units_per_case }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +251,7 @@
                                     </div>
                                 </div>
         
-                                <div class="col-md-6 mt-5">
+                                <div class="col-md-6">
                                     <div class="d-flex flex-stack">
        
                                         <!--begin::Switch-->
@@ -270,8 +263,11 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-1">
-                                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                                <div class="text-center pt-15">
+                                    <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">Save</span>
+                                    </button>
                                 </div>
                             </div>
                         </form>

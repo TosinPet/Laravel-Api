@@ -33,6 +33,9 @@
                             </div>
                         </div>
 
+                        <span class="card-label font-weight-bolder text-dark  pl-10">Customer Information</span>
+                        {{-- <p>Customer Information</p> --}}
+
                         <form class="form" action="{{ route('admin.customer.create') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
@@ -353,7 +356,8 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <span class="card-label font-weight-bolder text-dark">Credit Information</span>
+                                <div class="form-group row mt-10">
                                     <div class="col-lg-4">
                                         <label>Utilized Credit</label>
                                         <input type="text" class="form-control" name="utilized_credit" placeholder="Utilized Credit" value="{{ old('utilized_credit') }}" />
@@ -367,7 +371,8 @@
                                         <input type="text" class="form-control" name="credit_allowance" placeholder="Credit Allowance" value="{{ old('credit_allowance') }}" />
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <span class="card-label font-weight-bolder text-dark">Guarantor Information</span>
+                                <div class="form-group row mt-10">
                                     <div class="col-lg-6">
                                         <label>Guarantor Name</label>
                                         <input type="text" class="form-control" name="guarantor_name" placeholder="Guarantor Name" value="{{ old('guarantor_name') }}" />
@@ -403,27 +408,18 @@
                                         <!--end::Switch-->
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="d-flex flex-stack mt-5">
-                                        <!--begin::Switch-->
-                                        <label class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="1" name="suspend" />
-                                            <span class="form-check-label fw-semibold text-muted">Suspend</span>
-                                        </label>
-                                        <!--end::Switch-->
-                                    </div>
+
+                                <div class="text-center pt-15">
+                                    <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="indicator-label">Save</span>
+                                    </button>
                                 </div>
+                                {{-- --}}
                                 <!-- begin: Example Code-->
                                 <!-- end: Example Code-->
                             </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                        <button type="reset" class="btn btn-secondary">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </form>
 
                          <!--end::Body-->

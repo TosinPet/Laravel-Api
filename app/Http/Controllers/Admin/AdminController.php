@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
@@ -47,7 +48,7 @@ class AdminController extends Controller
             $user->full_name = $request->full_name;
             $user->email = $request->email;
             $user->phone = $request->phone;
-            $user->password = bcrypt($request->password);
+            $user->password = Hash::make($request->password);
             $user->active = $request->active ?? 0;
             $user->suspend = $request->suspend ?? 0;
             $user->account = 5;

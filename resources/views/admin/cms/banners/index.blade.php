@@ -65,29 +65,20 @@
                                             </a>
                                             <!--end::Overlay-->
                                             <!--begin::Body-->
-                                            <div class="mt-5">
+                                            <div class="mt-2">
                                                 <!--begin::Title-->
-                                                <a href="{{ route('admin.banner.edit', $banner->id) }}"
+                                                <span href="{{ route('admin.banner.edit', $banner->id) }}"
                                                     class="fs-4 text-dark fw-bold text-hover-primary text-dark lh-base">
                                                     {{ $banner->name }}
-                                                </a>
+                                                </span>
                                                 <!--end::Title-->
-                                                {{-- <div class="fs-6 mt-5 d-flex flex-stack">
-                                                    <small>
-                                                        Created on {{ date('d M, Y', strtotime($banner->created_at)) }} by {{ $banner->user->last_name }}
-                                                    </small>
-                                                </div> --}}
-                                                <!--begin::Text-->
-                                                <div class="fw-semibold fs-5 text-gray-600 text-dark mt-3">
-                                                    {{-- {{ strLimit($banner->seo_content, 15) }} --}}
-                                                </div>
                                                 <!--end::Text-->
                                                 <!--begin::Text-->
-                                                <div class="fs-6 fw-bold mt-5 d-flex flex-stack">
+                                                <div class="fs-6 fw-bold mt-2 d-flex flex-stack">
                                                     <!--begin::Label-->
                                                     <!--end::Label-->
                                                     <!--begin::Action-->
-                                                    <a href="{{ route('admin.banner.edit', $banner->id) }}" class="btn btn-sm btn-primary">
+                                                    <a href="{{ route('admin.banner.edit', $banner->id) }}" style="font-size: 15px" class="btn btn-sm btn-primary">
                                                         {{-- <i class="ki-duotone ki-pencil"> --}}
                                                         {{-- <i class="path1"></i> --}}
                                                         {{-- <i class="path2"></i> --}}

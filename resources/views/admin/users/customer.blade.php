@@ -100,14 +100,14 @@
                                                     class="badge badge-light-danger fs-7 fw-bold">Inactive</span>
                                             @endif
 
-                                            @if ($customer->suspend == 1)
+                                            {{-- @if ($customer->suspend == 1)
                                                 <span
                                                     class="badge badge-light-danger fs-7 fw-bold">Suspended</span>
                                             @endif
                                             @if ($customer->suspend == 0)
                                                 <span class="badge badge-light-success fs-7 fw-bold">Not
                                                     Suspended</span>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                         <td>
 
@@ -203,24 +203,6 @@
                                                     name="active" />
                                                 <span
                                                     class="form-check-label fw-semibold text-muted">Active</span>
-                                            </label>
-                                            <!--end::Switch-->
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div
-                                            class="d-flex flex-stack mt-5">
-                                            <!--begin::Switch-->
-                                            <label
-                                                class="form-check form-switch form-check-custom form-check-solid">
-                                                <input
-                                                    class="form-check-input"
-                                                    type="checkbox"
-                                                    value="1"
-                                                    @if ($customer->suspend == 1) checked @endif
-                                                    name="suspend" />
-                                                <span
-                                                    class="form-check-label fw-semibold text-muted">Suspend</span>
                                             </label>
                                             <!--end::Switch-->
                                         </div>

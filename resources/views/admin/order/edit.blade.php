@@ -220,15 +220,6 @@
                             <form action="{{ route('admin.order.edit', ['order_id' => $order->id]) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
-                                <div class="form-group">
-                                    <label for="customer_id">Select Customer:</label>
-                                    <select name="customer_id" id="customer_id" class="form-control">
-                                        <option value="" selected disabled>Select a Customer</option>
-                                        @foreach($customers as $customer)
-                                            <option value="{{ $customer->user_id }}" {{ $customer->user_id == $order->user_id ? 'selected' : '' }}>{{ $customer->full_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
 
                                 <div class="form-group">
                                     <label>Select SKUs and Quantities:</label>
@@ -265,17 +256,12 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-lg-3">
-                                        <label>Phone Number <span class="text-danger"><b>*</b></span></label>
-                                        <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ old('phone', $order->phone) }}">
-                                    </div>
-
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-5">
                                         <label>Order Date <span class="text-danger"><b>*</b></span></label>
                                         <input type="date" class="form-control" name="order_date" placeholder="Order Date" value="{{ old('order_date', $order->order_date) }}">
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-7">
                                         <label>Shipping Address <span class="text-danger"><b>*</b></span></label>
                                         <input type="text" class="form-control" name="shipping_address" placeholder="Shipping Address" value="{{ old('shipping_address', $order->shipping_address) }}">
                                     </div>

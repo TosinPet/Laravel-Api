@@ -48,10 +48,10 @@
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fw-bold text-white bg-warning">
-                                        <th class="ps-4 min-w-325px rounded-start">Name</th>
-                                        <th class="min-w-125px">Slug</th>
-                                        <th class="min-w-150px">Status</th>
-                                        <th class="min-w-200px text-end rounded-end">Edit</th>
+                                        <th>Name</th>
+                                        <th>Slug</th>
+                                        <th>Status</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <!--end::Table head-->
@@ -63,22 +63,22 @@
                                             <div class="d-flex align-items-center">
                                                
                                                 <div class="d-flex justify-content-start flex-column">
-                                                    <a href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">{{ $role->name }}</a>
+                                                    <span href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">{{ $role->name }}</span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $role->slug }}</a>
+                                            <span href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $role->slug }}</span>
                                         </td>
                                         <td>
                                             @if($role->status == 1)
-                                            <span class="badge badge-light-primary fs-7 fw-bold">Active</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
                                             @endif
                                             @if($role->status == 0)
-                                            <span class="badge badge-light-danger fs-7 fw-bold">Inactive</span>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
                                             @endif
                                         </td>
-                                        <td class="text-end">
+                                        <td>
                                             @if(checkPermission('edit_role'))
                                             <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $role->id }}">
                                                 <i class="flaticon-edit"></i>

@@ -33,14 +33,6 @@
                                 <a href="{{ route('admin.purchase.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
                                     <i class="ki-duotone ki-add-folder"></i>Create Purchase
                                 </a>
-                                
-                                <div class="input-icon">
-                                    <input type="text" data-kt-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search... " />
-                                    {{-- <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" /> --}}
-                                    <span>
-                                        <i class="flaticon2-search-1 text-muted"></i>
-                                    </span>
-                                </div>
                             </div>
 
                         </div>
@@ -70,41 +62,41 @@
                                             <td>
                                                 <div>
                                                     {{-- <span class="font-weight-bolder">Name</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    <span class="text-dark font-weight-bold" href="#">
                                                         {{ $purchase->full_name }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
                                                     {{-- <span class="font-weight-bolder">Phone</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    <span class="text-dark font-weight-bold" href="#">
                                                         {{ "+" .$purchase->phone }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
                                                     {{-- <span class="font-weight-bolder">Email</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    <span class="text-dark font-weight-bold" href="#">
                                                         {{ $purchase->order_number }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
                                                     {{-- <span class="font-weight-bolder">admin Reference</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    <span class="text-dark font-weight-bold" href="#">
                                                         {{ $purchase->order_date }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
                                                     {{-- <span class="font-weight-bolder">admin Reference</span> --}}
-                                                    <a class="text-dark font-weight-bold" href="#">
+                                                    <span class="text-dark font-weight-bold" href="#">
                                                         {{ $purchase->total_amount }}
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </td>
 

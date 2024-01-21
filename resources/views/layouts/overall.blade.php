@@ -20,6 +20,11 @@
 		<link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+
+		<!-- Datatable -->
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
 		<!--end::Global Theme Styles-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 		<!--begin::Layout Themes(used by all pages)-->
@@ -132,6 +137,13 @@
 		<!--begin::Page Vendors(used by this page)-->
 		<script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
 		<!--end::Page Vendors-->
+
+		<!-- Datatable-->
+		<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+		<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+		<script src="{{ asset('assets/js/script.js') }}"></script>
+
 		<!--begin::Page Scripts(used by this page)-->
 		<script src="{{ asset('assets/js/pages/widgets.js') }}"></script>
         {{-- <script src="{{ asset('assets/js/pages/widgets.js') }}"></script> --}}

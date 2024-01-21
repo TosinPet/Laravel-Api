@@ -13,6 +13,7 @@ use App\Imports\CustomersAccountImport;
 use App\Imports\CustomersImport;
 use App\Models\CustomerAccount;
 use App\Models\CustomerDeposit;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
 
@@ -66,7 +67,7 @@ class CustomerController extends Controller
                 // dd($request);
                 $pass = random_int(100000, 999999);
                 // dd($pass);
-                $password = bcrypt($pass);
+                $password = Hash::make($pass);
                 $ref = 'CUS'.random_int(1000000000, 9999999999);
                 $phone_number = $request->country_code . $request->phone;
 
@@ -210,6 +211,7 @@ class CustomerController extends Controller
             }
 
             $import = Excel::import(new CustomersImport(), request()->file('csv_file'));
+            // dd($import);
             if($import)
             {
                 // dd($import);
