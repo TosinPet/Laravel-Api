@@ -62,7 +62,7 @@
                                         @method('put')
                                     
                                         @if($order->status === 'Pending')
-                                            <button type="submit" name="Approve" class="btn btn-primary font-weight-bolder font-size-sm mr-3"><i class="flaticon2-checkmark"></i>Approve Order</button>
+                                            <button type="submit" name="Approve" class="btn btn-light-primary font-weight-bolder font-size-sm mr-3"><i class="flaticon2-checkmark"></i>Approve Order</button>
                                             <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3"><i class="flaticon-circle"></i>Cancel Order</button>
                                         @elseif($order->status === 'Approved')
                                             <button type="submit" name="Paid" class="btn btn-success font-weight-bolder font-size-sm mr-3"><i class="flaticon-interface-5"></i>Confirm Payment</button>
@@ -194,7 +194,7 @@
                         </div> 
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-success font-weight-bolder font-size-sm mr-3"><i class="flaticon2-pen"></i>Edit Order</a>
+                        <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-light-success font-weight-bolder font-size-sm mr-3"><i class="flaticon2-pen"></i>Edit Order</a>
                         <!--end::Item-->
                     </div>
                     

@@ -42,7 +42,7 @@
 		<link href="{{ asset('asset/css/mystyles.css') }}" rel="stylesheet" type="text/css" />
 
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="{{ asset('assets/media/logos/icon100.png') }}" />
+		<link rel="shortcut icon" href="{{ asset('assets/media/logos/sanda-favicon.png') }}" />
 
 
 	</head>

@@ -57,14 +57,11 @@ class SKUController extends Controller
                 $slug = Str::slug($request->name);
                 $ref = strtoupper(Str::random(20));
 
-                $checkproduct = Product::where('slug', $slug)->first();
+                $checkproduct = Product::where('reference_number', $ref)->first();
                 if($checkproduct)
                 {
                     return redirect()->back()->with('danger', 'Sorry! You have already added this Product.');
                 }
-
-                // Log::info($seocontent);
-                // dd($request->content);
 
                 if($request->hasFile('image'))
                 {
