@@ -5,7 +5,31 @@
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
-    @include('admin.includes.bodytop')
+    {{-- @include('admin.includes.bodytop') --}}
+    <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+        <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-2">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">@yield('page_title')</h5>
+                <!--end::Page Title-->
+                <!--begin::Actions-->
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item">
+                        <a href="" class="text-muted">@yield('module')</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.dashboard') }}" class="text-muted">Dashboard</a>
+                    </li>
+
+                </ul>
+            </div>
+            <a href="{{ route('admin.customer.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                <i class="flaticon2-pen"></i> Create Customer
+            </a>
+        </div>
+        
+    </div>
     <!--end::Subheader-->
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
@@ -28,16 +52,10 @@
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
                                 <a href="#" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#addCustomer">
-                                    <i class="la la-upload"></i> Import Customers
-                                </a>
-                                <a href="{{ asset('sample/customers/customers.csv') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3" download>
-                                    <i class="la la-download"></i> Sample
+                                    <i class="flaticon-upload-1"></i> Import Customers
                                 </a>
                                 <a href="{{ route('admin.customer.export') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                                    <i class="la la-download"></i> Export Customers List
-                                </a>
-                                <a href="{{ route('admin.customer.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                                    <i class="ki-duotone ki-add-folder"></i> Create Customer
+                                    <i class="flaticon-download"></i> Export Customers List
                                 </a>
                             </div>
 
@@ -47,7 +65,7 @@
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body">
-                            <table id="example" class="table table-separate table-head-custom table-checkable" style="width:100%">
+                            <table class="table table-separate table-head-custom table-checkable" id="example" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -64,63 +82,62 @@
                                         $cnt = 1;
                                     @endphp
                                     @foreach($customers as $customer)
-                                    <tr>
-                                        <td>
-                                            {{ $customer->id }}
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                    {{ $customer->full_name }}
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                    {{ $customer->address }}
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                    {{ ""."+".$customer->country_code.""."".$customer->phone }}
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                    {{ $customer->reference_no }}
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            @if ($customer->active == 1)
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
-                                            @endif
-                                            @if ($customer->active == 0)
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
-                                            @endif
+                                        <tr>
+                                            <td>
+                                                {{ $cnt++ }}
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                        {{ $customer->full_name }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                        {{ $customer->address }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                        {{ ""."+".$customer->country_code.""."".$customer->phone }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                        {{ $customer->reference_no }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @if ($customer->active == 1)
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
+                                                @endif
+                                                @if ($customer->active == 0)
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
+                                                @endif
 
-                                            {{-- @if ($customer->suspend == 1)
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Suspended</span>
-                                            @endif
-                                            @if ($customer->suspend == 0)
-                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Suspended</span>
-                                            @endif --}}
-                                        </td>
-                                        <td>
-                                            <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $customer->id }}">
-                                                <i class="flaticon-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                                {{-- @if ($customer->suspend == 1)
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Suspended</span>
+                                                @endif
+                                                @if ($customer->suspend == 0)
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Suspended</span>
+                                                @endif --}}
+                                            </td>
+                                            <td>
+                                                <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $customer->id }}">
+                                                    <i class="flaticon-edit"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{-- {{ $customer->render() }} --}}
                         </div>
                         <!--end::Body-->
                     </div>
@@ -142,9 +159,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Import Customers</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
+                </button> --}}
+                <a href="{{ asset('sample/customers/customers.csv') }}" class="btn btn-light-warning font-weight-bolder font-size-sm mr-3" download>
+                    <i class="flaticon2-download-2"></i>Download Sample
+                </a>
             </div>
             <div class="modal-body">
                 <div class="card card-custom">
@@ -162,7 +182,13 @@
                                 <button type="submit" class="btn btn-warning mr-2">Import</button>
                             </div>
                         </div>
-                    </form>
+                    </form> 
+                    <div class="text-center">
+                        <button data-dismiss="modal" type="button" class="btn btn-light me-3">Close</button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="indicator-label">Save</span>
+                        </button>
+                    </div>
                     <!--end::Form-->
                 </div>
 

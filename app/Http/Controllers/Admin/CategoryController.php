@@ -19,7 +19,7 @@ class CategoryController extends Controller
             return redirect()->back()->with('danger', 'Access Forbidden');
         }
         $categories = Category::orderBy('created_at', 'DESC')->get();
-        // dd($banners);   
+        // dd($categories);   
         return view('admin.cms.categories.index', compact('categories'));
     }
 

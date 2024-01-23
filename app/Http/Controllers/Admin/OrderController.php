@@ -150,8 +150,8 @@ class OrderController extends Controller
         $customer = Customer::where('user_id', '=', $user->id)->first();
         $customer_account = CustomerAccount::where('customer_id', '=', $customer->id)->first();
 
-        // dd($order->full_name);
-        return view('admin.order.show', compact('order', 'order_items', 'customer_account'));
+        // dd($customer);
+        return view('admin.order.show', compact('order', 'order_items', 'customer_account', 'customer'));
     }
 
     public function editOrder(Request $request, $order_id)

@@ -5,7 +5,33 @@
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
-    @include('admin.includes.bodytop')
+    {{-- @include('admin.includes.bodytop') --}}
+    <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+        <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-2">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">@yield('page_title')</h5>
+                <!--end::Page Title-->
+                <!--begin::Actions-->
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item">
+                        <a href="" class="text-muted">@yield('module')</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.dashboard') }}" class="text-muted">Dashboard</a>
+                    </li>
+
+                </ul>
+            </div>
+            @if(checkPermission('add_permission'))
+                <a href="{{ route('admin.permissions.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#addCustomer">
+                    <i class="flaticon2-pen"></i> Create Permissions
+                </a>
+            @endif
+        </div>
+        
+    </div>
     <!--end::Subheader-->
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
@@ -30,11 +56,7 @@
 
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
-                                @if(checkPermission('add_permission'))
-                                    <a href="{{ route('admin.permissions.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#addCustomer">
-                                        <i class="ki-duotone ki-add-folder"></i> Create Permissions
-                                    </a>
-                                @endif
+                                
                             </div>
 
                         </div>
@@ -46,7 +68,7 @@
                                 <thead>
                                     <tr class="fw-bold text-white bg-warning">
                                         <th>Name</th>
-                                        <th>Slug</th>
+                                        {{-- <th>Slug</th> --}}
                                         <th>Status</th>
                                         <th>Edit</th>
                                     </tr>
@@ -60,13 +82,13 @@
                                             <div class="d-flex align-items-center">
                                                
                                                 <div class="d-flex justify-content-start flex-column">
-                                                    <span href="#" class="text-dark fw-bold text-hover-primary mb-1 fs-6">{{ $permission->name }}</span>
+                                                    <span href="#" class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $permission->name }}</span>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <span href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ $permission->slug }}</span>
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             @if($permission->status == 1)
                                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>

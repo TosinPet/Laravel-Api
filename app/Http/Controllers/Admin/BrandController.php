@@ -19,7 +19,7 @@ class BrandController extends Controller
             return redirect()->back()->with('danger', 'Access Forbidden');
         }
         $brands = Brand::orderBy('created_at', 'DESC')->get();
-        // dd($banners);   
+        // dd($brands);   
         return view('admin.cms.brands.index', compact('brands'));
     }
 

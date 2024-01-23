@@ -5,7 +5,31 @@
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
-    @include('admin.includes.bodytop')
+    {{-- @include('admin.includes.bodytop') --}}
+    <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+        <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-2">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">@yield('page_title')</h5>
+                <!--end::Page Title-->
+                <!--begin::Actions-->
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item">
+                        <a href="" class="text-muted">@yield('module')</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.dashboard') }}" class="text-muted">Dashboard</a>
+                    </li>
+
+                </ul>
+            </div>
+            <a href="{{ route('admin.purchase.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                <i class="flaticon2-pen"></i>Create Purchase
+            </a>
+        </div>
+        
+    </div>
     <!--end::Subheader-->
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
@@ -29,9 +53,6 @@
                                 <!--begin::Dropdown-->
                                 <a href="{{ route('admin.order.export') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
                                     <i class="la la-download"></i> Export Purchases List
-                                </a>
-                                <a href="{{ route('admin.purchase.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                                    <i class="ki-duotone ki-add-folder"></i>Create Purchase
                                 </a>
                             </div>
 

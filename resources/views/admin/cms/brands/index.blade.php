@@ -5,7 +5,29 @@
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
-    @include('admin.includes.bodytop')
+    {{-- @include('admin.includes.bodytop') --}}
+    <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+        <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-2">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">@yield('page_title')</h5>
+                <!--end::Page Title-->
+                <!--begin::Actions-->
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item">
+                        <a href="" class="text-muted">@yield('module')</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.dashboard') }}" class="text-muted">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="{{ route('admin.brand.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                <i class="flaticon2-pen"></i> Create New Brand
+            </a>
+        </div>
+    </div>
     <!--end::Subheader-->
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
@@ -27,78 +49,48 @@
 
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
-                                <a href="{{ route('admin.brand.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                                    <i class="ki-duotone ki-add-folder"></i> Create New Brand
-                                </a>
                             </div>
                         </div>
 
-                        <div class="card-body p-lg-20">
-
-                            <!--begin::Section-->
-                            <div class="mb-17">
-                                <!--begin::Content-->
-                                <!--begin::Row-->
-                                <div class="row g-10">
-                                    <!--begin::Col-->
+                        <div class="card-body">
+                            <table id="example" class="table table-separate table-head-custom table-checkable" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Brand Image</th>
+                                        <th>Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $cnt = 1;
+                                    @endphp
                                     @foreach($brands as $brand)
-                                    <div class="col-md-4 mb-5">
-                                        <!--begin::Hot sales post-->
-                                        <div class="card-xl-stretch me-md-6">
-                                            <!--begin::Overlay-->
-                                            <a class="d-block overlay" data-fslightbox="lightbox-hot-sales"
-                                                href="{{ asset('uploads/brands') }}/{{ $brand->icon }}" target="_blank">
-                                                <!--begin::Image-->
-                                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
-                                                    style="background-image:url('{{ asset('uploads/brands') }}/{{ $brand->brand_image }}')">
-                                                </div>
-                                                <!--end::Image-->
-                                                <!--begin::Action-->
-                                                <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                                                    <i class="ki-duotone ki-eye fs-2x text-white">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                    </i>
-                                                </div>
-                                                <!--end::Action-->
-                                            </a>
-                                            <!--end::Overlay-->
-                                            <!--begin::Body-->
-                                            <div class="mt-2">
-                                                <!--begin::Title-->
-                                                <span href="{{ route('admin.brand.edit', $brand->id) }}"
-                                                    class="fs-4 text-dark fw-bold text-hover-primary text-dark lh-base">
+                                    <tr>
+                                        <td>
+                                            {{ $cnt++ }}
+                                        </td>
+                                        <td>
+                                            <img src="{{ asset('uploads/brands') }}/{{ $brand->brand_image }}" style="width: 75px; height: 60px" alt="Icon">
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                     {{ $brand->name }}
                                                 </span>
-                                                <!--end::Title-->
-                                                <div class="fs-6 fw-bold mt-2 d-flex flex-stack">
-                                                    <!--begin::Label-->
-                                                    <!--end::Label-->
-                                                    <!--begin::Action-->
-                                                    <a href="{{ route('admin.brand.edit', $brand->id) }}" style="font-size: 15px" class="btn btn-sm btn-primary">
-                                                        {{-- <i class="ki-duotone ki-pencil"> --}}
-                                                        {{-- <i class="path1"></i> --}}
-                                                        {{-- <i class="path2"></i> --}}
-                                                        </i> Edit</a>
-                                                    <!--end::Action-->
-                                                </div>
-                                                
-                                                <!--end::Text-->
                                             </div>
-                                            <!--end::Body-->
-                                        </div>
-                                        <!--end::Hot sales post-->
-                                        <br>
-                                    </div>
-                                    
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.brand.edit', $brand->id) }}" class="btn btn-icon btn-warning">
+                                                <i class="flaticon2-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                     @endforeach
-                                   
-                                </div>
-                                <!--end::Row-->
-                            </div>
-                            <!--end::Section-->
-
+                                </tbody>
+                            </table>
+                            {{-- {{ $customer->render() }} --}}
                         </div>
                         <!--end::Body-->
                     </div>

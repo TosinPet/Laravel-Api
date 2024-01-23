@@ -5,7 +5,31 @@
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
-    @include('admin.includes.bodytop')
+    {{-- @include('admin.includes.bodytop') --}}
+    <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+        <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <!--begin::Info-->
+            <div class="d-flex align-items-center flex-wrap mr-2">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">@yield('page_title')</h5>
+                <!--end::Page Title-->
+                <!--begin::Actions-->
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item">
+                        <a href="" class="text-muted">@yield('module')</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.dashboard') }}" class="text-muted">Dashboard</a>
+                    </li>
+
+                </ul>
+            </div>
+            <a href="#" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#add-admin">
+                <i class="flaticon2-pen"></i> Create Admin
+            </a>
+        </div>
+        
+    </div>
     <!--end::Subheader-->
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
@@ -32,9 +56,9 @@
                             @endphp
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
-                                <a href="#" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#add-admin">
-                                    <i class="ki-duotone ki-add-folder"></i> Create Admin
-                                </a>
+                                {{-- <a href="#" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#add-admin">
+                                    <i class="flaticon2-add-1"></i> Create Admin
+                                </a> --}}
 
                             </div>
 
@@ -99,20 +123,11 @@
                                                 @if ($admin->active == 0)
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
                                                 @endif
-    
-                                                {{-- @if ($admin->suspend == 1)
-                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Suspended</span>
-                                                @endif
-                                                @if ($admin->suspend == 0)
-                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Suspended</span>
-                                                @endif --}}
                                             </td>
                                             <td>
-
                                                 <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-admin{{ $admin->id }}">
-                                                    <i class="flaticon-edit"></i>
+                                                    <i class="flaticon2-edit"></i>
                                                 </button>
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -242,7 +257,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center pt-15">
-                                    <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
+                                    <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Close</button>
                                     <button type="submit" class="btn btn-primary">
                                         <span class="indicator-label">Save</span>
                                     </button>
@@ -264,7 +279,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New Admin</h5>
+                <h6 class="modal-title" id="exampleModalLabel"><b>Create New Admin</b></h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
@@ -273,100 +288,88 @@
                 <div class="card card-custom">
 
                     <!--begin::Form-->
-                    <form class="form" action="{{ route('admin.admins.create') }}" method="POST">
+                    <form class="form" action="{{ route('admin.admins.create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
+                        <div class="card-body">
+                            <input name="target" value="{{ $admin->id }}" type="hidden" readonly>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Full Name <span class="text-danger">*</span></label>
+                                        <input type="text" name="full_name" value="{{ old('full_name') }}" class="form-control" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Admin Email<span class="text-danger">*</span></label>
+                                        <input type="email" name="email" value="{{ old('email') }}" class="form-control" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Admin Phone <span class="text-danger">*</span></label>
+                                        <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-column mb-7 fv-row">
+                                <!--begin::Label-->
+                                <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                    <span class="required">Password</span>
+    
+                                </label>
+                                <!--end::Label-->
+                                <input type="text" class="form-control form-control-solid" value="{{ old('password') }}" name="password">
+                            </div>
+
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Full Name</span>
+                            <span class="required">Roles</span>
 
                             </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="full_name"
-                                value="{{ old('full_name') }}" required>
-                        </div>
+                            <div class="row">
+                                @foreach ($roles as $role)
+                                    <div class="col-md-4 mb-2">
+                                        <div class="d-flex flex-stack">
+    
+                                            <!--begin::Switch-->
+    
+                                            <label class="form-check form-switch form-check-custom form-check-solid">
+                                                <input class="form-check-input" type="checkbox" value="{{ $role->id }}"
+                                                    name="roles[]">
+                                                <span
+                                                    class="form-check-label fw-semibold text-muted">{{ $role->name }}</span>
+                                            </label>
+                                            <!--end::Switch-->
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <hr>
 
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Admin Email</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="email" class="form-control form-control-solid" placeholder="" name="email"
-                                value="{{ old('email') }}" required>
-                        </div>
-                        <!--end::Input group-->
-
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Admin Phone</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="phone" class="form-control form-control-solid" placeholder="" name="phone"
-                                value="{{ old('phone') }}" required>
-                        </div>
-                        <!--end::Input group-->
-
-                        <div class="d-flex flex-column mb-7 fv-row">
-                            <!--begin::Label-->
-                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Password</span>
-
-                            </label>
-                            <!--end::Label-->
-                            <input type="password" class="form-control form-control-solid" placeholder="" name="password"
-                                value="{{ old('password') }}" required>
-                        </div>
-                        <hr>
-                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                            <span class="required"><b>Roles</b></span>
-
-                        </label>
-                        <div class="row">
-                            @foreach ($roles as $role)
-                                <div class="col-md-4 mb-2">
-                                    <div class="d-flex flex-stack">
-
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="d-flex flex-stack mt-5">
                                         <!--begin::Switch-->
-
                                         <label class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="{{ $role->id }}"
-                                                name="roles[]">
-                                            <span
-                                                class="form-check-label fw-semibold text-muted">{{ $role->name }}</span>
+                                            <input class="form-check-input" type="checkbox" value="1" checked
+                                                name="active" />
+                                            <span class="form-check-label fw-semibold text-muted">Active</span>
                                         </label>
                                         <!--end::Switch-->
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
-
-                        <hr>
-                        <!--begin::Input group-->
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="d-flex flex-stack mt-5">
-                                    <!--begin::Switch-->
-                                    <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1" checked
-                                            name="active" />
-                                        <span class="form-check-label fw-semibold text-muted">Active</span>
-                                    </label>
-                                    <!--end::Switch-->
-                                </div>
                             </div>
-                        </div>
-                        <!--begin::Actions-->
-                        <div class="text-center pt-15">
-                            <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Discard</button>
-                            <button type="submit" class="btn btn-primary">
-                                <span class="indicator-label">Save</span>
-                            </button>
+                            <div class="text-center pt-15">
+                                <button data-dismiss="modal" type="button" class="btn btn-light me-3">Close</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="indicator-label">Save</span>
+                                </button>
+                            </div>
                         </div>
                         <!--end::Actions-->
                     </form>

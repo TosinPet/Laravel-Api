@@ -4,6 +4,28 @@
 					<!--begin::Content-->
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 						<!--begin::Subheader-->
+						<div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+							<div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+								<!--begin::Info-->
+								<div class="d-flex align-items-center flex-wrap mr-2">
+									<!--begin::Page Title-->
+									<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">@yield('page_title')</h5>
+									<!--end::Page Title-->
+									<!--begin::Actions-->
+									<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+										<li class="breadcrumb-item">
+											<a href="" class="text-muted">@yield('module')</a>
+										</li>
+										<li class="breadcrumb-item">
+											<a href="{{ route('admin.dashboard') }}" class="text-muted">Dashboard</a>
+										</li>
+					
+									</ul>
+								</div>
+								
+							</div>
+							
+						</div>
 						<!--end::Subheader-->
 						<!--begin::Entry-->
 						<div class="d-flex flex-column-fluid">
@@ -68,8 +90,8 @@
 																	</svg>
 																	<!--end::Svg Icon-->
 																</span>
-																<span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{ $no_of_orders }}</span>
-																<span class="font-weight-bold text-muted font-size-sm">No of orders</span>
+																<a style="text-decoration: none;" class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{ $no_of_orders }}</a>
+																<a style="text-decoration: none;" class="font-weight-bold text-muted font-size-sm">No of orders</a>
 															</div>
 															<!--end::Body-->
 														</div>
@@ -93,8 +115,8 @@
 																	</svg>
 																	<!--end::Svg Icon-->
 																</span>
-																<span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{ $no_of_completed_orders }}</span>
-																<span class="font-weight-bold text-muted font-size-sm">No of delivered orders</span>
+																<a style="text-decoration: none;" class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{ $no_of_completed_orders }}</a>
+																<a style="text-decoration: none;" class="font-weight-bold text-muted font-size-sm">No of delivered orders</a>
 															</div>
 															<!--end::Body-->
 														</div>
@@ -121,8 +143,8 @@
 																	</svg>
 																	<!--end::Svg Icon-->
 																</span>
-																<span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{ $no_of_pending_orders }}</span>
-																<span class="font-weight-bold text-muted font-size-sm">No of pending orders</span>
+																<a style="text-decoration: none;" class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{ $no_of_pending_orders }}</a>
+																<a style="text-decoration: none;" class="font-weight-bold text-muted font-size-sm">No of pending orders</a>
 															</div>
 															<!--end::Body-->
 														</div>
@@ -146,8 +168,8 @@
 																	</svg>
 																	<!--end::Svg Icon-->
 																</span>
-																<span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{ $no_of_cancelled_orders }}</span>
-																<span class="font-weight-bold text-muted font-size-sm">No of cancelled orders</span>
+																<a style="text-decoration: none;" class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{ $no_of_cancelled_orders }}</a>
+																<a style="text-decoration: none;" class="font-weight-bold text-muted font-size-sm">No of cancelled orders</a>
 															</div>
 															<!--end::Body-->
 														</div>
@@ -216,7 +238,7 @@
 																			</span> --}}
 																		</div>
 																		<div>
-																			<a href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{{ $recentOrder->full_name }}</a>
+																			<span href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{{ $recentOrder->full_name }}</span>
 																			{{-- <span class="text-muted font-weight-bold d-block">HTML, JS, ReactJS</span> --}}
 																		</div>
 																	</div>
