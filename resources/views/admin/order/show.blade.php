@@ -68,7 +68,7 @@
                                             <button type="submit" name="Paid" class="btn btn-success font-weight-bolder font-size-sm mr-3"><i class="flaticon-interface-5"></i>Confirm Payment</button>
                                             <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3"><i class="flaticon-circle"></i>Cancel Order</button>
                                         @elseif($order->status === 'Paid')
-                                            <button type="submit" name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3"><i class="flaticon-shopping-basket"></i>Deliver Order</button>
+                                            <button type="submit" name="Delivered" class="btn btn-info font-weight-bolder font-size-sm mr-3"><i class="flaticon-shopping-basket"></i>Deliver Order</button>
                                             <button type="submit" name="Cancel" class="btn btn-dark font-weight-bolder font-size-sm mr-3"><i class="flaticon-circle"></i>Cancel Order</button>
                                         {{-- @else
                                             <button name="Delivered" class="btn btn-secondary font-weight-bolder font-size-sm mr-3">Delivered</button> --}}
@@ -83,7 +83,7 @@
                             <div class="d-flex flex-wrap justify-content-between mt-3">
                                 <div class="d-flex flex-column flex-grow-1 pr-8">
                                     <div class="d-flex flex-wrap">
-                                        <a href="" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
+                                        <a href="{{ route('admin.customer.show', $customer->id) }}" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
                                         <i class="flaticon2-user mr-2 font-size-lg"></i>{{ $order->full_name }}</a>
                                         <a href="#" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
                                         <i class="flaticon2-phone mr-2 font-size-lg"></i>{{ "+" .$order->phone }}</a>
@@ -91,16 +91,16 @@
                                         <i class="flaticon-money mr-2 font-size-lg"></i>&#x20A6;{{ $order->total_amount }}</a>
 
                                         @if($order->status == "Pending" )
-                                        <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-danger font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
-                                        @elseif($order->status == "Approved" )
-                                        <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-primary font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
-                                        @elseif($order->status == "Paid" )
-                                        <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-success font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
-                                        @elseif($order->status == "Delivered" )
-                                        <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-secondary font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
-                                        @elseif($order->status == "Cancelled" )
-                                        <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-dark font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
-                                    @endif
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-danger font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
+                                            @elseif($order->status == "Approved" )
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-primary font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
+                                            @elseif($order->status == "Paid" )
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-success font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
+                                            @elseif($order->status == "Delivered" )
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-info font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
+                                            @elseif($order->status == "Cancelled" )
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-dark font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -205,9 +205,10 @@
             </div>
 
             <div class="row">
-                <div class="col-xxl-12 col-md-12 order-2 order-xxl-1">
+
+                <div class="col-xxl-8 col-md-12 order-2 order-xxl-1">
                     <!--begin::Advance Table Widget 2-->
-                    <div class="card card-custom card-stretch gutter-b">
+                    <div class="card card-custom gutter-b">
                         <!--begin::Header-->
                         <div class="card-body p-lg-10">
 
@@ -247,6 +248,44 @@
                         <!--end::Body-->
                     </div>
                     <!--end::Advance Table Widget 2-->
+                </div>
+
+                <div class="col-xxl-4 col-md-12 order-2 order-xxl-1">
+                    <!--begin::List Widget 9-->
+                    <div class="card card-custom card-stretch gutter-b">
+                        <!--begin::Header-->
+                        <div class="card-header align-items-center border-0 mt-4">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="font-weight-bolder text-dark">Order Activity</span>
+                            </h3>
+                        </div>
+                        <!--end::Header-->
+                        <!--begin::Body-->
+                        <div class="card-body pt-1">
+                            <!--begin::Timeline-->
+                            <div class="timeline timeline-6 mt-3">
+                                <!--begin::Item-->
+                                @foreach ($order_logs as $order_log)
+                                <div class="timeline-item align-items-start">
+                                    <!--begin::Label-->
+                                    <div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">{{ $order_log->created_at }}</div>
+                                    <!--end::Label-->
+                                    <!--begin::Badge-->
+                                    <div class="timeline-badge">
+                                        <i class="fa fa-genderless text-warning icon-xl"></i>
+                                    </div>
+                                    <!--end::Badge-->
+                                    <!--begin::Text-->
+                                    <div class="font-weight-mormal font-size-lg timeline-content text-muted pl-3">{{ $order_log->name }}</div>
+                                    <!--end::Text-->
+                                </div>
+                                @endforeach
+                            </div>
+                            <!--end::Timeline-->
+                        </div>
+                        <!--end: Card Body-->
+                    </div>
+                    <!--end: List Widget 9-->
                 </div>
             </div>
             <!--end::Row-->

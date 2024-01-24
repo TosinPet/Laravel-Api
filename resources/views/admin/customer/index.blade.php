@@ -130,10 +130,39 @@
                                                 @endif --}}
                                             </td>
                                             <td>
-                                                <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $customer->id }}">
+                                                {{-- <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $customer->id }}">
                                                     <i class="flaticon2-edit"></i>
-                                                </button>
+                                                </button> --}}
+                                                <div class="dropdown dropdown-inline mr-2">
+                                                    <button type="button" class="btn btn-light-warning font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="svg-icon svg-icon-md">
+                                                    </span>Action</button>
+                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                        <ul class="navi flex-column navi-hover py-2">
+                                                            <li class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">Choose an option:</li>
+                                                            <li class="navi-item">
+                                                                <a href="{{ route('admin.customer.show', $customer->id) }}" style="text-decoration: none;" class="navi-link">
+                                                                    <span class="navi-icon">
+                                                                        <i class="flaticon-eye"></i>
+                                                                    </span>
+                                                                    <span class="navi-text">View Customer</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" style="text-decoration: none;" class="navi-link" data-toggle="modal" data-target="#edit-customer{{ $customer->id }}">
+                                                                    <span class="navi-icon">
+                                                                        <i class="flaticon2-edit"></i>
+                                                                    </span>
+                                                                    <span class="navi-text">Edit Customer</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <!--end::Navigation-->
+                                                    </div>
+                                                    <!--end::Dropdown Menu-->
+                                                </div>
                                             </td>
+                                            
                                         </tr>
                                     @endforeach
                                 </tbody>

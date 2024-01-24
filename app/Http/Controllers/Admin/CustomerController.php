@@ -13,6 +13,7 @@ use App\Imports\CustomersAccountImport;
 use App\Imports\CustomersImport;
 use App\Models\CustomerAccount;
 use App\Models\CustomerDeposit;
+use App\Models\Order;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
@@ -26,7 +27,7 @@ class CustomerController extends Controller
         {
             return redirect()->back()->with('danger', 'Access Forbidden');
         }
-        $customers = Customer::where('account', true)->get();
+        $customers = Customer::where('account', true)->orderBy('created_at', 'desc')->get();
         // dd($customers);
         return view('admin.customer.index', compact('customers'));
     }
@@ -154,6 +155,28 @@ class CustomerController extends Controller
                 return redirect()->back()->with('danger', $e->getMessage());
             }
         }
+    }
+
+    public function showCustomer(string $id)
+    {
+        if(!checkPermission('view_customer_order'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
+        $customer = Customer::find($id);
+        if (!$customer) {
+            return abort(404, 'Customer not found');
+        }
+        $orders = Order::where('user_id', $customer->user_id)->get();
+        foreach($orders as $order)
+        {
+            $user_id = $order->user_id;
+            $user = User::find($user_id);
+            $order['full_name'] = $user->full_name;
+        }
+        // dd($orders);
+
+        return view('admin.customer.show', compact('customer', 'orders'));
     }
 
     public function updateCustomer(Request $request, $customer_id)

@@ -132,7 +132,7 @@
                                                     @elseif($order->status == "Paid" )
                                                     <span href="#" style="font-size: 12px" class="badge badge-success">{{ $order->status }}</span>
                                                     @elseif($order->status == "Delivered" )
-                                                    <span href="#" style="font-size: 12px" class="badge badge-secondary">{{ $order->status }}</span>
+                                                    <span href="#" style="font-size: 12px" class="badge badge-info">{{ $order->status }}</span>
                                                     @elseif($order->status == "Cancelled" )
                                                     <span href="#" style="font-size: 12px" class="badge badge-dark">{{ $order->status }}</span>
                                                 @endif

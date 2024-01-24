@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Models\OrderLog;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -78,6 +79,14 @@ class OrderController extends Controller
                     'total_price' => $product['total_price'],
                 ]);
             }
+
+
+            $name = 'Order Created';
+            OrderLog::create([
+                'name' => $name,
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+            ]);
     
             return response()->json([
                 'message' => 'Order created successfully'

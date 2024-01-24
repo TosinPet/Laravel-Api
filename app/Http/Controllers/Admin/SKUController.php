@@ -139,11 +139,12 @@ class SKUController extends Controller
             ]);
 
             $slug = Str::slug($request->name);
+            $ref = strtoupper(Str::random(20));
 
-            $checksku = Product::where('slug', $slug)->where('id', '!=', $product_id)->first();;
-            if($checksku)
+            $checkproduct = Product::where('reference_number', $ref)->where('id', '!=', $product_id)->first();;
+            if($checkproduct)
             {
-                return redirect()->back()->with('danger', 'Sorry! You have already added this Product.');
+                return redirect()->back()->with('danger', 'Sorry! A product already exists with this reference number.');
             }
 
             // Log::info($seocontent);

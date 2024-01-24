@@ -64,6 +64,7 @@ Route::group(['middleware' => 'admin_auth'], function()
             Route::put('edit/{customer_id}', 'updateCustomer')->name('admin.customer.edit');
             Route::get('account-statement', 'accountStatement')->name('admin.customer.acount.index');
             Route::delete('delete-admin/{customer_id}', 'deleteAdmin')->name('admin.customer.delete');
+            Route::get('show-customer/{customer_id}', 'showCustomer')->name('admin.customer.show');
         });
     });
 

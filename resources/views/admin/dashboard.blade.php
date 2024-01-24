@@ -201,11 +201,8 @@
 										<div class="card-header border-0 py-5">
 											<h3 class="card-title align-items-start flex-column">
 												<span class="card-label font-weight-bolder text-dark">Recent Orders</span>
-												{{-- <span class="text-muted mt-3 font-weight-bold font-size-sm">More than 400+ new members</span> --}}
 											</h3>
 											<div class="card-toolbar">
-												{{-- <a href="#" class="btn btn-info font-weight-bolder font-size-sm mr-3">New Report</a> --}}
-												{{-- <a href="#" class="btn btn-danger font-weight-bolder font-size-sm">Create</a> --}}
 											</div>
 										</div>
 										<!--end::Header-->
@@ -233,36 +230,36 @@
 																<td class="pl-0 py-8">
 																	<div class="d-flex align-items-center">
 																		<div class="symbol symbol-50 symbol-light mr-4">
-																			{{-- <span class="symbol-label">
-																				<img src="assets/media/svg/avatars/001-boy.svg" class="h-75 align-self-end" alt="" />
-																			</span> --}}
 																		</div>
 																		<div>
 																			<span href="#" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{{ $recentOrder->full_name }}</span>
-																			{{-- <span class="text-muted font-weight-bold d-block">HTML, JS, ReactJS</span> --}}
 																		</div>
 																	</div>
 																</td>
 																<td>
 																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $recentOrder->phone }}</span>
-																	{{-- <span class="text-muted font-weight-bold">In Proccess</span> --}}
 																</td>
 																<td>
 																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">${{ $recentOrder->order_number }}</span>
-																	{{-- <span class="text-muted font-weight-bold">Paid</span> --}}
 																</td>
 																<td>
 																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $recentOrder->total_amount }}</span>
-																	{{-- <span class="text-muted font-weight-bold">Web, UI/UX Design</span> --}}
 																</td>
 																<td>
-																	{{-- <img src="assets/media/logos/stars.png" alt="image" style="width: 5.5rem" /> --}}
-																	<span class="text-muted font-weight-bold d-block font-size-sm">{{ $recentOrder->status }}</span>
+																	@if($recentOrder->status == "Pending" )
+																		<a href="" class="btn btn-light-danger font-weight-bolder font-size-sm">{{ $recentOrder->status }}</a>
+																		@elseif($recentOrder->status == "Approved" )
+																		<a href="#" class="btn btn-light-primary font-weight-bolder font-size-sm">{{ $recentOrder->status }}</a>
+																		@elseif($recentOrder->status == "Paid" )
+																		<a href="#" class="btn btn-light-success font-weight-bolder font-size-sm">{{ $recentOrder->status }}</a>
+																		@elseif($recentOrder->status == "Delivered" )
+																		<a href="#" class="btn btn-light-secondary font-weight-bolder font-size-sm">{{ $recentOrder->status }}</a>
+																		@elseif($recentOrder->status == "Cancelled" )
+																		<a href="#" class="btn btn-light-dark font-weight-bolder font-size-sm">{{ $recentOrder->status }}</a>
+																	@endif
 																</td>
 																<td class="pr-0 text-right">
-																	{{-- @foreach ($orders as $order) --}}
 																		<a href="{{ route('admin.order.show', $recentOrder->id) }}" class="btn btn-light-success font-weight-bolder font-size-sm">View Order</a>
-																	{{-- @endforeach --}}
 																</td>
 															</tr>
 															@endforeach

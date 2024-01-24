@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\ExportOrder;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Models\OrderLog;
+use App\Models\Purchase;
 use App\Models\OrderItem;
+use App\Exports\ExportOrder;
 use Illuminate\Http\Request;
 use App\Models\CustomerAccount;
 use App\Http\Controllers\Controller;
-use App\Models\Purchase;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\ValidationException;
 
@@ -55,17 +57,18 @@ class OrderController extends Controller
                     ]);
                     // dd($request);
 
-                    $user = User::find($request->customer_id);
-                    if (!$user) {
+                    $customer = User::find($request->customer_id);
+                    if (!$customer) {
                         return redirect()->back()->with('danger', 'Invalid customer selected.');
                     }
                     // dd($user);
+                    $user = Auth::user();
                     
                     $order_number = 'KIR'.random_int(1000000000, 9999999999);
             
                     $order = Order::create([
                         'user_id' => $request->customer_id,
-                        'phone' => $user->phone_number,
+                        'phone' => $customer->phone_number,
                         'order_number' => $order_number,
                         'order_date' => $request->order_date,
                         'shipping_address' => $request->shipping_address,
@@ -93,6 +96,13 @@ class OrderController extends Controller
 
                         $totalAmount += $total_price;
                     }
+
+                        $name = 'Order Created';
+                        OrderLog::create([
+                            'name' => $name,
+                            'order_id' => $order->id,
+                            'user_id' => $user->id,
+                        ]);
             
                     $order->update(['total_amount' => $totalAmount]);  
                     return redirect()->back()->with('success', 'Order created successfully');
@@ -147,11 +157,12 @@ class OrderController extends Controller
         $user = User::find($user_id);
         $order['full_name'] = $user->full_name;
 
+        $order_logs = OrderLog::where('order_id', '=', $order->id)->get();
+        // dd($order_logs);
         $customer = Customer::where('user_id', '=', $user->id)->first();
-        $customer_account = CustomerAccount::where('customer_id', '=', $customer->id)->first();
 
         // dd($customer);
-        return view('admin.order.show', compact('order', 'order_items', 'customer_account', 'customer'));
+        return view('admin.order.show', compact('order', 'order_items', 'order_logs', 'customer'));
     }
 
     public function editOrder(Request $request, $order_id)
@@ -166,21 +177,12 @@ class OrderController extends Controller
             {   
                 // dd($request);
                 $this->validate($request, [
-                    'customer_id' => 'bail|required',
                     'skus' => 'bail|required|array|min:1',
                     'skus.*.sku_id' => 'bail|required',
                     'skus.*.quantity' => 'bail|required|integer|min:1',
-                    'phone' => 'bail|required|string',
                     'order_date' => 'bail|required|string',
                     'shipping_address' => 'bail|string'
                 ]);
-                // dd($request);
-
-                $user = User::find($request->customer_id);
-                if (!$user) {
-                    return redirect()->back()->with('danger', 'Invalid customer selected.');
-                }
-                // dd($user);
 
                 $order = Order::find($order_id);
                 // dd($order);
@@ -190,8 +192,6 @@ class OrderController extends Controller
                 $order_number = 'KIR'.random_int(1000000000, 9999999999);
         
                 $order->update([
-                    'user_id' => $request->customer_id,
-                    'phone' => $request->phone,
                     'order_number' => $order_number,
                     'order_date' => $request->order_date,
                     'shipping_address' => $request->shipping_address,
@@ -233,6 +233,15 @@ class OrderController extends Controller
                 }
         
                 $order->update(['total_amount' => $totalAmount]);  
+
+                $user = Auth::user();
+
+                $name = 'Order Edited';
+                OrderLog::create([
+                    'name' => $name,
+                    'order_id' => $order->id,
+                    'user_id' => $user->id,
+                ]);
 
                 return redirect()->back()->with('success', 'Order edited successfully');
 
@@ -279,6 +288,16 @@ class OrderController extends Controller
             $order->payment_status = $request->payment_status;
             // dd($order);
             $order->save();
+
+            $user = Auth::user();
+
+            $name = 'Order Status Edited';
+            OrderLog::create([
+                'name' => $name,
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+            ]);
+
             return redirect()->route('admin.order.index')->with('status',"Order has been edited successfully");
         } catch (ValidationException $th) 
         {
@@ -311,32 +330,6 @@ class OrderController extends Controller
 
     public function updateStatus(Request $request, string $id)
     {
-        // dd($request);
-        // if(!checkPermission('update_order'))
-        // {
-        //     return redirect()->back()->with('danger', 'Access Forbidden');
-        // }
-        // try {
-        //     $this->validate($request, [
-        //         'status' => 'required',
-        //         'payment_status' => 'required',
-        //     ]);
-        //     // dd($request);
-
-        //     $order = Order::find($id);
-
-        //     $order->status = $request->status;
-        //     $order->payment_status = $request->payment_status;
-        //     // dd($order);
-        //     $order->save();
-        //     return redirect()->route('admin.order.index')->with('status',"Order has been edited successfully");
-        // } catch (ValidationException $th) 
-        // {
-        //     return back()->with('danger', $th->validator->errors()->first())->withInput();
-        // } catch (\Throwable $th) 
-        // {
-        //     return back()->with('danger', $th->getMessage())->withInput();
-        // }
         if(!checkPermission('update_order_status'))
         {
             return redirect()->back()->with('danger', 'Access Forbidden');
@@ -362,27 +355,80 @@ class OrderController extends Controller
     {
         if ($request->has('Approve')) {
             $order->update(['status' => 'Approved']);
+            $user = Auth::user();
+
+            $name = 'Order Approved';
+            OrderLog::create([
+                'name' => $name,
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+            ]);
         } elseif ($request->has('Cancel')) {
             $order->update(['status' => 'Cancelled']);
+            $user = Auth::user();
+
+            $name = 'Order Cancelled';
+            OrderLog::create([
+                'name' => $name,
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+            ]);
         }
+
+        
     }
 
     private function handleApprovedStatus(Request $request, Order $order)
     {
         if ($request->has('Paid')) {
             $order->update(['status' => 'Paid']);
+            $user = Auth::user();
+
+            $name = 'Order Payment Confirmed';
+            OrderLog::create([
+                'name' => $name,
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+            ]);
         } elseif ($request->has('Cancel')) {
             $order->update(['status' => 'Cancelled']);
+            $user = Auth::user();
+
+            $name = 'Order Cancelled';
+            OrderLog::create([
+                'name' => $name,
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+            ]);
         }
+
+        
     }
 
     private function handlePaidStatus(Request $request, Order $order)
     {
         if ($request->has('Delivered')) {
             $order->update(['status' => 'Delivered']);
+            $user = Auth::user();
+
+            $name = 'Order Delivered';
+            OrderLog::create([
+                'name' => $name,
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+            ]);
         } elseif ($request->has('Cancel')) {
             $order->update(['status' => 'Cancelled']);
+            $user = Auth::user();
+
+            $name = 'Order Cancelled';
+            OrderLog::create([
+                'name' => $name,
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+            ]);
         }
+            
     }
 
     // private function handleDeliveredStatus(Request $request, Order $order)
