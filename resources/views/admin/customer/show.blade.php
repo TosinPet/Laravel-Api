@@ -47,9 +47,8 @@
                             <!--begin::Title-->
                             <div class="d-flex justify-content-between flex-wrap mt-1">
                                 <div class="d-flex mr-3">
-                                    <a href="#" style="text-decoration: none;" class="text-dark font-size-h3 font-weight-bolder mr-4">@yield('page_title')</a>
+                                    <a href="#" style="text-decoration: none;" class="text-dark font-size-h3 font-weight-bolder mr-4">{{ $customer->full_name }}</a>
                                     <a href="#" class="text-dark font-size-h3 font-weight-bolder">
-                                        {{ $customer->reference_no }}
                                         {{-- <i class="flaticon2-correct text-success font-size-h5"></i> --}}
                                     </a>
                                 </div>
@@ -60,11 +59,11 @@
                                 <div class="d-flex flex-column flex-grow-1 pr-8">
                                     <div class="d-flex flex-wrap">
                                         <a href="" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                        <i class="flaticon2-user mr-2 font-size-lg"></i>{{ $customer->full_name }}</a>
+                                        <i class="flaticon2-user mr-2 font-size-lg"></i>{{ $customer->reference_no }}</a>
                                         <a href="#" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
                                         <i class="flaticon2-phone mr-2 font-size-lg"></i>{{ "+" .$customer->phone_number }}</a>
                                         <a href="#" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                        <i class="flaticon-money mr-2 font-size-lg"></i>&#x20A6;{{ $customer->address }}</a>
+                                        <i class="flaticon-money mr-2 font-size-lg"></i>{{ $customer->address }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -75,9 +74,12 @@
                     <!--end::Details-->
                     <div class="separator separator-solid"></div>
                     <!--begin::Items-->
-                    <div class="d-flex align-items-center flex-wrap mt-8">
+                    <div class="d-flex align-items-center flex-wrap mt-4">
                         <!--begin::Item-->
                         <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-piggy-bank display-4 text-muted font-weight-bold"></i>
+                            </span>
                             <div class="d-flex flex-column text-dark-75">
                                 <span class="font-weight-bolder font-size-lg">Utilized Credit</span>
                                 <span class="font-weight-bolder font-size-h5">
@@ -87,6 +89,9 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-confetti display-4 text-muted font-weight-bold"></i>
+                            </span>
                             <div class="d-flex flex-column text-dark-75">
                                 <span class="font-weight-bolder font-size-lg">Credit Limit</span>
                                 <span class="font-weight-bolder font-size-h5">
@@ -96,6 +101,9 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-pie-chart display-4 text-muted font-weight-bold"></i>
+                            </span>
                             <div class="d-flex flex-column text-dark-75">
                                 <span class="font-weight-bolder font-size-lg">Credit Allowance</span>
                                 <span class="font-weight-bolder font-size-h5">

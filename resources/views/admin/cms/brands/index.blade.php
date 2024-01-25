@@ -59,6 +59,7 @@
                                         <th></th>
                                         <th>Brand Image</th>
                                         <th>Name</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -79,6 +80,16 @@
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                     {{ $brand->name }}
                                                 </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                @if ($brand->status == 1)
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
+                                                @endif
+                                                @if ($brand->status == 0)
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
+                                                @endif
                                             </div>
                                         </td>
                                         <td>

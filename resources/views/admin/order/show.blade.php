@@ -50,11 +50,8 @@
                             <!--begin::Title-->
                             <div class="d-flex justify-content-between flex-wrap mt-1">
                                 <div class="d-flex mr-3">
-                                    <a href="#" style="text-decoration: none;" class="text-dark font-size-h3 font-weight-bolder mr-4">@yield('page_title')</a>
-                                    <a href="#" class="text-dark font-size-h3 font-weight-bolder">
-                                        {{ $order->order_number }}
-                                        {{-- <i class="flaticon2-correct text-success font-size-h5"></i> --}}
-                                    </a>
+                                    <a href="{{ route('admin.customer.show', $customer->id) }}" style="text-decoration: none;" class="text-dark font-size-h3 font-weight-bolder mr-4">{{ $order->full_name }}</a>
+                                    
                                 </div>
                                 <div class="my-lg-0 my-3">
                                     <form method="post" action="{{ route('admin.order.update', $order->id) }}">
@@ -83,24 +80,23 @@
                             <div class="d-flex flex-wrap justify-content-between mt-3">
                                 <div class="d-flex flex-column flex-grow-1 pr-8">
                                     <div class="d-flex flex-wrap">
-                                        <a href="{{ route('admin.customer.show', $customer->id) }}" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                        <i class="flaticon2-user mr-2 font-size-lg"></i>{{ $order->full_name }}</a>
                                         <a href="#" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
                                         <i class="flaticon2-phone mr-2 font-size-lg"></i>{{ "+" .$order->phone }}</a>
                                         <a href="#" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                        <i class="flaticon-money mr-2 font-size-lg"></i>&#x20A6;{{ $order->total_amount }}</a>
-
+                                        <i class="flaticon2-phone mr-2 font-size-lg"></i>&#x20A6;{{ $order->total_amount }}</a>
+                                        <a href="#" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
+                                        <i class="flaticon-money mr-2 font-size-lg"></i>
                                         @if($order->status == "Pending" )
-                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-danger font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-danger font-weight-bolder font-size-sm mr-3 mb-4">{{ $order->status }}</a>
                                             @elseif($order->status == "Approved" )
-                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-primary font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-primary font-weight-bolder font-size-sm mr-3 mb-4">{{ $order->status }}</a>
                                             @elseif($order->status == "Paid" )
-                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-success font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-success font-weight-bolder font-size-sm mr-3 mb-4">{{ $order->status }}</a>
                                             @elseif($order->status == "Delivered" )
-                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-info font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-info font-weight-bolder font-size-sm mr-3 mb-4">{{ $order->status }}</a>
                                             @elseif($order->status == "Cancelled" )
-                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-dark font-weight-bolder font-size-sm mr-3 mb-8">{{ $order->status }}</a>
-                                        @endif
+                                            <a href="#" style="font-size: 15px; text-decoration: none;" class="badge badge-dark font-weight-bolder font-size-sm mr-3 mb-4">{{ $order->status }}</a>
+                                        @endif</a>
                                     </div>
                                 </div>
                             </div>
@@ -111,9 +107,12 @@
                     <!--end::Details-->
                     <div class="separator separator-solid"></div>
                     <!--begin::Items-->
-                    <div class="d-flex align-items-center flex-wrap mt-8">
+                    <div class="d-flex align-items-center flex-wrap mt-4">
                         <!--begin::Item-->
                         <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-piggy-bank display-4 text-muted font-weight-bold"></i>
+                            </span>
                             <div class="d-flex flex-column text-dark-75">
                                 <span class="font-weight-bolder font-size-lg">Utilized Credit</span>
                                 <span class="font-weight-bolder font-size-h5">
@@ -123,6 +122,9 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-confetti display-4 text-muted font-weight-bold"></i>
+                            </span>
                             <div class="d-flex flex-column text-dark-75">
                                 <span class="font-weight-bolder font-size-lg">Credit Limit</span>
                                 <span class="font-weight-bolder font-size-h5">
@@ -132,6 +134,9 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                            <span class="mr-4">
+                                <i class="flaticon-pie-chart display-4 text-muted font-weight-bold"></i>
+                            </span>
                             <div class="d-flex flex-column text-dark-75">
                                 <span class="font-weight-bolder font-size-lg">Credit Allowance</span>
                                 <span class="font-weight-bolder font-size-h5">
@@ -194,7 +199,10 @@
                         </div> 
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-light-success font-weight-bolder font-size-sm mr-3"><i class="flaticon2-pen"></i>Edit Order</a>
+                        @if($order->status == "Pending" )
+                            <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-light-success font-weight-bolder font-size-sm mr-3"><i class="flaticon2-pen"></i>Edit Order</a>
+                        @else
+                        @endif
                         <!--end::Item-->
                     </div>
                     
@@ -214,8 +222,10 @@
 
                             <!--begin::Section-->
                             <div class="mb-17">
-
-                                <table class="table table-striped table-bordered base-style">
+                                <a href="#" style="text-decoration: none;" class="text-dark font-size-h3 font-weight-bolder">
+                                    {{ $order->order_number }}
+                                </a>
+                                <table class="table table-striped table-bordered base-style mt-3">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
@@ -252,39 +262,62 @@
 
                 <div class="col-xxl-4 col-md-12 order-2 order-xxl-1">
                     <!--begin::List Widget 9-->
-                    <div class="card card-custom card-stretch gutter-b">
-                        <!--begin::Header-->
-                        <div class="card-header align-items-center border-0 mt-4">
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="font-weight-bolder text-dark">Order Activity</span>
-                            </h3>
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body pt-1">
-                            <!--begin::Timeline-->
-                            <div class="timeline timeline-6 mt-3">
-                                <!--begin::Item-->
-                                @foreach ($order_logs as $order_log)
-                                <div class="timeline-item align-items-start">
-                                    <!--begin::Label-->
-                                    <div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">{{ $order_log->created_at }}</div>
-                                    <!--end::Label-->
-                                    <!--begin::Badge-->
-                                    <div class="timeline-badge">
-                                        <i class="fa fa-genderless text-warning icon-xl"></i>
-                                    </div>
-                                    <!--end::Badge-->
-                                    <!--begin::Text-->
-                                    <div class="font-weight-mormal font-size-lg timeline-content text-muted pl-3">{{ $order_log->name }}</div>
-                                    <!--end::Text-->
-                                </div>
-                                @endforeach
-                            </div>
-                            <!--end::Timeline-->
-                        </div>
-                        <!--end: Card Body-->
-                    </div>
+                    <div class="card card-custom gutter-b">
+											<div class="card-header">
+												<div class="card-title">
+													<h3 class="card-label">Order Activity</h3>
+												</div>
+											</div>
+											<div class="card-body">
+												<!--begin::Example-->
+												<div class="example example-basic">
+													<div class="example-preview">
+														<!--begin::Timeline-->
+														<div class="timeline timeline-5">
+															<div class="timeline-items">
+																<!--begin::Item-->
+																<div class="timeline-item">
+																	<!--begin::Icon-->
+																	<div class="timeline-media bg-light-primary">
+																		<span class="svg-icon svg-icon-primary svg-icon-md">
+																			<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg-->
+																			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																					<rect x="0" y="0" width="24" height="24" />
+																					<path d="M16,15.6315789 L16,12 C16,10.3431458 14.6568542,9 13,9 L6.16183229,9 L6.16183229,5.52631579 C6.16183229,4.13107011 7.29290239,3 8.68814808,3 L20.4776218,3 C21.8728674,3 23.0039375,4.13107011 23.0039375,5.52631579 L23.0039375,13.1052632 L23.0206157,17.786793 C23.0215995,18.0629336 22.7985408,18.2875874 22.5224001,18.2885711 C22.3891754,18.2890457 22.2612702,18.2363324 22.1670655,18.1421277 L19.6565168,15.6315789 L16,15.6315789 Z" fill="#000000" />
+																					<path d="M1.98505595,18 L1.98505595,13 C1.98505595,11.8954305 2.88048645,11 3.98505595,11 L11.9850559,11 C13.0896254,11 13.9850559,11.8954305 13.9850559,13 L13.9850559,18 C13.9850559,19.1045695 13.0896254,20 11.9850559,20 L4.10078614,20 L2.85693427,21.1905292 C2.65744295,21.3814685 2.34093638,21.3745358 2.14999706,21.1750444 C2.06092565,21.0819836 2.01120804,20.958136 2.01120804,20.8293182 L2.01120804,18.32426 C1.99400175,18.2187196 1.98505595,18.1104045 1.98505595,18 Z M6.5,14 C6.22385763,14 6,14.2238576 6,14.5 C6,14.7761424 6.22385763,15 6.5,15 L11.5,15 C11.7761424,15 12,14.7761424 12,14.5 C12,14.2238576 11.7761424,14 11.5,14 L6.5,14 Z M9.5,16 C9.22385763,16 9,16.2238576 9,16.5 C9,16.7761424 9.22385763,17 9.5,17 L11.5,17 C11.7761424,17 12,16.7761424 12,16.5 C12,16.2238576 11.7761424,16 11.5,16 L9.5,16 Z" fill="#000000" opacity="0.3" />
+																				</g>
+																			</svg>
+																			<!--end::Svg Icon-->
+																		</span>
+																	</div>
+																	<!--end::Icon-->
+																	<!--begin::Info-->
+																	<div class="timeline-desc timeline-desc-light-primary">
+                                                                        @foreach ($order_logs as $order_log)
+                                                                             @php
+                                                                                $timestamp = $order_log->created_at;
+                                                                                $carbonDate = \Carbon\Carbon::parse($timestamp);
+                                                                                $formattedDate = $carbonDate->format('H:i, jS \of F Y');
+                                                                            @endphp
+                                                                            <span class="font-weight-bolder text-primary">{{ $formattedDate }}</span>
+                                                                            <p class="font-weight-normal text-dark-50 pb-2">{{ $order_log->name }}</p>
+                                                                        @endforeach
+                                                                       
+																	</div>
+																	<!--end::Info-->
+																</div>
+																<!--end::Item-->
+															</div>
+														</div>
+														<!--end::Timeline-->
+													</div>
+												</div>
+												<!--end::Example-->
+												<!--begin::Code example-->
+												<!--end::Code example-->
+											</div>
+										</div>
                     <!--end: List Widget 9-->
                 </div>
             </div>

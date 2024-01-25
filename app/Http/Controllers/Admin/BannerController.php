@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Brand;
 use App\Models\Banner;
+use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,11 +36,14 @@ class BannerController extends Controller
         {
             try
             {
+                // dd($request);
                  $this->validate($request, [
                     'name' => 'bail|required|string',
                     'status' => 'nullable|integer',
                     'description' => 'nullable|string',
                     'banner_image' => 'bail|required',
+                    'percentage_discount' => 'numeric',
+                    'brand' => 'integer',
                 ]);
 
                 $slug = Str::slug($request->name);
@@ -49,9 +54,6 @@ class BannerController extends Controller
                 {
                     return redirect()->back()->with('danger', 'Sorry! You have already added this banner.');
                 }
-
-                // Log::info($seocontent);
-                // dd($request->content);
 
                 if($request->hasFile('banner_image'))
                 {
@@ -75,7 +77,11 @@ class BannerController extends Controller
                     'last_edited_by' => auth()->user()->id,
                     'status' => $request->status ?? 0,
                     'banner_image' => $bg_image_name,
+                    'brand_id' => $request->brand,
+                    'percentage_discount' => $request->percentage_discount,
                 ]);
+
+                $this->applyPromotion($banner);
 
                 return redirect()->back()->with('success', 'Banner created successfully');
 
@@ -89,13 +95,42 @@ class BannerController extends Controller
         }else{
             try
             {
-                return view('admin.cms.banners.create');
+                $brands = Brand::all();
+                return view('admin.cms.banners.create', compact('brands'));
             } catch(\Exception $e)
             {
                 // dd($e->getMessage());
                 return redirect()->back()->with('danger', $e->getMessage());
             }
         }
+    }
+
+    public function applyPromotion(Banner $banner)
+    {
+        $brand = $banner->brand;
+
+        if (!$brand) {
+            return redirect()->view('admin.cms.banners.create')->with('danger', 'Brand not found.');
+        }
+    
+        $products = $brand->products;
+
+        foreach ($products as $product) {
+            if ($banner->isActive()) {
+                $product->discounted_price = $product->price - ($product->price * ($banner->percentage_discount / 100));
+            } else {
+                $product->discounted_price = null;
+            }
+
+            $product->save();
+        }
+
+        if (!$banner->isActive()) { 
+            $banner->brand_id = null;
+            $banner->save();
+        }
+
+        return redirect()->back()->with('success', 'Banner Promotion applied successfully to products.');
     }
 
     public function editBanner(Request $request, $banner_id)
@@ -156,6 +191,24 @@ class BannerController extends Controller
                     'status' => $request->status ?? 0,
                     'banner_image' => $bg_image_name,
                 ]);
+
+                if (!$banner->isActive()) { 
+                    $brandId = $banner->brand_id;
+
+                    $banner->brand_id = null;
+                    $banner->save();
+
+                    $products = Product::where('brand_id', $brandId)->get();
+
+                    // dd($products);
+
+                    if ($products) {
+                        foreach ($products as $product) {
+                            $product->discounted_price = null;
+                            $product->save();
+                        }
+                    }
+                }
 
                 return redirect()->back()->with('success', 'Banner updated successfully');
 

@@ -141,7 +141,7 @@ class SKUController extends Controller
             $slug = Str::slug($request->name);
             $ref = strtoupper(Str::random(20));
 
-            $checkproduct = Product::where('reference_number', $ref)->where('id', '!=', $product_id)->first();;
+                                                                                                                                                      $checkproduct = Product::where('reference_number', $ref)->where('id', '!=', $product_id)->first();;
             if($checkproduct)
             {
                 return redirect()->back()->with('danger', 'Sorry! A product already exists with this reference number.');

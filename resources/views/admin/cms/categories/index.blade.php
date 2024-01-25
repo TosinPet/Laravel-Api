@@ -60,6 +60,7 @@
                                         <th></th>
                                         <th>Category Image</th>
                                         <th>Name</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -73,13 +74,23 @@
                                             {{ $cnt++ }}
                                         </td>
                                         <td>
-                                            <img src="{{ asset('uploads/categories') }}/{{ $category->category_image }}" style="width: 75px; height: 60px" alt="Icon">
+                                            <img src="{{ asset('uploads/categories') }}/{{ $category->category_image }}" style="width: 75px; height: 50px" alt="Icon">
                                         </td>
                                         <td>
                                             <div>
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                     {{ $category->name }}
                                                 </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                @if ($category->status == 1)
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
+                                                @endif
+                                                @if ($category->status == 0)
+                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Inactive</span>
+                                                @endif
                                             </div>
                                         </td>
                                         <td>

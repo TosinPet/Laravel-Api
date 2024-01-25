@@ -68,16 +68,28 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <label>Banner Image <span class="text-danger"><b>*</b></span> <span class="font-weight-bolder">(375px x 159px)</span></label>
                                         <div class="input-group">
                                             <input type="file" class="form-control form-control-solid" placeholder="" name="banner_image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('banner_image') }}">
                                             <div class="input-group-append">
-                                                {{-- <span class="input-group-text"> --}}
-                                                    {{-- <i class="la la-map-marker"></i> --}}
-                                                {{-- </span> --}}
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label for="percentage_discount">Percentage Discount:</label>
+                                        <input class="form-control" type="number" name="percentage_discount" placeholder="Discount Percentage %" value="{{ old('percentage_discount') }}">
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label>Brands <span class="text-danger"><b>*</b></span></label>
+                                        <select id="brand" name="brand" class="form-control">
+                                            <option value="none" selected="" disabled="">Choose a Brand</option>
+                                            @foreach($brands as $brand)
+                                                <option value="{{ $brand->id }}" @if($brand->id == old('brand')) selected @endif>{{ $brand->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div class="col-md-6 mt-5">
