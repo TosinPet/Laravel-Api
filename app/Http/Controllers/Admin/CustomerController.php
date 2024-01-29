@@ -66,7 +66,7 @@ class CustomerController extends Controller
                     'years_of_relationship' => 'bail|nullable|string'
                 ]);
                 // dd($request);
-                $pass = random_int(100000, 999999);
+                $pass = "123456";
                 // dd($pass);
                 $password = Hash::make($pass);
                 $ref = 'CUS'.random_int(1000000000, 9999999999);

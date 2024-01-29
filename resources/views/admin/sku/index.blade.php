@@ -50,7 +50,7 @@
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
                                 <a href="{{ route('admin.sku.export') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                                    <i class="la la-download"></i> Download SKU List
+                                    <i class="flaticon-download"></i> Download SKU List
                                 </a>
                             </div>
 
@@ -98,6 +98,8 @@
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                     {{ $sku->reference_number }}
                                                 </span>
+                                                {{-- &#x20A6; --}}
+                                    {{-- ₦ --}}
                                             </div>
                                         </td>
                                         <td>
@@ -132,7 +134,7 @@
                                         <td>
 
                                             <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $sku->id }}">
-                                                <i class="flaticon-edit"></i>
+                                                <i class="flaticon2-edit"></i>
                                             </button>
 
                                         </td>
@@ -247,7 +249,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Reference Number </label>
-                                            <input type="text" class="form-control" name="reference_number" placeholder="Cases" value="{{ $sku->reference_number }}" />
+                                            <input type="text" class="form-control" name="reference_number" placeholder="Reference Number" value="{{ $sku->reference_number }}" />
                                         </div>
                                     </div>
                                 </div>

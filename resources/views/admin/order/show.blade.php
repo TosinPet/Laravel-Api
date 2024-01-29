@@ -294,16 +294,19 @@
 																	<!--end::Icon-->
 																	<!--begin::Info-->
 																	<div class="timeline-desc timeline-desc-light-primary">
-                                                                        @foreach ($order_logs as $order_log)
-                                                                             @php
-                                                                                $timestamp = $order_log->created_at;
-                                                                                $carbonDate = \Carbon\Carbon::parse($timestamp);
-                                                                                $formattedDate = $carbonDate->format('H:i, jS \of F Y');
-                                                                            @endphp
-                                                                            <span class="font-weight-bolder text-primary">{{ $formattedDate }}</span>
-                                                                            <p class="font-weight-normal text-dark-50 pb-2">{{ $order_log->name }}</p>
-                                                                        @endforeach
-                                                                       
+                                                                        @if ($order_logs->isEmpty())
+                                                                            <p class="font-weight-normal text-dark-50 pb-2">No activity on this Order yet</p>
+                                                                        @else
+                                                                            @foreach ($order_logs as $order_log)
+                                                                                @php
+                                                                                    $timestamp = $order_log->created_at;
+                                                                                    $carbonDate = \Carbon\Carbon::parse($timestamp);
+                                                                                    $formattedDate = $carbonDate->format('H:i, jS \of F Y');
+                                                                                @endphp
+                                                                                <span class="font-weight-bolder text-primary">{{ $formattedDate }}</span>
+                                                                                <p class="font-weight-normal text-dark-50 pb-2">{{ $order_log->name }}</p>
+                                                                            @endforeach
+                                                                        @endif
 																	</div>
 																	<!--end::Info-->
 																</div>

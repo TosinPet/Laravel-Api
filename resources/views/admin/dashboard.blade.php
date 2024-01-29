@@ -243,7 +243,7 @@
 																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">${{ $recentOrder->order_number }}</span>
 																</td>
 																<td>
-																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $recentOrder->total_amount }}</span>
+																	<span class="text-dark-75 font-weight-bolder d-block font-size-lg sku_id">{{ $recentOrder->total_amount }}</span>
 																</td>
 																<td>
 																	@if($recentOrder->status == "Pending" )

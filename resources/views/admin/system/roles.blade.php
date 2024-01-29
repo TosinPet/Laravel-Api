@@ -66,7 +66,7 @@
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body">
-                            <table class="table align-middle gs-0 gy-4" id="kt_datatable_example">
+                            <table class="table align-middle gs-0 gy-4" id="example">
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fw-bold text-white bg-warning">
@@ -103,7 +103,7 @@
                                         <td>
                                             @if(checkPermission('edit_role'))
                                             <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $role->id }}">
-                                                <i class="flaticon-edit"></i>
+                                                <i class="flaticon2-edit"></i>
                                             </button>
                                             @endif
                                             

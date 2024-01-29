@@ -100,7 +100,7 @@
                                         <td>
                                             @if(checkPermission('edit_permission'))
                                                 <button href="#" class="btn btn-icon btn-warning" data-toggle="modal" data-target="#edit-customer{{ $permission->id }}">
-                                                    <i class="flaticon-edit"></i>
+                                                    <i class="flaticon2-edit"></i>
                                                 </button>
                                             @endif
                                         </td>

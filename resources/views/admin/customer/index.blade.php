@@ -52,10 +52,10 @@
                             <div class="card-toolbar">
                                 <!--begin::Dropdown-->
                                 <a href="#" class="btn btn-warning font-weight-bolder font-size-sm mr-3" data-toggle="modal" data-target="#addCustomer">
-                                    <i class="flaticon-upload-1"></i> Import Customers
+                                    <i class="flaticon-upload-1"></i> Upload Customers List
                                 </a>
                                 <a href="{{ route('admin.customer.export') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                                    <i class="flaticon-download"></i> Export Customers List
+                                    <i class="flaticon-download"></i> Download Customers List
                                 </a>
                             </div>
 

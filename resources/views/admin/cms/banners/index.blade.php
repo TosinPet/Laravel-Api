@@ -93,13 +93,23 @@
                                                     {{ $banner->name }}
                                                 </span>
                                                 <!--end::Title-->
+                                                <div class="fs-6 mt-3 d-flex flex-stack">
+                                                    <small>
+                                                        @if ($banner->status == 1)
+                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
+                                                        @endif
+                                                        @if ($banner->status == 0)
+                                                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Active</span>
+                                                        @endif
+                                                    </small>
+                                                </div>
                                                 <!--end::Text-->
                                                 <!--begin::Text-->
-                                                <div class="fs-6 fw-bold mt-2 d-flex flex-stack">
+                                                <div class="fs-6 fw-bold mt-3 d-flex flex-stack">
                                                     <!--begin::Label-->
                                                     <!--end::Label-->
                                                     <!--begin::Action-->
-                                                    <a href="{{ route('admin.banner.edit', $banner->id) }}" style="font-size: 15px" class="btn btn-sm btn-primary">
+                                                    <a href="{{ route('admin.banner.edit', $banner->id) }}" style="font-size: 15px" class="btn btn-sm btn-warning">
                                                         {{-- <i class="ki-duotone ki-pencil"> --}}
                                                         {{-- <i class="path1"></i> --}}
                                                         {{-- <i class="path2"></i> --}}
