@@ -25,7 +25,7 @@
 		<link href="{{ asset('assets/css/themes/layout/brand/dark.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
+		<link rel="shortcut icon" href="{{ asset('assets/media/logos/sanda-favicon.png') }}" />
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -39,10 +39,6 @@
 					<!--begin::Wrapper-->
 					<div class="login-content d-flex flex-column pt-lg-0 pt-12">
 						<!--begin::Logo-->
-						<a href="#" class="login-logo pb-xl-20 pb-15 text-warning">
-							{{-- <img src="{{ asset('assets/media/logos/logo-4.png') }}" class="max-h-70px" alt="" /> --}}
-                            {{-- {{ config('app.name') }} --}}
-						</a>
 						<!--end::Logo-->
 						<!--begin::Signin-->
 						<div class="login-form">

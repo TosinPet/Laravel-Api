@@ -118,7 +118,7 @@
                                             <td>
                                                 <div>
                                                     {{-- <span class="font-weight-bolder d-block font-size-lger">admin Reference</span> --}}
-                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg" href="#">
+                                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg sku_id" href="#">
                                                         {{ $order->total_amount }}
                                                     </span>
                                                 </div>

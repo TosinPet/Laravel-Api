@@ -22,3 +22,17 @@ function comma(Num) {
     while (rgx.test(x1)) x1 = x1.replace(rgx, "$1" + "," + "$2")
     return x1 + x2
   }
+
+  let sku_id = document.querySelectorAll('.sku_id')
+  let sku_idd = document.querySelectorAll('.sku_id')
+
+  
+//   sku_id.innerHTML =`₦${comma(Number(sku_id))}`
+//   sku_id.map((item) => item.textContent = comma(item) )
+
+for (let i = 0; i < sku_id.length; i++) {
+    sku_id[i].innerText = `${comma( sku_id[i].innerText)}`;
+  }
+
+  console.log('sku_id',sku_idd);
+  console.log('sku_id', sku_id );

@@ -102,8 +102,8 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                                    ₦{{ comma($sku->price) }}
+                                                <span  id='' class="text-dark-75 font-weight-bolder d-block font-size-lg sku_id">
+                                                    {{ $sku->price }} 
                                                 </span>
                                             </div>
                                         </td>

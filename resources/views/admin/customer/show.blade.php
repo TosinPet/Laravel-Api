@@ -82,8 +82,8 @@
                             </span>
                             <div class="d-flex flex-column text-dark-75">
                                 <span class="font-weight-bolder font-size-lg">Utilized Credit</span>
-                                <span class="font-weight-bolder font-size-h5">
-                                <span class="text-dark-50 font-weight-bold"></span>{{ $customer->utilized_credit ?? 'null'}}</span>
+                                <span class="font-weight-bolder font-size-h5 sku_id">
+                                <span class="text-dark-50 font-weight-bold"></span>{{ $customer->utilized_credit ?? '0'}}</span>
                             </div>
                         </div>
                         <!--end::Item-->
@@ -94,8 +94,8 @@
                             </span>
                             <div class="d-flex flex-column text-dark-75">
                                 <span class="font-weight-bolder font-size-lg">Credit Limit</span>
-                                <span class="font-weight-bolder font-size-h5">
-                                <span class="text-dark-50 font-weight-bold"></span>{{ $customer->credit_limit ?? 'null'}}</span>
+                                <span class="font-weight-bolder font-size-h5 sku_id">
+                                <span class="text-dark-50 font-weight-bold"></span>{{ $customer->credit_limit ?? '0'}}</span>
                             </div>
                         </div>
                         <!--end::Item-->
@@ -106,8 +106,10 @@
                             </span>
                             <div class="d-flex flex-column text-dark-75">
                                 <span class="font-weight-bolder font-size-lg">Credit Allowance</span>
-                                <span class="font-weight-bolder font-size-h5">
-                                <span class="text-dark-50 font-weight-bold"></span>{{ $customer->credit_allowance ?? 'null'}}</span>
+                                <span class="font-weight-bolder font-size-h5 sku_id">
+                                    {{-- &#x20A6; --}}
+                                    {{-- ₦ --}}
+                                <span class="text-dark-50 font-weight-bold"></span>{{ $customer->credit_allowance ?? '0'}}</span>
                             </div>
                         </div>
                         <!--end::Item-->
