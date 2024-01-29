@@ -159,7 +159,7 @@ class CustomerController extends Controller
 
     public function showCustomer(string $id)
     {
-        if(!checkPermission('view_customer_order'))
+        if(!checkPermission('view_single_customer'))
         {
             return redirect()->back()->with('danger', 'Access Forbidden');
         }
@@ -194,6 +194,8 @@ class CustomerController extends Controller
                 'state' => 'bail|nullable|string',
                 'lga' => 'bail|nullable|string',
                 'customer_type' => 'bail|nullable|string',
+                'utilized_credit' => 'bail|numeric',
+                'credit_limit' => 'bail|numeric',
                 'status' => 'nullable|integer',
                 'suspend' => 'nullable|integer',                
             ]);
@@ -207,11 +209,16 @@ class CustomerController extends Controller
                 'state' => $request->state,
                 'lga' => $request->lga,
                 'customer_type' => $request->customer_type,
+                'utilized_credit' => $request->utilized_credit,
+                'credit_limit' => $request->credit_limit,
                 'active' => $request->active ?? 0,
                 'suspend' => $request->suspend ?? 0,
                 'last_edited_by' => auth()->user()->id,
             ]);
 
+            $customer->update([
+                'credit_allowance' => $customer->credit_limit - $customer->utilized_credit,
+            ]);
 
             return redirect()->back()->with('success', "Customer has been edited successfully.");
         } catch (ValidationException $th) {

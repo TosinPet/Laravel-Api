@@ -22,6 +22,7 @@ class BannerController extends Controller
             return redirect()->back()->with('danger', 'Access Forbidden');
         }
         $banners = Banner::orderBy('created_at', 'DESC')->get();
+        // dd($banners);
         // dd($banners);   
         return view('admin.cms.banners.index', compact('banners'));
     }

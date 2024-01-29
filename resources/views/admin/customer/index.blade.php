@@ -72,7 +72,7 @@
                                         <th>Name</th>
                                         <th>Address</th>
                                         <th>Phone</th>
-                                        <th>Customer Reference</th>
+                                        {{-- <th>Customer Reference</th> --}}
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -107,13 +107,13 @@
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 <div>
                                                     <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                         {{ $customer->reference_no }}
                                                     </span>
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 @if ($customer->active == 1)
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
@@ -292,7 +292,8 @@
                                         <div class="form-group">
                                             <label>State</label>
                                             <select onchange="toggleLGA(this);" name="state" id="state" class="form-control" required>
-                                                <option value="" selected="selected">- Select -</option>
+                                                {{-- <option value="" selected="selected">- Select a State -</option> --}}
+                                                <option value="{{ $customer->state }}" @if($customer->state == old('customer')) selected @endif>{{ $customer->state }}</option>
                                                 <option value="Abia">Abia</option>
                                                 <option value="Adamawa">Adamawa</option>
                                                 <option value="AkwaIbom">AkwaIbom</option>
@@ -339,11 +340,29 @@
                                         <div class="form-group">
                                             <label>LGA</label>
                                             <select name="lga" id="lga" class="form-control select-lga" required>
+                                                <option value="{{ $customer->lga }}" @if($customer->lga == old('customer')) selected @endif>{{ $customer->lga }}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Utilized Credit</label>
+                                            <input type="text" name="utilized_credit" value="{{ $customer->utilized_credit }}" class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Credit Limit</label>
+                                            <input type="text" name="credit_limit" value="{{ $customer->credit_limit }}" class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div

@@ -15,6 +15,10 @@ class DashboardController extends Controller
     //
     public function dashboard()
     {
+        if(!checkPermission('view_dashboard'))
+        {
+            return redirect()->back()->with('danger', 'Access Forbidden');
+        }
         try
         {
             $no_of_orders = Order::get()->count();

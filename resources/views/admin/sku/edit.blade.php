@@ -64,7 +64,7 @@
                                         <select id="brand" name="brand" class="form-control">
                                             <option value="none" selected="" disabled="">Choose a Brand</option>
                                             @foreach($brands as $brand)
-                                                <option value="{{ $brand->id }}" @if($category->id == old('category')) selected @endif>{{ $sku->brand->name }}</option>
+                                                <option value="{{ $brand->id }}" @if($brand->id == old('brand')) selected @endif>{{ $sku->brand->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

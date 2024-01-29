@@ -63,7 +63,7 @@
                                         <a href="#" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
                                         <i class="flaticon2-phone mr-2 font-size-lg"></i>{{ "+" .$customer->phone_number }}</a>
                                         <a href="#" style="text-decoration: none;" class="text-dark-75 h5 font-weight-bolder mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                        <i class="flaticon-money mr-2 font-size-lg"></i>{{ $customer->address }}</a>
+                                        <i class="flaticon-pin mr-2 font-size-lg"></i>{{ $customer->address }}</a>
                                     </div>
                                 </div>
                             </div>

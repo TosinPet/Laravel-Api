@@ -63,7 +63,7 @@
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="card-body">
-                            <table class="table align-middle gs-0 gy-4" id="kt_datatable_example">
+                            <table class="table align-middle gs-0 gy-4" id="example">
                                 <!--begin::Table head-->
                                 <thead>
                                     <tr class="fw-bold text-white bg-warning">

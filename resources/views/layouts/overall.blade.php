@@ -143,25 +143,47 @@
 		<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 		<script src="{{ asset('assets/js/script.js') }}"></script>
+		<script src="{{ asset('assets/js/comma.js') }}"></script>
 
 		<!--begin::Page Scripts(used by this page)-->
 		<script src="{{ asset('assets/js/pages/widgets.js') }}"></script>
         {{-- <script src="{{ asset('assets/js/pages/widgets.js') }}"></script> --}}
         <script src="{{ asset('assets/js/pages/crud/forms/widgets/select2.js?v=').time() }}"></script>
         <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-	<script src="{{ asset('assets/js/pages/crud/datatables/advanced/column-rendering.js') }}"></script>
+		<script src="{{ asset('assets/js/pages/crud/datatables/advanced/column-rendering.js') }}"></script>
         <script src="{{ asset('assets/js/pages/features/miscellaneous/sweetalert2.js') }}"></script>
         <script src="{{ asset('assets/js/pages/custom/profile/profile.js') }}"></script>
 
-		{{-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> --}}
-		{{-- <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script> --}}
-		{{-- <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script> --}}
-		{{-- <script src="{{ asset('assets/js/pages/crud/ktdatatable/base/html-table.js') }}"></script> --}}
-		<!-- Add these lines in your HTML file -->
-		
-
         @include('admin.includes.errors_js')
         @stack('js')
+		<script>
+			export function testAlert() {
+				alert("The JavaScript file is imported properly!");
+			}
+			testAlert();
+		</script>
+		{{-- <script>
+			export function comma(Num) {
+				//function to add commas to textboxes
+				// $("#value").val($("#value").val().replace(/[^0-9,]/g, ''));
+				Num = parseFloat(Num).toFixed(0)
+				Num += ""
+				Num = Num.replace(",", "")
+				Num = Num.replace(",", "")
+				Num = Num.replace(",", "")
+				Num = Num.replace(",", "")
+				Num = Num.replace(",", "")
+				Num = Num.replace(",", "")
+				// Num = Num.replace(',', '');
+				let x, x1, x2
+				x = Num.split(".")
+				x1 = x[0]
+				x2 = x.length > 1 ? "." + x[1] : ""
+				var rgx = /(\d+)(\d{3})/
+				while (rgx.test(x1)) x1 = x1.replace(rgx, "$1" + "," + "$2")
+				return x1 + x2
+			}
+		</script> --}}
 	</body>
 	<!--end::Body-->
 </html>
