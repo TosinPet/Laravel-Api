@@ -46,7 +46,7 @@ class OrderController extends Controller
         {
             try
                 {
-                    // dd($request);
+                    dd($request);
                     $request->validate([
                         'customer_id' => 'bail|required',
                         'skus' => 'bail|required|array|min:1',
@@ -158,6 +158,12 @@ class OrderController extends Controller
         $order['full_name'] = $user->full_name;
 
         $order_logs = OrderLog::where('order_id', '=', $order->id)->get();
+        foreach($order_logs as $order_log)
+        {
+            $user_id = $order_log->user_id;
+            $user = User::find($user_id);
+            $order_log['full_name'] = $user->full_name;
+        }
         // dd($order_logs);
         $customer = Customer::where('user_id', '=', $user->id)->first();
 

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Banner extends Model
+class Promotion extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
     public function brand()
     {
-        return $this->belongsTo(Brand::class, 'brand_id');
+        return $this->hasMany(Brand::class, 'brand_id');
     }
 
     public function isActive()

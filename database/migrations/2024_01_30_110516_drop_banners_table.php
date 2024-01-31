@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('banners', function (Blueprint $table) {
-            //
-        });
+        //
+        Schema::dropIfExists('banners');
     }
 
     /**
@@ -21,9 +20,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('banners', function (Blueprint $table) {
-            //
-            $table->dropForeign(['brand_id']);
-        });
+        //
     }
 };

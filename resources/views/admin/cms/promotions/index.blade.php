@@ -1,5 +1,5 @@
 @extends("layouts.overall")
-@section("page_title", "Banners")
+@section("page_title", "Promotions")
 @section('module', 'CMS')
 @section("content")
 
@@ -24,8 +24,8 @@
 
                 </ul>
             </div>
-            <a href="{{ route('admin.banner.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                <i class="flaticon2-pen"></i> Create New Banner
+            <a href="{{ route('admin.promotion.create') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                <i class="flaticon2-pen"></i> Create New Promotion
             </a>
         </div>
     </div>
@@ -62,16 +62,16 @@
                                 <!--begin::Row-->
                                 <div class="row g-10">
                                     <!--begin::Col-->
-                                    @foreach($banners as $banner)
+                                    @foreach($promotions as $promotion)
                                     <div class="col-md-4 mb-5">
                                         <!--begin::Hot sales post-->
                                         <div class="card-xl-stretch me-md-6">
                                             <!--begin::Overlay-->
                                             <a class="d-block overlay" data-fslightbox="lightbox-hot-sales"
-                                                href="{{ asset('uploads/banners') }}/{{ $banner->icon }}" target="_blank">
+                                                href="{{ asset('uploads/promotions') }}/{{ $promotion->icon }}" target="_blank">
                                                 <!--begin::Image-->
                                                 <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
-                                                    style="background-image:url('{{ asset('uploads/banners') }}/{{ $banner->banner_image }}')">
+                                                    style="background-image:url('{{ asset('uploads/promotions') }}/{{ $promotion->promotion_image }}')">
                                                 </div>
                                                 <!--end::Image-->
                                                 <!--begin::Action-->
@@ -88,17 +88,17 @@
                                             <!--begin::Body-->
                                             <div class="mt-2">
                                                 <!--begin::Title-->
-                                                <span href="{{ route('admin.banner.edit', $banner->id) }}"
+                                                <span href="{{ route('admin.promotion.edit', $promotion->id) }}"
                                                     class="fs-4 text-dark fw-bold text-hover-primary text-dark lh-base">
-                                                    {{ $banner->name }}
+                                                    {{ $promotion->name }}
                                                 </span>
                                                 <!--end::Title-->
                                                 <div class="fs-6 mt-3 d-flex flex-stack">
                                                     <small>
-                                                        @if ($banner->status == 1)
+                                                        @if ($promotion->status == 1)
                                                         <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Active</span>
                                                         @endif
-                                                        @if ($banner->status == 0)
+                                                        @if ($promotion->status == 0)
                                                         <span class="text-dark-75 font-weight-bolder d-block font-size-lg">Not Active</span>
                                                         @endif
                                                     </small>
@@ -109,7 +109,7 @@
                                                     <!--begin::Label-->
                                                     <!--end::Label-->
                                                     <!--begin::Action-->
-                                                    <a href="{{ route('admin.banner.edit', $banner->id) }}" style="font-size: 15px" class="btn btn-sm btn-warning">
+                                                    <a href="{{ route('admin.promotion.edit', $promotion->id) }}" style="font-size: 15px" class="btn btn-sm btn-warning">
                                                         {{-- <i class="ki-duotone ki-pencil"> --}}
                                                         {{-- <i class="path1"></i> --}}
                                                         {{-- <i class="path2"></i> --}}

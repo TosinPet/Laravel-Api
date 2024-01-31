@@ -79,29 +79,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="col-md-6 mt-5">
-                                        <div class="d-flex flex-stack">
-           
-                                            <!--begin::Switch-->
-                                            <label class="form-check form-switch form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="1" @if($brand->status == 1) checked @endif name="status" />
-                                                <span class="form-check-label fw-semibold text-muted">Active</span>
-                                            </label>
-                                            <!--end::Switch-->
-                                        </div>
+                                <div class="col-md-6 mt-4">
+                                    <div class="d-flex flex-stack">
+       
+                                        <!--begin::Switch-->
+                                        <label class="form-check form-switch form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox" value="1" @if($brand->status == 1) checked @endif name="status" />
+                                            <span class="form-check-label fw-semibold text-muted">Active</span>
+                                        </label>
+                                        <!--end::Switch-->
                                     </div>
-                                </div>
-                                <!-- begin: Example Code-->
-                                <!-- end: Example Code-->
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-lg-6">
+
+                                    <div class="d-flex flex-stack md-6 mt-4">
                                         <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                        {{-- <button type="reset" class="btn btn-secondary">Cancel</button> --}}
+                                        <a href="{{ route('admin.brand.index') }}" class="btn btn-secondary">Cancel</a>
                                     </div>
+
                                 </div>
+
+
                             </div>
                         </form>
 

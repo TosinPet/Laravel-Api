@@ -304,7 +304,7 @@
                                                                                     $formattedDate = $carbonDate->format('H:i, jS \of F Y');
                                                                                 @endphp
                                                                                 <span class="font-weight-bolder text-primary">{{ $formattedDate }}</span>
-                                                                                <p class="font-weight-normal text-dark-50 pb-2">{{ $order_log->name }}</p>
+                                                                                <p class="font-weight-normal text-dark-50 pb-2">{{ $order_log->name }} by <b>{{ $order_log ->full_name}}</b></p>
                                                                             @endforeach
                                                                         @endif
 																	</div>

@@ -15,8 +15,8 @@ class Brand extends Model
         return $this->hasMany(Product::class, 'brand_id');
     }
 
-    public function banner()
+    public function promotion()
     {
-        return $this->hasOne(Banner::class, 'banner_id');
+        return $this->belongsTo(Promotion::class, 'promotion_id');
     }
 }

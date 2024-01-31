@@ -63,9 +63,8 @@
                                         <label>Name</label>
                                         <input type="text" class="form-control" name="name" placeholder="Category Name" value="{{ $category->name }}" />
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-lg-12">
+
+                                    <div class="col-lg-6">
                                         <label>Category Image</label>
                                         <div class="input-group">
                                             <input type="file" class="form-control form-control-solid" placeholder="" name="category_image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('category_image') }}">
@@ -76,6 +75,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
                                     <div class="col-md-6 mt-5">
                                         <div class="d-flex flex-stack">
@@ -87,18 +87,13 @@
                                             </label>
                                             <!--end::Switch-->
                                         </div>
+
+                                        <div class="d-flex flex-stack md-6 mt-4">
+                                            <button type="submit" class="btn btn-primary mr-2">Save</button>
+                                            <a href="{{ route('admin.category.index') }}" class="btn btn-secondary">Cancel</a>
+                                        </div>
+
                                     </div>
-                                </div>
-                                <!-- begin: Example Code-->
-                                <!-- end: Example Code-->
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                        {{-- <button type="reset" class="btn btn-secondary">Cancel</button> --}}
-                                    </div>
-                                </div>
                             </div>
                         </form>
 

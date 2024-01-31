@@ -115,7 +115,7 @@
                                             <td>
                                                 <div>
                                                     {{-- <span class="font-weight-bolder">admin Reference</span> --}}
-                                                    <span class="text-dark font-weight-bold" href="#">
+                                                    <span class="text-dark font-weight-bold sku_id" href="#">
                                                         {{ $purchase->total_amount }}
                                                     </span>
                                                 </div>

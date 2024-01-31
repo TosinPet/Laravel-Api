@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\FavouritesController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\PromotionController;
 use Database\Factories\FavouriteFactory;
 
 /*
@@ -44,7 +45,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('brands', [BrandsController::class, 'index']);
     Route::get('brands/{brand_id}', [BrandsController::class, 'show']);
 
-    Route::get('banners', [BannerController::class, 'index']);
+    Route::get('promotions', [PromotionController::class, 'index']);
+    Route::get('promotions/{promotion_id}', [PromotionController::class, 'show']);
 
     Route::get('orders', [OrderController::class, 'index']);
     Route::post('orders/create', [OrderController::class, 'create']);

@@ -436,6 +436,9 @@
                                     <button type="submit" class="btn btn-primary">
                                         <span class="indicator-label">Save</span>
                                     </button>
+                                    <a href="{{ route('admin.customer.index') }}" class="btn btn-secondary">
+                                        <span class="indicator-label">Cancel</span>
+                                    </a>
                                 </div>
                                 {{-- --}}
                                 <!-- begin: Example Code-->

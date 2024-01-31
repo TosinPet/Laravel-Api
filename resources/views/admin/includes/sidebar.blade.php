@@ -133,12 +133,12 @@
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
             </li>
 
-            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.banner.index'])) menu-item-active @endif" aria-haspopup="true">
-                <a href="{{ route('admin.banner.index') }}" class="menu-link">
+            <li class="menu-item @if(in_array(Route::currentRouteName(), ['admin.promotion.index'])) menu-item-active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.promotion.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
                         <i class="fa-solid fa-flag"></i>
                     </span>
-                    <span class="menu-text">Banners</span>
+                    <span class="menu-text">Promotions</span>
                 </a>
             </li>
 

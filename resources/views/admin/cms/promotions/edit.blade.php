@@ -1,5 +1,5 @@
 @extends("layouts.overall")
-@section("page_title", "Edit Banner")
+@section("page_title", "Edit Promotion")
 @section('module', 'CMS')
 @section("content")
 
@@ -24,8 +24,8 @@
 
                 </ul>
             </div>
-            <a href="{{ route('admin.banner.index') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
-                <i class="ki-duotone ki-add-folder"></i> View all Banners
+            <a href="{{ route('admin.promotion.index') }}" class="btn btn-warning font-weight-bolder font-size-sm mr-3">
+                <i class="ki-duotone ki-add-folder"></i> View all Promotions
             </a>
         </div>
     </div>
@@ -53,55 +53,46 @@
                             </div>
                         </div>
 
-                        <form class="form" action="{{ route('admin.banner.edit', $banner->id) }}" method="POST" enctype="multipart/form-data">
+                        <form class="form" action="{{ route('admin.promotion.edit', $promotion->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <div class="card-body">
-                                <input name="target" value="{{ $banner->id }}" type="hidden" readonly>
+                                <input name="target" value="{{ $promotion->id }}" type="hidden" readonly>
                                 <div class="form-group row">
                                     <div class="col-lg-6">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Banner Name" value="{{ $banner->name }}" />
+                                        <input type="text" class="form-control" name="name" placeholder="Promotion Name" value="{{ $promotion->name }}" readonly/>
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Description</label>
-                                        <textarea rows="3" class="form-control" name="description" placeholder="Banner Description">{!! $banner->description !!}</textarea>
+                                        <textarea rows="3" class="form-control" name="description" placeholder="Promotion Description" readonly>{!! $promotion->description !!}</textarea>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-lg-12">
-                                        <label>Banner Image</label>
+                                        <label>Promotion Image</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control form-control-solid" placeholder="" name="banner_image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ old('banner_image') }}">
+                                            <input type="file" class="form-control form-control-solid" placeholder="" name="promotion_image" accept="image/png,image/gif,image/jpeg,image/jpg" value="{{ $promotion->promotion_image }}">
                                             <div class="input-group-append">
-                                                {{-- <span class="input-group-text"> --}}
-                                                    {{-- <i class="la la-map-marker"></i> --}}
-                                                {{-- </span> --}}
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6 mt-5">
+                                </div>
+                                    <div class="col-md-6 mt-4">
                                         <div class="d-flex flex-stack">
            
                                             <!--begin::Switch-->
                                             <label class="form-check form-switch form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="1" @if($banner->status == 1) checked @endif name="status" />
+                                                <input class="form-check-input" type="checkbox" value="1" @if($promotion->status == 1) checked @endif name="status" />
                                                 <span class="form-check-label fw-semibold text-muted">Active</span>
                                             </label>
                                             <!--end::Switch-->
                                         </div>
+
+                                        <div class="d-flex flex-stack md-6 mt-4">
+                                            <button type="submit" class="btn btn-primary mr-2">Save</button>
+                                            <a href="{{ route('admin.promotion.index') }}" class="btn btn-secondary">Cancel</a> 
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- begin: Example Code-->
-                                <!-- end: Example Code-->
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                        {{-- <button type="reset" class="btn btn-secondary">Cancel</button> --}}
-                                    </div>
-                                </div>
                             </div>
                         </form>
 

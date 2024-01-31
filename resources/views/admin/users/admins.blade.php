@@ -257,7 +257,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center pt-15">
-                                    <button data-bs-dismiss="modal" type="button" class="btn btn-light me-3">Close</button>
+                                    <button data-dismiss="modal" type="button" class="btn btn-light me-3">Close</button>
                                     <button type="submit" class="btn btn-primary">
                                         <span class="indicator-label">Save</span>
                                     </button>

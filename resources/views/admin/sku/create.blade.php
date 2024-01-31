@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 mt-5">
+                                <div class="col-md-6 mt-4">
                                     <div class="d-flex flex-stack">
        
                                         <!--begin::Switch-->
@@ -137,17 +137,14 @@
                                         </label>
                                         <!--end::Switch-->
                                     </div>
+
+                                    <div class="d-flex flex-stack md-6 mt-4">
+                                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                                        <a href="{{ route('admin.sku.index') }}" class="btn btn-secondary">Cancel</a>
+                                    </div>
                                 </div>
                                 <!-- begin: Example Code-->
                                 <!-- end: Example Code-->
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                        <button type="reset" class="btn btn-secondary">Cancel</button>
-                                    </div>
-                                </div>
                             </div>
                         </form>
 

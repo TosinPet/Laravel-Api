@@ -61,8 +61,7 @@
                                         <label>Name</label>
                                         <input type="text" class="form-control" name="name" placeholder="Category Name" value="{{ old('name') }}" />
                                     </div>
-                                </div>
-                                <div class="form-group row">
+                                    
                                     <div class="col-lg-6">
                                         <label>Category Image </span> <span class="font-weight-bolder">(59px x 59px)</span></label>
                                         <div class="input-group">
@@ -71,6 +70,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
                                     <div class="col-md-6 mt-5">
                                         <div class="d-flex flex-stack">
@@ -82,18 +82,12 @@
                                             </label>
                                             <!--end::Switch-->
                                         </div>
+
+                                        <div class="d-flex flex-stack md-6 mt-4">
+                                            <button type="submit" class="btn btn-primary mr-2">Save</button>
+                                            <a href="{{ route('admin.category.index') }}" class="btn btn-secondary">Cancel</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- begin: Example Code-->
-                                <!-- end: Example Code-->
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                        {{-- <button type="reset" class="btn btn-secondary">Cancel</button> --}}
-                                    </div>
-                                </div>
                             </div>
                         </form>
 

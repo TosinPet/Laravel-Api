@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Target\TargetController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\PurchaseController as AdminPurchaseController;
 use App\Http\Controllers\PurchaseController;
 
@@ -68,14 +69,12 @@ Route::group(['middleware' => 'admin_auth'], function()
         });
     });
 
-    Route::controller(BannerController::class)->group(function () {
-        Route::group(["prefix" => "banners"], function ()
+    Route::controller(PromotionController::class)->group(function () {
+        Route::group(["prefix" => "promotions"], function ()
         {
-            Route::get('/', 'index')->name('admin.banner.index');
-            Route::match(['GET', 'POST'], 'create-banner', 'createBanner')->name('admin.banner.create');
-            Route::match(['GET', 'PATCH'], 'edit-banner/{banner_id}', 'editBanner')->name('admin.banner.edit');
-            Route::delete('delete-banner/{banner_id}', 'deleteBanner')->name('admin.banner.delete');
-            Route::get('remove-banner-image/{banner_id}/{image_id}', 'removeImage')->name('admin.banner.remove.image');
+            Route::get('/', 'index')->name('admin.promotion.index');
+            Route::match(['GET', 'POST'], 'create-promotion', 'createPromotion')->name('admin.promotion.create');
+            Route::match(['GET', 'PATCH'], 'edit-promotion/{promotion_id}', 'editPromotion')->name('admin.promotion.edit');
         });
     });
 
