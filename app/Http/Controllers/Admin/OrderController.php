@@ -46,7 +46,6 @@ class OrderController extends Controller
         {
             try
                 {
-                    // dd($request);
                     $request->validate([
                         'customer_id' => 'bail|required',
                         'skus' => 'bail|required|array|min:1',
