@@ -108,11 +108,13 @@
                                         <input type="text" class="form-control" name="shipping_address" placeholder="Shipping Address" value="{{ old('shipping_address') }}" required>
                                     </div>
                                 </div>
-
-                                <div class="col-md-6 mt-4">
+                                
+                                <div class="col-md-6 mt-4 mb-4">
                                     <div class="d-flex flex-stack md-6 mt-4">
-                                        <button type="submit" class="btn btn-primary mr-2">Create Order</button>
+                                        <!--begin::Switch-->
+                                        <button type="submit" class="btn btn-primary mr-2">Save</button>
                                         <a href="{{ route('admin.order.index') }}" class="btn btn-secondary">Cancel</a> 
+                                        <!--end::Switch-->
                                     </div>
                                 </div>
                             </form>
