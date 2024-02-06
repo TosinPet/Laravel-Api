@@ -54,10 +54,9 @@ class SKUController extends Controller
                     'status' => 'nullable|integer',
                 ]);
 
-                $slug = Str::slug($request->name);
-                $ref = strtoupper(Str::random(20));
+                $slug = Str::slug($request->reference_number);
 
-                $checkproduct = Product::where('reference_number', $ref)->first();
+                $checkproduct = Product::where('reference_number', $slug)->first();
                 if($checkproduct)
                 {
                     return redirect()->back()->with('danger', 'Sorry! You have already added this Product.');
